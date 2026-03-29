@@ -1,0 +1,468 @@
+<div class="user-show user-edit">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <!-- Breadcrumb -->
+            <nav aria-label="breadcrumb" class="mb-4">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{{ route('dashboard') }}" class="text-decoration-none">DASHBOARD</a></li>
+                    <li class="breadcrumb-item active">MY PROFILE</li>
+                </ol>
+            </nav>
+
+            <div class="card edit-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0 fw-bold"><i class="ti ti-user-circle me-2"></i>MY PROFILE</h4>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-light btn-sm rounded-pill px-3"
+                            data-bs-toggle="modal" data-bs-target="#editProfileModal">
+                            <i class="ti ti-edit me-1"></i> Edit Profile
+                        </button>
+                        <button type="button" class="btn btn-outline-warning btn-sm rounded-pill px-3"
+                            data-bs-toggle="modal" data-bs-target="#editPasswordModal">
+                            <i class="ti ti-lock me-1"></i> Change Password
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-4 p-md-5">
+
+                    <!-- Profile Header -->
+                    <div class="user-profile-header">
+                        <h6 class="text-white-50 mb-1">MY PROFILE</h6>
+                        <h3 class="mb-0 fw-bold">{{ auth()->user()->name }}</h3>
+                        <p class="mb-0 mt-1 small opacity-75">ID: {{ auth()->user()->id_employee }} | Level: {{ auth()->user()->level_detail->level_name ?? '-' }}</p>
+                    </div>
+
+                    <!-- Photo Section -->
+                    <div class="form-section">
+                        <div class="section-header d-flex align-items-center">
+                            <i class="ti ti-camera me-2 text-primary"></i>
+                            <h5 class="mb-0">Profile Photo</h5>
+                        </div>
+                        <div class="d-flex align-items-center flex-column flex-md-row text-center text-md-start">
+                            <div class="photo-preview-container mb-3 mb-md-0 shadow-sm rounded-circle me-md-4">
+                                @if ($photo)
+                                <img src="{{ asset('storage/image/' . $photo) }}" class="h-100 w-100 object-fit-cover rounded-circle shadow-sm">
+                                @else
+                                <div class="h-100 w-100 d-flex align-items-center justify-content-center bg-light rounded-circle shadow-inner">
+                                    <i class="ti ti-user fs-2 text-muted"></i>
+                                </div>
+                                @endif
+                            </div>
+                            <div>
+                                <h6 class="fw-bold mb-1">{{ auth()->user()->name }}</h6>
+                                <p class="modern-text-muted small mb-0">{{ auth()->user()->position->position ?? 'No Position Assigned' }}</p>
+                                <span class="badge {{ auth()->user()->is_active ? 'bg-success-subtle text-success' : 'bg-danger-subtle text-danger' }} rounded-pill mt-2">
+                                    {{ auth()->user()->is_active ? 'ACCOUNT ACTIVE' : 'ACCOUNT INACTIVE' }}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Personal Information (Read Only) -->
+                    <div class="form-section">
+                        <div class="section-header d-flex align-items-center">
+                            <i class="ti ti-user-circle me-2 text-primary"></i>
+                            <h5 class="mb-0">Personal Information</h5>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label small">Employee ID</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->id_employee }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Full Name</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->name }}" readonly>
+                            </div>
+                            <div class="col-md-12">
+                                <label class="form-label small">Email Addresses</label>
+                                @forelse(auth()->user()->emails as $email)
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text bg-light"><i class="ti ti-mail text-muted"></i></span>
+                                    <input type="email" class="form-control" value="{{ $email->email }}" readonly>
+                                </div>
+                                @empty
+                                <p class="text-muted small">No email registered.</p>
+                                @endforelse
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">NIK</label>
+                                <input type="text" class="form-control" value="{{ $nik ?: '-' }}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">NPWP</label>
+                                <input type="text" class="form-control" value="{{ $npwp ?: '-' }}" readonly>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label small">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">62</span>
+                                    <input type="text" class="form-control" value="{{ auth()->user()->phone ?: '-' }}" readonly>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Company Information (Read Only) -->
+                    <div class="form-section">
+                        <div class="section-header d-flex align-items-center">
+                            <i class="ti ti-building me-2 text-primary"></i>
+                            <h5 class="mb-0">Company Information</h5>
+                        </div>
+                        <div class="row g-4">
+                            <div class="col-md-6">
+                                <label class="form-label small">Access Level</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->level_detail->level_name ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Department</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->departement->departement ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Warehouse</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->warehouse->warehouse_name ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Position</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->position->position ?? '-' }}" readonly>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small">Supervisor</label>
+                                <input type="text" class="form-control" value="{{ auth()->user()->boss->name ?? 'None' }}" readonly>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Banking Information (Read Only) -->
+                    <div class="form-section border-0">
+                        <div class="section-header d-flex align-items-center">
+                            <i class="ti ti-building-bank me-2 text-primary"></i>
+                            <h5 class="mb-0">Banking Information</h5>
+                        </div>
+
+                        @if(auth()->user()->bankAccounts->isEmpty())
+                        <div class="text-center py-4 bg-light-subtle rounded-3 mb-3 border border-dashed opacity-75">
+                            <i class="ti ti-info-circle fs-3 text-muted mb-2"></i>
+                            <p class="text-muted small mb-0">No bank accounts registered.</p>
+                        </div>
+                        @else
+                        @foreach(auth()->user()->bankAccounts as $index => $bank)
+                        <div class="card mb-3 border shadow-none bg-light-subtle rounded-3 overflow-hidden bank-account-card">
+                            <div class="card-body p-3">
+                                <h6 class="mb-3 fw-bold text-primary small">ACCOUNT #{{ $index + 1 }}</h6>
+                                <div class="row g-3">
+                                    <div class="col-md-4">
+                                        <label class="form-label small text-muted mb-1">Bank Name</label>
+                                        <input type="text" class="form-control form-control-sm bg-white" value="{{ $bank->nama_bank }}" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small text-muted mb-1">Account Holder</label>
+                                        <input type="text" class="form-control form-control-sm bg-white" value="{{ $bank->nama_penerima }}" readonly>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <label class="form-label small text-muted mb-1">Account Number</label>
+                                        <input type="text" class="form-control form-control-sm bg-white" value="{{ $bank->norek }}" readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                        @endif
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== MODAL: EDIT PROFILE ===== --}}
+    <div class="modal fade" id="editProfileModal" tabindex="-1" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                <div class="modal-header border-0 text-white" style="background: linear-gradient(135deg, #4361ee, #7048e8);">
+                    <h5 class="modal-title fw-bold"><i class="ti ti-edit me-2"></i>Edit Profile</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <form wire:submit.prevent="updateProfile" id="profileForm">
+                        <div class="row g-4">
+
+                            {{-- Photo --}}
+                            <div class="col-12 text-center">
+                                <div class="photo-preview-container mx-auto mb-2 position-relative" style="width: 110px; height: 110px;">
+                                    @if ($croppedPhoto)
+                                    <img src="{{ $croppedPhoto }}" class="h-100 w-100 object-fit-cover rounded-circle">
+                                    @elseif ($photo)
+                                    <img src="{{ asset('storage/image/' . $photo) }}" class="h-100 w-100 object-fit-cover rounded-circle">
+                                    @else
+                                    <div class="h-100 w-100 d-flex align-items-center justify-content-center bg-light rounded-circle">
+                                        <i class="ti ti-user fs-2 text-muted"></i>
+                                    </div>
+                                    @endif
+                                    <label class="btn btn-primary btn-sm btn-icon position-absolute bottom-0 end-0 rounded-circle p-0 shadow" style="width: 30px; height: 30px; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+                                        <i class="ti ti-pencil" style="font-size: 14px;"></i>
+                                        <input type="file" id="photoInputProfile" class="d-none" accept="image/*">
+                                    </label>
+                                </div>
+                                <p class="text-muted small mb-0">Click the pencil icon to upload and crop.</p>
+                            </div>
+
+                            {{-- Basic Info --}}
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Full Name <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" wire:model="name">
+                                @error('name') <span class="text-danger small">{{ $message }}</span> @enderror
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">Phone Number</label>
+                                <div class="input-group">
+                                    <span class="input-group-text">62</span>
+                                    <input type="text" class="form-control" wire:model="phone" placeholder="8123xxx">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">NIK</label>
+                                <input type="text" class="form-control" wire:model="nik" placeholder="Identity Number">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label small fw-semibold">NPWP</label>
+                                <input type="text" class="form-control" wire:model="npwp" placeholder="Tax Number">
+                            </div>
+
+                            {{-- Divider --}}
+                            <div class="col-12">
+                                <hr class="my-1">
+                            </div>
+
+                            {{-- Email Section --}}
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <label class="form-label small fw-semibold mb-0">
+                                        <i class="ti ti-mail me-1 text-primary"></i>Email Addresses
+                                    </label>
+                                    <button type="button" wire:click="addEmail" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                        <i class="ti ti-plus me-1"></i>Add Email
+                                    </button>
+                                </div>
+                                @foreach($emails as $i => $email)
+                                <div class="input-group mb-2">
+                                    <span class="input-group-text"><i class="ti ti-mail text-muted"></i></span>
+                                    <input type="email" class="form-control" wire:model="emails.{{ $i }}.email" placeholder="user@example.com">
+                                    @if(!$email['isUsed'] && count($emails) > 1)
+                                    <button type="button" wire:click="removeEmail({{ $i }})" class="btn btn-outline-danger btn-sm border-start-0" title="Remove">
+                                        <i class="ti ti-trash"></i>
+                                    </button>
+                                    @endif
+                                    @if($email['isUsed'])
+                                    <span class="input-group-text text-warning small" title="Used in transactions"><i class="ti ti-lock"></i></span>
+                                    @endif
+                                </div>
+                                @error("emails.{$i}.email") <span class="text-danger small d-block mb-1">{{ $message }}</span> @enderror
+                                @endforeach
+                            </div>
+
+                            {{-- Divider --}}
+                            <div class="col-12">
+                                <hr class="my-1">
+                            </div>
+
+                            {{-- Bank Account Section --}}
+                            <div class="col-12">
+                                <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <label class="form-label small fw-semibold mb-0">
+                                        <i class="ti ti-building-bank me-1 text-primary"></i>Bank Accounts
+                                    </label>
+                                    <button type="button" wire:click="addBankAccount" class="btn btn-outline-primary btn-sm rounded-pill px-3">
+                                        <i class="ti ti-plus me-1"></i>Add Account
+                                    </button>
+                                </div>
+
+                                @if(empty($bankAccounts))
+                                <div class="text-center py-3 bg-light-subtle rounded-3 border border-dashed opacity-75">
+                                    <i class="ti ti-info-circle text-muted me-1"></i>
+                                    <span class="text-muted small">No bank accounts. Click "Add Account" to add one.</span>
+                                </div>
+                                @endif
+
+                                @foreach($bankAccounts as $i => $bank)
+                                <div class="card mb-3 border bg-light-subtle rounded-3 overflow-hidden">
+                                    <div class="card-body p-3">
+                                        <div class="d-flex justify-content-between align-items-center mb-2">
+                                            <span class="fw-bold text-primary small">ACCOUNT #{{ $i + 1 }}</span>
+                                            @if(!$bank['isUsed'])
+                                            <button type="button" wire:click="removeBankAccount({{ $i }})"
+                                                class="btn btn-sm btn-outline-danger rounded-pill px-2 py-0">
+                                                <i class="ti ti-trash me-1"></i>Remove
+                                            </button>
+                                            @else
+                                            <span class="badge bg-warning-subtle text-warning small"><i class="ti ti-lock me-1"></i>Used in Transaction</span>
+                                            @endif
+                                        </div>
+                                        <div class="row g-2">
+                                            <div class="col-md-4">
+                                                <label class="form-label small text-muted mb-1">Bank Name</label>
+                                                <input type="text" class="form-control form-control-sm" wire:model="bankAccounts.{{ $i }}.nama_bank" placeholder="BCA, Mandiri...">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label small text-muted mb-1">Account Holder</label>
+                                                <input type="text" class="form-control form-control-sm" wire:model="bankAccounts.{{ $i }}.nama_penerima" placeholder="Full name">
+                                            </div>
+                                            <div class="col-md-4">
+                                                <label class="form-label small text-muted mb-1">Account Number</label>
+                                                <input type="text" class="form-control form-control-sm" wire:model="bankAccounts.{{ $i }}.norek" placeholder="12345678">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="profileForm" class="btn btn-primary rounded-pill px-5 shadow-sm">
+                        <i class="ti ti-device-floppy me-2"></i> Save Profile
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== MODAL: CHANGE PASSWORD ===== --}}
+    <div class="modal fade" id="editPasswordModal" tabindex="-1" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered" style="max-width: 480px;">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                <div class="modal-header border-0" style="background: linear-gradient(135deg, #f59e0b, #d97706);">
+                    <h5 class="modal-title fw-bold text-white"><i class="ti ti-shield-lock me-2"></i>Change Password</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-4">
+                    <div class="alert alert-warning border-0 bg-warning-subtle rounded-3 small p-3 mb-4 d-flex gap-3 align-items-start">
+                        <i class="ti ti-alert-triangle fs-4 text-warning mt-1 flex-shrink-0"></i>
+                        <div>
+                            <h6 class="text-warning-emphasis fw-bold mb-1">Tips Keamanan</h6>
+                            <p class="mb-0 text-warning-emphasis">Pastikan password minimal 8 karakter dan mengandung kombinasi angka dan simbol.</p>
+                        </div>
+                    </div>
+                    <form wire:submit.prevent="updatePassword" id="passwordForm">
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">Current Password</label>
+                            <input type="password" class="form-control" wire:model="current_password" placeholder="••••••••">
+                            @error('current_password') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label small fw-semibold">New Password</label>
+                            <input type="password" class="form-control" wire:model="new_password" placeholder="New strong password">
+                            @error('new_password') <span class="text-danger small">{{ $message }}</span> @enderror
+                        </div>
+                        <div class="mb-1">
+                            <label class="form-label small fw-semibold">Confirm New Password</label>
+                            <input type="password" class="form-control" wire:model="new_password_confirmation" placeholder="Repeat new password">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer border-0 pt-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Batal</button>
+                    <button type="submit" form="passwordForm" class="btn btn-warning rounded-pill px-5 fw-bold shadow-sm">
+                        <i class="ti ti-lock-open me-2"></i> Update Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- ===== MODAL: CROP PHOTO ===== --}}
+    <div class="modal fade" id="croppingModalProfile" tabindex="-1" aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content border-0 shadow-lg" style="border-radius: 16px; overflow: hidden;">
+                <div class="modal-header border-0" style="background: linear-gradient(135deg, #4361ee, #7048e8);">
+                    <h5 class="modal-title fw-bold text-white"><i class="ti ti-crop me-2"></i>Crop Profile Photo</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-0">
+                    <div style="max-height: 480px; overflow: hidden;">
+                        <img id="imageToCropProfile" style="max-width: 100%;">
+                    </div>
+                </div>
+                <div class="modal-footer border-0">
+                    <button type="button" class="btn btn-light rounded-pill px-4" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-primary rounded-pill px-5" id="cropButtonProfile">
+                        <i class="ti ti-check me-2"></i>Crop & Use
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('livewire:initialized', () => {
+            // ── Close modals on Livewire events ──────────────────────────────
+            Livewire.on('closeProfileModal', () => {
+                const el = document.getElementById('editProfileModal');
+                const modal = bootstrap.Modal.getInstance(el);
+                if (modal) modal.hide();
+            });
+            Livewire.on('closePasswordModal', () => {
+                const el = document.getElementById('editPasswordModal');
+                const modal = bootstrap.Modal.getInstance(el);
+                if (modal) modal.hide();
+            });
+
+            // ── Crop Photo Logic ─────────────────────────────────────────────
+            const photoInput = document.getElementById('photoInputProfile');
+            const cropModal = new bootstrap.Modal(document.getElementById('croppingModalProfile'));
+            const imageToCrop = document.getElementById('imageToCropProfile');
+            const cropBtn = document.getElementById('cropButtonProfile');
+            let cropper;
+
+            photoInput.addEventListener('change', function(e) {
+                const files = e.target.files;
+                if (files && files.length > 0) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imageToCrop.src = e.target.result;
+                        cropModal.show();
+                    };
+                    reader.readAsDataURL(files[0]);
+                }
+            });
+
+            document.getElementById('croppingModalProfile').addEventListener('shown.bs.modal', function() {
+                cropper = new Cropper(imageToCrop, {
+                    aspectRatio: 1,
+                    viewMode: 1,
+                    dragMode: 'move',
+                    autoCropArea: 1,
+                    restore: false,
+                    guides: true,
+                    center: true,
+                    highlight: false,
+                    cropBoxMovable: true,
+                    cropBoxResizable: true,
+                    toggleDragModeOnDblclick: false,
+                });
+            });
+
+            document.getElementById('croppingModalProfile').addEventListener('hidden.bs.modal', function() {
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = null;
+                }
+                photoInput.value = '';
+            });
+
+            cropBtn.addEventListener('click', function() {
+                if (cropper) {
+                    const canvas = cropper.getCroppedCanvas({
+                        width: 400,
+                        height: 400
+                    });
+                    const base64 = canvas.toDataURL('image/png');
+                    @this.set('croppedPhoto', base64);
+                    cropModal.hide();
+                }
+            });
+        });
+    </script>
+</div>

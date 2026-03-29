@@ -1,0 +1,10 @@
+===== tbl_attachment =====
+SQL Lama: 31 rows
+Seeder Baru: 31 rows
+Kolom seeder: id_attachment, id_departement, id_user, attachment, created_at, updated_at, deleted_at
+
+--- DATA: Tidak ada yang kurang ---
+
+--- EKSTRA: Tidak ada data ekstra ---
+
+--- KOLOM: Semua nilai cocok ---

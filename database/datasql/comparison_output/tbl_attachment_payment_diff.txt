@@ -1,0 +1,10 @@
+===== tbl_attachment_payment =====
+SQL Lama: 0 rows
+Seeder Baru: 0 rows
+Kolom seeder: id_attachment_payment, id_doc_type, id_attachment, id_payment, id_user, id_pr, note, filename, created_at, updated_at, deleted_at
+
+--- DATA: Tidak ada yang kurang ---
+
+--- EKSTRA: Tidak ada data ekstra ---
+
+--- KOLOM: Semua nilai cocok ---

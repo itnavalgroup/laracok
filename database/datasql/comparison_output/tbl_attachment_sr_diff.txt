@@ -1,0 +1,133 @@
+===== tbl_attachment_sr =====
+SQL Lama: 140 rows
+Seeder Baru: 131 rows
+Kolom seeder: id_attachment_sr, id_sr, id_attachment, id_user, note, filename, created_at, updated_at, deleted_at
+
+--- DATA KURANG DI SEEDER (10 rows) ---
+Sumber: SQL Lama → perlu ditambahkan ke seeder
+
+ID=142:
+  id_attachment_sr = 142
+  id_sr = 59
+  id_attachment = 40
+  id_user = 52
+  note = kwitansi
+  filename = 1773640365_a85d802f474df566745c.pdf
+  created_at = 2026-03-16 05:52:45
+  updated_at = 2026-03-16 05:52:45
+  deleted_at = NULL
+
+ID=143:
+  id_attachment_sr = 143
+  id_sr = 59
+  id_attachment = 46
+  id_user = 52
+  note = REALISASI PERJADIN
+  filename = 1773640435_6d48b577af2f581a862c.png
+  created_at = 2026-03-16 05:53:55
+  updated_at = 2026-03-16 05:53:55
+  deleted_at = NULL
+
+ID=144:
+  id_attachment_sr = 144
+  id_sr = 64
+  id_attachment = 40
+  id_user = 52
+  note = REALISASI PERJADIN
+  filename = 1773643611_2f83cfa9d8575ee8290b.pdf
+  created_at = 2026-03-16 06:46:51
+  updated_at = 2026-03-16 06:46:51
+  deleted_at = NULL
+
+ID=145:
+  id_attachment_sr = 145
+  id_sr = 64
+  id_attachment = 46
+  id_user = 52
+  note = REALISASI PERJADIN
+  filename = 1773643681_7740a8e57f68682a80ce.png
+  created_at = 2026-03-16 06:48:01
+  updated_at = 2026-03-16 06:48:01
+  deleted_at = NULL
+
+ID=146:
+  id_attachment_sr = 146
+  id_sr = 64
+  id_attachment = 63
+  id_user = 52
+  note = NOTA
+  filename = 1773644086_190d10e86d370d147c0f.jpeg
+  created_at = 2026-03-16 06:54:46
+  updated_at = 2026-03-16 06:54:46
+  deleted_at = NULL
+
+ID=147:
+  id_attachment_sr = 147
+  id_sr = 63
+  id_attachment = 40
+  id_user = 34
+  note = Kwitansi
+  filename = 1773648044_d6d023f12bcfa8a357d0.jpeg
+  created_at = 2026-03-16 08:00:44
+  updated_at = 2026-03-16 08:00:44
+  deleted_at = NULL
+
+ID=148:
+  id_attachment_sr = 148
+  id_sr = 63
+  id_attachment = 40
+  id_user = 34
+  note = Kwitansi
+  filename = 1773648093_b8a4439c15fbb1ff4692.jpeg
+  created_at = 2026-03-16 08:01:33
+  updated_at = 2026-03-16 08:01:33
+  deleted_at = NULL
+
+ID=149:
+  id_attachment_sr = 149
+  id_sr = 63
+  id_attachment = 40
+  id_user = 34
+  note = Kwitansi
+  filename = 1773648133_da018b0277bd11cb6ec8.jpeg
+  created_at = 2026-03-16 08:02:13
+  updated_at = 2026-03-16 08:02:13
+  deleted_at = NULL
+
+ID=150:
+  id_attachment_sr = 150
+  id_sr = 63
+  id_attachment = 40
+  id_user = 34
+  note = Kwitansi
+  filename = 1773648171_6a47b6be3d487ac649d5.jpeg
+  created_at = 2026-03-16 08:02:51
+  updated_at = 2026-03-16 08:02:51
+  deleted_at = NULL
+
+ID=151:
+  id_attachment_sr = 151
+  id_sr = 64
+  id_attachment = 46
+  id_user = 52
+  note = BUKTI TF 
+  filename = 1773729844_c247db0111b228963c5c.jpeg
+  created_at = 2026-03-17 06:44:04
+  updated_at = 2026-03-17 06:44:04
+  deleted_at = NULL
+
+--- DATA EKSTRA DI SEEDER (1 rows) ---
+Data ini ada di seeder tapi TIDAK di SQL lama
+
+ID=137:
+  id_attachment_sr = 137
+  id_sr = 59
+  id_attachment = 63
+  id_user = 52
+  note = NOTA
+  filename = 1773046814_6a0628609cceb4f4ce2f.pdf
+  created_at = 2026-03-09 09:00:14
+  updated_at = 2026-03-09 09:00:14
+  deleted_at = NULL
+
+--- KOLOM: Semua nilai cocok ---

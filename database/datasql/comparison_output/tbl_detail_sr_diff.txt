@@ -1,0 +1,964 @@
+===== tbl_detail_sr =====
+SQL Lama: 170 rows
+Seeder Baru: 170 rows
+Kolom seeder: id_detail_sr, id_pr, id_sr, id_user, id_departement, id_doc_type, id_uom, id_tax_type1, id_tax1, id_tax_type2, id_tax2, id_item_category, id_item, id_warehouse, detail, bl_number, dpp_pph, qty, price, discount, tax1, tax2, progresif, gross, is_purchase_items, ammount, created_at, updated_at, deleted_at
+
+--- DATA: Tidak ada yang kurang ---
+
+--- EKSTRA: Tidak ada data ekstra ---
+
+--- PERBEDAAN NILAI KOLOM (18 IDs) ---
+
+ID=171:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Tranportasi (Binjai - namorambe)
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 74000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 74000
+    Seeder Baru: NULL
+
+ID=172:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Kost/hari, tgl 3 s/d 9 Maret
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 7
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 90000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 630000
+    Seeder Baru: NULL
+
+ID=173:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Sendok dan ember
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 29000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 29000
+    Seeder Baru: NULL
+
+ID=174:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Kost/hari, tgl 10 s/d 15 Maret, (6hari)
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 90000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 540000
+    Seeder Baru: NULL
+
+ID=175:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Tranportasi ( namorambe - binjei )
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 100000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 100000
+    Seeder Baru: NULL
+
+ID=176:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Tiket Pesawat JKT-Medan (PP)
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 3483202
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 3483202
+    Seeder Baru: NULL
+
+ID=177:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Transport Rumah ke Soetta Kamija(PP) + Etoll
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 436000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 436000
+    Seeder Baru: NULL
+
+ID=178:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : BBM Hilux   ( Medan -Takengon PP dan Lapangan )
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 1011128
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 1011128
+    Seeder Baru: NULL
+
+ID=179:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Sewa kendaraan Double Cabin
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 4500000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 4500000
+    Seeder Baru: NULL
+
+ID=180:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : E toll Bandara Medan ke Aceh (PP)
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 248500
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 248500
+    Seeder Baru: NULL
+
+ID=181:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Hotel di Takengon , Lhokseumawe ( Kamija, Heru dan Driver )
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 2500000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 2500000
+    Seeder Baru: NULL
+
+ID=182:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Uang Harian Kamija
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 5
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 200000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 1000000
+    Seeder Baru: NULL
+
+ID=183:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Uang Harian Heru
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 4
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 200000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 800000
+    Seeder Baru: NULL
+
+ID=184:
+  Kolom 'id_user':
+    SQL Lama  : 52
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : Akomodasi dan koordinasi dgn PT THL
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 747000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 747000
+    Seeder Baru: NULL
+
+ID=185:
+  Kolom 'id_user':
+    SQL Lama  : 34
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 17
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : BIAYA GRAG JATIWARINGIN KE HALIM DAN HALIM KE JATIWARINGIN
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 131800
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 131800
+    Seeder Baru: NULL
+
+ID=186:
+  Kolom 'id_user':
+    SQL Lama  : 34
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 17
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : TIKET KERETA HALIM KE TEGALUAR DAN TEGAALUAR KE HALIM
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 555200
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 555200
+    Seeder Baru: NULL
+
+ID=187:
+  Kolom 'id_user':
+    SQL Lama  : 34
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 17
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : GRAB DARI TEGALUAR KE NAGREG DAN NAGREG KE TEGALUAR
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 279000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 279000
+    Seeder Baru: NULL
+
+ID=188:
+  Kolom 'id_user':
+    SQL Lama  : 34
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 17
+    Seeder Baru: NULL
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_tax_type1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax_type2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'detail':
+    SQL Lama  : UANG MAKAN PERJADIN 1 HARI
+    Seeder Baru: NULL
+  Kolom 'bl_number':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'dpp_pph':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'qty':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'price':
+    SQL Lama  : 200000
+    Seeder Baru: NULL
+  Kolom 'tax1':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'tax2':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'progresif':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'gross':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'ammount':
+    SQL Lama  : 200000
+    Seeder Baru: NULL

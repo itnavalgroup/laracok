@@ -1,0 +1,181 @@
+===== tbl_sr =====
+SQL Lama: 62 rows
+Seeder Baru: 62 rows
+Kolom seeder: id_sr, id_pr, id_doc_type, id_cost_type, id_cost_category, id_branch, id_loan, id_user, id_departement, id_company, id_vendor, id_email_vendor, id_norek_vendor, id_email_user, id_warehouse, subject, no_invoice, additional_discount, payment_method, nama_bank, nama_penerima, norek, qr, status, created_at, updated_at, deleted_at
+
+--- DATA: Tidak ada yang kurang ---
+
+--- EKSTRA: Tidak ada data ekstra ---
+
+--- PERBEDAAN NILAI KOLOM (9 IDs) ---
+
+ID=40:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 5
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:39:02
+    Seeder Baru: 2026-02-26 08:47:15
+
+ID=52:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 5
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:40:51
+    Seeder Baru: 2026-03-04 06:52:22
+
+ID=54:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 5
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:43:22
+    Seeder Baru: 2026-03-10 02:24:36
+
+ID=56:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 5
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:45:52
+    Seeder Baru: 2026-03-09 05:10:07
+
+ID=58:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 5
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:41:25
+    Seeder Baru: 2026-03-10 07:00:29
+
+ID=59:
+  Kolom 'id_vendor':
+    SQL Lama  : 168
+    Seeder Baru: 206
+  Kolom 'id_email_vendor':
+    SQL Lama  : 76
+    Seeder Baru: 0
+  Kolom 'id_norek_vendor':
+    SQL Lama  : 174
+    Seeder Baru: 208
+  Kolom 'subject':
+    SQL Lama  : SETTLEMENT KASBON SAHUDIN AMRY KE NAMORAMBE  (03 - 09 MARET 2026) (10 - 15 MARET)
+    Seeder Baru: SETTLEMENT KASBON SAHUDIN AMRY KE NAMORAMBE SELAMA 1 MINGGU (03 - 09 MARET 2026)
+  Kolom 'qr':
+    SQL Lama  : submit_SR_by5259
+    Seeder Baru: NULL
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 0
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:10:42
+    Seeder Baru: 2026-03-10 01:32:28
+
+ID=60:
+  Kolom 'status':
+    SQL Lama  : 6
+    Seeder Baru: 4
+  Kolom 'updated_at':
+    SQL Lama  : 2026-03-18 03:47:03
+    Seeder Baru: 2026-03-12 04:01:17
+
+ID=63:
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_cost_type':
+    SQL Lama  : 16
+    Seeder Baru: NULL
+  Kolom 'id_cost_category':
+    SQL Lama  : 10
+    Seeder Baru: NULL
+  Kolom 'id_branch':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 17
+    Seeder Baru: NULL
+  Kolom 'id_company':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_email_vendor':
+    SQL Lama  : 116
+    Seeder Baru: NULL
+  Kolom 'id_norek_vendor':
+    SQL Lama  : 216
+    Seeder Baru: NULL
+  Kolom 'id_email_user':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'subject':
+    SQL Lama  : PENYEIESAIAN PERJADIN UNTUK PEMBELIAN TERPENTIN 20 TON DI PERHUTANI JAWA BARAT/NAGREG
+    Seeder Baru: NULL
+  Kolom 'additional_discount':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'payment_method':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'nama_bank':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'nama_penerima':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'norek':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'qr':
+    SQL Lama  : submit_SR_by3463
+    Seeder Baru: NULL
+
+ID=64:
+  Kolom 'id_doc_type':
+    SQL Lama  : 3
+    Seeder Baru: NULL
+  Kolom 'id_cost_type':
+    SQL Lama  : 16
+    Seeder Baru: NULL
+  Kolom 'id_cost_category':
+    SQL Lama  : 10
+    Seeder Baru: NULL
+  Kolom 'id_branch':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'id_departement':
+    SQL Lama  : 6
+    Seeder Baru: NULL
+  Kolom 'id_company':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'id_email_vendor':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'id_norek_vendor':
+    SQL Lama  : 207
+    Seeder Baru: NULL
+  Kolom 'id_email_user':
+    SQL Lama  : 126
+    Seeder Baru: NULL
+  Kolom 'subject':
+    SQL Lama  : SETTLEMENT BIAYA PERJADIN PAK KAMIJA KE ACEH 6 HARI ( 02 - 07 MARET 2026) UNTUK SURVEY AREAL SADAPAN DI PT THL
+    Seeder Baru: NULL
+  Kolom 'additional_discount':
+    SQL Lama  : 0
+    Seeder Baru: NULL
+  Kolom 'payment_method':
+    SQL Lama  : 1
+    Seeder Baru: NULL
+  Kolom 'nama_bank':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'nama_penerima':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'norek':
+    SQL Lama  : 
+    Seeder Baru: NULL
+  Kolom 'qr':
+    SQL Lama  : submit_SR_by5264
+    Seeder Baru: NULL

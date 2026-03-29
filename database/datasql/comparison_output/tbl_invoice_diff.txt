@@ -1,0 +1,209 @@
+===== tbl_invoice =====
+SQL Lama: 69 rows
+Seeder Baru: 61 rows
+Kolom seeder: id_invoice, id_user, id_departement, id_company, id_vendor, id_doc_type, id_pr, id_norek_vendor, nama_bank, nama_penerima, norek, truck, invoice_date, invoice_number, delivery_date, file_name, created_at, updated_at, deleted_at
+
+--- DATA KURANG DI SEEDER (8 rows) ---
+Sumber: SQL Lama → perlu ditambahkan ke seeder
+
+ID=69:
+  id_invoice = 69
+  id_user = 40
+  id_departement = 8
+  id_company = 6
+  id_vendor = 81
+  id_doc_type = 1
+  id_pr = 1172
+  id_norek_vendor = 354
+  nama_bank = BSI
+  nama_penerima = NASIRUDIN
+  norek = 1057562486
+  truck = BL 8462 PG, BL 8316 CO, BL 8316 VO 
+  invoice_date = 2026-03-16 00:00:00
+  invoice_number = INVOICE.KSA.2603.057
+  delivery_date = 2026-03-13 00:00:00
+  file_name = NULL
+  created_at = 2026-03-16 06:05:59
+  updated_at = 2026-03-16 06:05:59
+  deleted_at = NULL
+
+ID=70:
+  id_invoice = 70
+  id_user = 50
+  id_departement = 8
+  id_company = 6
+  id_vendor = 268
+  id_doc_type = 1
+  id_pr = 1169
+  id_norek_vendor = 272
+  nama_bank = BSI
+  nama_penerima = KARI
+  norek = 7257605838
+  truck = BL 8649F
+  invoice_date = 2026-03-13 00:00:00
+  invoice_number = INVOICE.KSA.2603.058
+  delivery_date = 2026-03-13 00:00:00
+  file_name = NULL
+  created_at = 2026-03-16 06:14:25
+  updated_at = 2026-03-16 06:14:25
+  deleted_at = NULL
+
+ID=71:
+  id_invoice = 71
+  id_user = 50
+  id_departement = 8
+  id_company = 6
+  id_vendor = 268
+  id_doc_type = 1
+  id_pr = 1170
+  id_norek_vendor = 272
+  nama_bank = BSI
+  nama_penerima = KARI
+  norek = 7257605838
+  truck = BL8649F/BK9750BFD
+  invoice_date = 2026-03-14 00:00:00
+  invoice_number = INVOICE.KSA.2603.059
+  delivery_date = 2026-03-14 00:00:00
+  file_name = NULL
+  created_at = 2026-03-16 06:17:56
+  updated_at = 2026-03-16 06:17:56
+  deleted_at = NULL
+
+ID=72:
+  id_invoice = 72
+  id_user = 40
+  id_departement = 8
+  id_company = 6
+  id_vendor = 81
+  id_doc_type = 1
+  id_pr = 1171
+  id_norek_vendor = 354
+  nama_bank = BSI
+  nama_penerima = NASIRUDIN
+  norek = 1057562486
+  truck = BL 8316 VO 
+  invoice_date = 2026-03-12 00:00:00
+  invoice_number = INVOICE.KSA.2603.060
+  delivery_date = 2026-03-12 00:00:00
+  file_name = NULL
+  created_at = 2026-03-16 06:32:03
+  updated_at = 2026-03-16 06:32:03
+  deleted_at = NULL
+
+ID=73:
+  id_invoice = 73
+  id_user = 40
+  id_departement = 8
+  id_company = 6
+  id_vendor = 78
+  id_doc_type = 1
+  id_pr = 1174
+  id_norek_vendor = 355
+  nama_bank = BSI
+  nama_penerima = Muhtada Hairy
+  norek = 7302112872
+  truck = BL 8627 GB 
+  invoice_date = 2026-03-16 00:00:00
+  invoice_number = INVOICE.KSA.2603.061
+  delivery_date = 2026-03-14 00:00:00
+  file_name = NULL
+  created_at = 2026-03-16 06:49:38
+  updated_at = 2026-03-16 06:49:38
+  deleted_at = NULL
+
+ID=74:
+  id_invoice = 74
+  id_user = 41
+  id_departement = 8
+  id_company = 6
+  id_vendor = 96
+  id_doc_type = 1
+  id_pr = 1178
+  id_norek_vendor = 95
+  nama_bank = BSI
+  nama_penerima = Syali Indra, S.Sos. I
+  norek = 1050352672
+  truck = BL 6201 B , BL 8376 B, BL 8470 JM
+  invoice_date = 2026-03-16 00:00:00
+  invoice_number = INVOICE.KSA.2603.062
+  delivery_date = 2026-03-15 00:00:00
+  file_name = NULL
+  created_at = 2026-03-17 04:50:40
+  updated_at = 2026-03-17 04:50:40
+  deleted_at = NULL
+
+ID=75:
+  id_invoice = 75
+  id_user = 50
+  id_departement = 8
+  id_company = 6
+  id_vendor = 268
+  id_doc_type = 1
+  id_pr = 1183
+  id_norek_vendor = 272
+  nama_bank = BSI
+  nama_penerima = KARI
+  norek = 7257605838
+  truck = BK 9750 BED / BL 8649 F 
+  invoice_date = 2026-03-16 00:00:00
+  invoice_number = INVOICE.KSA.2603.063
+  delivery_date = 2026-03-16 00:00:00
+  file_name = NULL
+  created_at = 2026-03-17 05:05:31
+  updated_at = 2026-03-17 05:05:45
+  deleted_at = NULL
+
+ID=76:
+  id_invoice = 76
+  id_user = 41
+  id_departement = 8
+  id_company = 6
+  id_vendor = 96
+  id_doc_type = 1
+  id_pr = 1198
+  id_norek_vendor = 95
+  nama_bank = BSI
+  nama_penerima = Syali Indra, S.Sos. I
+  norek = 1050352672
+  truck = BL 8201 B
+  invoice_date = 2026-03-16 00:00:00
+  invoice_number = INVOICE.KSA.2603.064
+  delivery_date = 2026-03-16 00:00:00
+  file_name = NULL
+  created_at = 2026-03-18 05:39:03
+  updated_at = 2026-03-18 05:39:03
+  deleted_at = NULL
+
+--- EKSTRA: Tidak ada data ekstra ---
+
+--- PERBEDAAN NILAI KOLOM (6 IDs) ---
+
+ID=2:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL
+
+ID=8:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL
+
+ID=9:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL
+
+ID=10:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL
+
+ID=13:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL
+
+ID=16:
+  Kolom 'delivery_date':
+    SQL Lama  : 0000-00-00 00:00:00
+    Seeder Baru: NULL

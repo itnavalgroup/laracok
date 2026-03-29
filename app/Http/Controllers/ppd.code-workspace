@@ -1,0 +1,13 @@
+{
+    "folders": [
+        {
+            "name": "eprksa",
+            "path": "../../../../eprksa",
+        },
+        {
+            "name": "ppd-laravel",
+            "path": "../../..",
+        },
+    ],
+    "settings": {},
+}

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EPR Naval Group – Dokumentasi Sistem</title>
+<meta name="description" content="Dokumentasi lengkap sistem EPR Naval Group: flow, permission, dan panduan penggunaan setiap modul.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+  :root {
+    --bg: #f0f2f8;
+    --surface: #ffffff;
+    --surface2: #f8f9fc;
+    --border: #e2e8f0;
+    --text: #1e2535;
+    --text-muted: #64748b;
+    --primary: #6366f1;
+    --primary-dark: #4f46e5;
+    --primary-glow: rgba(99,102,241,.15);
+    --accent: #8b5cf6;
+    --success: #10b981;
+    --warning: #f59e0b;
+    --danger: #ef4444;
+    --sidebar-w: 260px;
+    --header-h: 64px;
+    --radius: 12px;
+    --shadow: 0 2px 12px rgba(0,0,0,.08);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,.12);
+  }
+  [data-theme="dark"] {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #22263a;
+    --border: #2d3249;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --primary-glow: rgba(99,102,241,.2);
+    --shadow: 0 2px 12px rgba(0,0,0,.4);
+    --shadow-lg: 0 8px 32px rgba(0,0,0,.5);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.6;transition:background .3s,color .3s;min-height:100vh}
+
+  /* ── HEADER ─────────────────────────────────── */
+  .header{position:fixed;top:0;left:0;right:0;height:var(--header-h);background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 24px;z-index:100;box-shadow:var(--shadow)}
+  .header-brand{display:flex;align-items:center;gap:12px;text-decoration:none}
+  .header-brand .logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--primary),var(--accent));border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px;flex-shrink:0}
+  .header-brand .brand-text{font-weight:700;font-size:15px;color:var(--text)}
+  .header-brand .brand-sub{font-size:11px;color:var(--text-muted);font-weight:400}
+  .header-right{display:flex;align-items:center;gap:10px}
+  .btn{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;border:none;transition:all .2s;text-decoration:none}
+  .btn-ghost{background:transparent;color:var(--text-muted);border:1px solid var(--border)}
+  .btn-ghost:hover{background:var(--primary-glow);color:var(--primary);border-color:var(--primary)}
+  .btn-primary{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;box-shadow:0 4px 12px rgba(99,102,241,.3)}
+  .btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 18px rgba(99,102,241,.4)}
+  .theme-btn{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border);cursor:pointer;font-size:16px;transition:all .2s}
+  .theme-btn:hover{background:var(--primary-glow);border-color:var(--primary)}
+  .search-wrap{position:relative}
+  .search-wrap input{background:var(--surface2);border:1px solid var(--border);border-radius:8px;padding:7px 12px 7px 34px;font-size:13px;color:var(--text);width:220px;transition:all .2s;outline:none;font-family:inherit}
+  .search-wrap input:focus{border-color:var(--primary);background:var(--surface);box-shadow:0 0 0 3px var(--primary-glow);width:270px}
+  .search-wrap .si{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted);font-size:14px;pointer-events:none}
+  .search-wrap input::placeholder{color:var(--text-muted)}
+
+  /* ── LAYOUT ─────────────────────────────────── */
+  .layout{display:flex;margin-top:var(--header-h)}
+  .sidebar{width:var(--sidebar-w);position:fixed;top:var(--header-h);bottom:0;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:16px 0;transition:transform .3s}
+  .sidebar::-webkit-scrollbar{width:4px}
+  .sidebar::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
+  .sidebar-section{padding:6px 16px 4px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--text-muted)}
+  .nav-item{display:flex;align-items:center;gap:10px;padding:9px 16px;cursor:pointer;border-radius:0;font-size:13.5px;font-weight:500;color:var(--text-muted);transition:all .2s;border-left:3px solid transparent;margin:1px 0}
+  .nav-item:hover{background:var(--primary-glow);color:var(--primary)}
+  .nav-item.active{background:var(--primary-glow);color:var(--primary);border-left-color:var(--primary);font-weight:600}
+  .nav-item .ni{width:18px;text-align:center;font-size:14px;flex-shrink:0}
+  .main{margin-left:var(--sidebar-w);flex:1;padding:32px 40px;min-height:calc(100vh - var(--header-h));max-width:calc(100% - var(--sidebar-w))}
+
+  /* ── HERO ─────────────────────────────────── */
+  .hero{background:linear-gradient(135deg,var(--primary) 0%,var(--accent) 100%);border-radius:var(--radius);padding:36px 40px;margin-bottom:32px;color:#fff;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;top:-40px;right:-40px;width:200px;height:200px;background:rgba(255,255,255,.08);border-radius:50%}
+  .hero::after{content:'';position:absolute;bottom:-60px;right:60px;width:140px;height:140px;background:rgba(255,255,255,.05);border-radius:50%}
+  .hero h1{font-size:26px;font-weight:700;margin-bottom:8px}
+  .hero p{font-size:14px;opacity:.85;max-width:520px}
+  .hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.2);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:4px 12px;font-size:12px;font-weight:600;margin-bottom:16px}
+
+  /* ── CONTENT ─────────────────────────────────── */
+  .tab-pane{display:none;animation:fadeIn .25s ease}
+  .tab-pane.active{display:block}
+  @keyframes fadeIn{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
+  .content-wrap{background:var(--surface);border-radius:var(--radius);padding:36px 40px;box-shadow:var(--shadow)}
+
+  /* ── MARKDOWN STYLES ─────────────────────────── */
+  .md-body h1{font-size:22px;font-weight:700;color:var(--text);margin-bottom:16px;padding-bottom:12px;border-bottom:2px solid var(--border);display:flex;align-items:center;gap:10px}
+  .md-body h1::before{content:'📋';font-size:18px}
+  .md-body h2{font-size:17px;font-weight:600;color:var(--text);margin:28px 0 12px;padding:8px 14px;background:var(--surface2);border-radius:8px;border-left:3px solid var(--primary)}
+  .md-body h3{font-size:14px;font-weight:600;color:var(--primary);margin:20px 0 8px;text-transform:uppercase;letter-spacing:.04em}
+  .md-body p{margin-bottom:12px;color:var(--text);font-size:14px}
+  .md-body ul,
+  .md-body ol{margin:10px 0 14px 20px}
+  .md-body li{margin-bottom:6px;font-size:14px;color:var(--text)}
+  .md-body code{background:var(--surface2);border:1px solid var(--border);border-radius:5px;padding:2px 7px;font-size:12px;font-family:'Courier New',monospace;color:var(--primary)}
+  .md-body pre{background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:20px;overflow-x:auto;margin:14px 0}
+  .md-body pre code{background:transparent;border:none;padding:0;font-size:12.5px;color:var(--text)}
+  .md-body blockquote{border-left:4px solid var(--primary);background:var(--primary-glow);padding:12px 16px;border-radius:0 8px 8px 0;margin:14px 0;font-size:13px;color:var(--text-muted);font-style:italic}
+  .md-body hr{border:none;border-top:1px solid var(--border);margin:24px 0}
+  .md-body strong{font-weight:600;color:var(--text)}
+  .md-body a{color:var(--primary);text-decoration:none}
+  .md-body a:hover{text-decoration:underline}
+  /* Tables */
+  .md-body table{width:100%;border-collapse:collapse;margin:14px 0;font-size:13px;border-radius:8px;overflow:hidden}
+  .md-body th{background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;padding:10px 14px;text-align:left;font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+  .md-body td{padding:9px 14px;border-bottom:1px solid var(--border);color:var(--text);vertical-align:top}
+  .md-body tr:last-child td{border-bottom:none}
+  .md-body tr:nth-child(even) td{background:var(--surface2)}
+  .md-body tr:hover td{background:var(--primary-glow);transition:background .15s}
+
+  /* ── LOADING ─────────────────────────────────── */
+  .loader{display:flex;align-items:center;justify-content:center;gap:12px;padding:60px;color:var(--text-muted);font-size:14px}
+  .spin{width:24px;height:24px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .8s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
+  .no-result{text-align:center;padding:60px 20px;color:var(--text-muted)}
+  .no-result .nr-icon{font-size:48px;margin-bottom:16px;display:block}
+  .highlight{background:yellow;color:#000;border-radius:2px;padding:0 2px}
+  [data-theme="dark"] .highlight{background:#854d0e;color:#fef3c7}
+
+  /* ── PERMISSION BADGE ─────────────────────── */
+  .md-body td code{font-size:11.5px}
+
+  /* ── BACK TO TOP ─────────────────────────────── */
+  .back-top{position:fixed;bottom:24px;right:24px;width:40px;height:40px;background:linear-gradient(135deg,var(--primary),var(--accent));color:#fff;border:none;border-radius:10px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;opacity:0;pointer-events:none;transition:all .3s;box-shadow:var(--shadow-lg)}
+  .back-top.show{opacity:1;pointer-events:all}
+  .back-top:hover{transform:translateY(-2px)}
+
+  /* ── MOBILE ─────────────────────────────────── */
+  .menu-toggle{display:none;width:36px;height:36px;align-items:center;justify-content:center;background:var(--surface2);border:1px solid var(--border);border-radius:8px;cursor:pointer;font-size:16px}
+  @media(max-width:900px){
+    .sidebar{transform:translateX(-100%);z-index:90}
+    .sidebar.open{transform:translateX(0);box-shadow:var(--shadow-lg)}
+    .main{margin-left:0;padding:20px 16px;max-width:100%}
+    .menu-toggle{display:flex}
+    .search-wrap input{width:160px}
+    .search-wrap input:focus{width:180px}
+    .hero{padding:24px 20px}
+    .hero h1{font-size:20px}
+    .content-wrap{padding:20px 16px}
+  }
+  .overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.4);z-index:89}
+  .overlay.show{display:block}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div style="display:flex;align-items:center;gap:12px">
+    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+    <a href="#" class="header-brand">
+      <div class="logo-icon">EPR</div>
+      <div>
+        <div class="brand-text">Naval Group</div>
+        <div class="brand-sub">Dokumentasi Sistem</div>
+      </div>
+    </a>
+  </div>
+  <div class="header-right">
+    <div class="search-wrap">
+      <span class="si">🔍</span>
+      <input type="text" id="searchInput" placeholder="Cari dokumentasi..." oninput="doSearch(this.value)">
+    </div>
+    <button class="theme-btn" onclick="toggleTheme()" title="Toggle dark/light mode" id="themeBtn">🌙</button>
+    <a href="../login" class="btn btn-primary">
+      🔐 Login
+    </a>
+  </div>
+</header>
+
+<div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+
+<!-- LAYOUT -->
+<div class="layout">
+
+  <!-- SIDEBAR -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar-section">Umum</div>
+    <div class="nav-item active" data-tab="login" onclick="switchTab(this,'login')">
+      <span class="ni">🔑</span> Login & Autentikasi
+    </div>
+    <div class="nav-item" data-tab="dashboard" onclick="switchTab(this,'dashboard')">
+      <span class="ni">📊</span> Dashboard
+    </div>
+
+    <div class="sidebar-section" style="margin-top:8px">Database</div>
+    <div class="nav-item" data-tab="users" onclick="switchTab(this,'users')">
+      <span class="ni">👤</span> User Management
+    </div>
+    <div class="nav-item" data-tab="vendors" onclick="switchTab(this,'vendors')">
+      <span class="ni">🏢</span> Vendor
+    </div>
+    <div class="nav-item" data-tab="companies" onclick="switchTab(this,'companies')">
+      <span class="ni">🏛️</span> Company
+    </div>
+    <div class="nav-item" data-tab="ref1" onclick="switchTab(this,'ref1')">
+      <span class="ni">📦</span> Branch / WH / UOM / Dept
+    </div>
+    <div class="nav-item" data-tab="ref2" onclick="switchTab(this,'ref2')">
+      <span class="ni">⚙️</span> Reference Data Lanjutan
+    </div>
+    <div class="nav-item" data-tab="pr" onclick="switchTab(this,'pr')">
+      <span class="ni">💳</span> Payment Request
+    </div>
+    <div class="nav-item" data-tab="sr" onclick="switchTab(this,'sr')">
+      <span class="ni">📑</span> Settlement Report
+    </div>
+    <div class="nav-item" data-tab="contracts" onclick="switchTab(this,'contracts')">
+      <span class="ni">📄</span> Contract
+    </div>
+
+    <div class="sidebar-section" style="margin-top:8px">Inventory</div>
+    <div class="nav-item" data-tab="items" onclick="switchTab(this,'items')">
+      <span class="ni">📦</span> Item Category & Items
+    </div>
+    <div class="nav-item" data-tab="transactions" onclick="switchTab(this,'transactions')">
+      <span class="ni">🔄</span> Item Transactions
+    </div>
+    <div class="nav-item" data-tab="ikb" onclick="switchTab(this,'ikb')">
+      <span class="ni">🚚</span> IKB
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="main">
+
+    <!-- HERO -->
+    <div class="hero">
+      <div class="hero-badge">📘 v1.0 · 24 Maret 2026</div>
+      <h1>Dokumentasi Sistem EPR</h1>
+      <p>Panduan lengkap alur sistem, permission, validasi, dan fungsi tombol setiap modul. Pilih modul dari sidebar untuk melihat detail dokumentasi.</p>
+    </div>
+
+    <!-- TAB PANES -->
+    <div class="content-wrap">
+      <div id="tab-login" class="tab-pane active"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-dashboard" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-users" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-vendors" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-companies" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-ref1" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-ref2" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-pr" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-sr" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-contracts" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-items" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-transactions" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+      <div id="tab-ikb" class="tab-pane"><div class="loader"><div class="spin"></div> Memuat dokumentasi...</div></div>
+    </div>
+  </main>
+</div>
+
+<button class="back-top" id="backTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+<script>
+// ── CONFIG ──────────────────────────────────────
+const TAB_FILES = {
+  login:        'login.md',
+  dashboard:    'dashboard.md',
+  users:        'users.md',
+  vendors:      'vendors.md',
+  companies:    'companies.md',
+  ref1:         'branch-warehouse-uom-package-departement.md',
+  ref2:         'reference-data-2.md',
+  pr:           'payment-request.md',
+  sr:           'settlement-report.md',
+  contracts:    'contracts.md',
+  items:        'item-categories.md',
+  transactions: 'item-transactions.md',
+  ikb:          'ikb.md',
+};
+
+// ── STATE ──────────────────────────────────────
+const loaded = {};
+let currentTab = 'login';
+let currentSearch = '';
+
+// ── MARKED CONFIG ──────────────────────────────
+marked.setOptions({ breaks: true, gfm: true });
+
+// ── TAB SWITCH ──────────────────────────────────
+function switchTab(el, tab) {
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  el.classList.add('active');
+  document.querySelectorAll('.tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('tab-' + tab).classList.add('active');
+  currentTab = tab;
+  loadTab(tab);
+  closeSidebar();
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+// ── LOAD MD ──────────────────────────────────────
+async function loadTab(tab) {
+  if (loaded[tab]) return;
+  const pane = document.getElementById('tab-' + tab);
+  try {
+    const resp = await fetch(TAB_FILES[tab] + '?v=' + Date.now());
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    const md = await resp.text();
+    loaded[tab] = md;
+    renderTab(tab, md, currentSearch);
+  } catch(e) {
+    pane.innerHTML = `<div class="no-result"><span class="nr-icon">⚠️</span><p>Gagal memuat dokumentasi: ${e.message}</p></div>`;
+  }
+}
+
+// ── RENDER ──────────────────────────────────────
+function renderTab(tab, md, search) {
+  const pane = document.getElementById('tab-' + tab);
+  let html = marked.parse(md);
+  if (search && search.length > 1) {
+    const re = new RegExp(`(${escapeRe(search)})`, 'gi');
+    html = html.replace(re, '<mark class="highlight">$1</mark>');
+  }
+  pane.innerHTML = `<div class="md-body">${html}</div>`;
+}
+
+// ── SEARCH ──────────────────────────────────────
+function doSearch(val) {
+  currentSearch = val.trim();
+  // Re-render current tab with highlight
+  if (loaded[currentTab]) {
+    renderTab(currentTab, loaded[currentTab], currentSearch);
+  }
+  // Show no result if current tab has no match
+  const pane = document.getElementById('tab-' + currentTab);
+  if (currentSearch.length > 1 && loaded[currentTab]) {
+    const re = new RegExp(escapeRe(currentSearch), 'i');
+    if (!re.test(loaded[currentTab])) {
+      pane.innerHTML = `<div class="no-result"><span class="nr-icon">🔍</span><p>Tidak ada hasil untuk "<strong>${currentSearch}</strong>" di modul ini.</p><p style="font-size:12px;margin-top:8px">Coba cari di modul lain.</p></div>`;
+    }
+  }
+}
+
+function escapeRe(s) { return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&'); }
+
+// ── THEME ──────────────────────────────────────
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  const next = isDark ? 'light' : 'dark';
+  document.documentElement.setAttribute('data-theme', next);
+  document.getElementById('themeBtn').textContent = next === 'dark' ? '☀️' : '🌙';
+  localStorage.setItem('epr-theme', next);
+}
+(function(){
+  const t = localStorage.getItem('epr-theme') || 'light';
+  document.documentElement.setAttribute('data-theme', t);
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('themeBtn').textContent = t === 'dark' ? '☀️' : '🌙';
+  });
+})();
+
+// ── SIDEBAR MOBILE ──────────────────────────────
+function toggleSidebar() {
+  document.getElementById('sidebar').classList.toggle('open');
+  document.getElementById('overlay').classList.toggle('show');
+}
+function closeSidebar() {
+  document.getElementById('sidebar').classList.remove('open');
+  document.getElementById('overlay').classList.remove('show');
+}
+
+// ── BACK TO TOP ──────────────────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('backTop').classList.toggle('show', window.scrollY > 300);
+});
+
+// ── INIT ──────────────────────────────────────
+document.addEventListener('DOMContentLoaded', () => {
+  loadTab('login');
+});
+</script>
+</body>
+</html>

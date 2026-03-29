@@ -1,0 +1,438 @@
+/* =============================================================================
+   PPD MODERN MODULES CSS
+   Centralized styles for synchronized eproksa components
+   ============================================================================= */
+
+/* --- SHARED COMPONENTS --- */
+.modern-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.modern-table th {
+    background-color: #f8f9fa;
+    font-weight: 700;
+    padding: 18px 15px;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: #495057;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.modern-table td {
+    padding: 15px;
+    border-bottom: 1px solid #f1f3f5;
+    vertical-align: middle;
+}
+
+.modern-table tr:hover {
+    background-color: rgba(102, 126, 234, 0.05);
+    transition: all 0.2s ease;
+}
+
+.badge-modern {
+    padding: 0.5em 1em;
+    border-radius: 20px;
+    font-weight: 600;
+}
+
+/* --- USER MANAGEMENT MODULE (INDEX) --- */
+.user-management .filter-section,
+.company-management .filter-section {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+}
+
+.user-management .summary-card {
+    border: none;
+    border-radius: 12px;
+    color: white;
+    transition: all 0.3s ease;
+}
+
+.user-management .summary-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+/* --- USER MANAGEMENT MODULE (EDIT) --- */
+.user-edit .edit-card,
+.user-create .edit-card,
+.user-show .edit-card,
+.payment-show .edit-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+}
+
+.user-edit .edit-card .card-header,
+.user-create .edit-card .card-header,
+.user-show .edit-card .card-header,
+.payment-show .edit-card .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 1.5rem 2rem;
+    border: none;
+}
+
+.user-edit .user-profile-header,
+.user-create .user-profile-header,
+.user-show .user-profile-header,
+.payment-show .user-profile-header {
+    background: linear-gradient(135deg, #74b9ff 0%, #0984e3 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(9, 132, 227, 0.2);
+}
+
+.user-edit .form-section,
+.user-create .form-section,
+.user-show .form-section,
+.payment-show .form-section {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #edf2f7;
+}
+
+.user-edit .form-section:last-child,
+.user-create .form-section:last-child,
+.user-show .form-section:last-child,
+.payment-show .form-section:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+}
+
+.user-edit .section-header,
+.user-create .section-header,
+.user-show .section-header,
+.payment-show .section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.user-edit .section-header i,
+.user-create .section-header i,
+.user-show .section-header i,
+.payment-show .section-header i {
+    font-size: 1.25rem;
+    margin-right: 0.75rem;
+    color: #667eea;
+}
+
+.user-edit .section-header h5,
+.user-create .section-header h5,
+.user-show .section-header h5,
+.payment-show .section-header h5 {
+    margin-bottom: 0;
+    font-weight: 700;
+    color: #2d3748;
+    font-size: 1.1rem;
+}
+
+.user-edit .photo-preview-container,
+.user-create .photo-preview-container,
+.user-show .photo-preview-container {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: visible; /* Fix pencil icon visibility */
+    border: 3px solid #667eea;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.2);
+    position: relative;
+    background: #f7fafc;
+    flex-shrink: 0;
+}
+
+/* --- TEXT COLORS --- */
+.modern-text-title,
+.form-label {
+    color: #2d3748;
+    font-weight: 600;
+}
+
+.modern-text-muted,
+.text-muted {
+    color: #718096;
+}
+
+/* --- DYNAMIC ROW COMPONENTS --- */
+.locked-row {
+    border-left: 3px solid #f1c40f !important;
+    background-color: #fff9e6 !important;
+}
+
+[data-pc-theme="dark"] .locked-row {
+    background-color: rgba(241, 196, 15, 0.05) !important;
+    border-left-color: #f1c40f !important;
+}
+
+.bank-account-card {
+    transition: all 0.2s ease;
+}
+
+.bank-account-card:hover {
+    border-color: #667eea !important;
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.1) !important;
+}
+
+/* =============================================================================
+   DARK MODE OVERRIDES
+   ============================================================================= */
+
+/* --- CORE FRAMEWORK DARK MODE --- */
+[data-pc-theme="dark"] body {
+    background-color: #0d1117 !important;
+    color: #e2e8f0 !important;
+}
+
+[data-pc-theme="dark"] .pc-sidebar {
+    background: #1a2531 !important;
+    border-right-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .pc-sidebar .m-header {
+    background: #1a2531 !important;
+}
+
+[data-pc-theme="dark"] .pc-container,
+[data-pc-theme="dark"] .pc-content {
+    background-color: #0d1117 !important;
+}
+
+[data-pc-theme="dark"] .pc-header {
+    background: #111a22 !important;
+    border-bottom-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5) !important;
+}
+
+[data-pc-theme="dark"] .pc-footer {
+    background: #1a2531 !important;
+    border-top-color: #2d3748 !important;
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .pc-sidebar .pc-link {
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .pc-sidebar .pc-item.active > .pc-link {
+    background: rgba(102, 126, 234, 0.1) !important;
+    color: #667eea !important;
+}
+
+[data-pc-theme="dark"] .pc-sidebar .pc-caption {
+    color: #4a5568 !important;
+}
+
+[data-pc-theme="dark"] .pc-head-link {
+    color: #fff !important;
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+[data-pc-theme="dark"] .pc-head-link:hover {
+    background: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* --- COMPONENT DARK MODE --- */
+[data-pc-theme="dark"] .modern-table,
+[data-pc-theme="dark"] .card,
+[data-pc-theme="dark"] .user-management .filter-section,
+[data-pc-theme="dark"] .company-management .filter-section,
+[data-pc-theme="dark"] .branch-management .filter-section,
+[data-pc-theme="dark"] .user-edit .edit-card,
+[data-pc-theme="dark"] .user-create .edit-card,
+[data-pc-theme="dark"] .user-show .edit-card,
+[data-pc-theme="dark"] .payment-show .edit-card,
+[data-pc-theme="dark"] .table-responsive {
+    background-color: #1a2531 !important;
+    color: #fff;
+    border-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modern-table th {
+    background-color: #111a22 !important;
+    color: #a0aec0 !important;
+    border-bottom-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modern-table td {
+    border-bottom-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modern-table tr:hover {
+    background-color: rgba(255, 255, 255, 0.02) !important;
+}
+
+[data-pc-theme="dark"] .user-edit .form-section,
+[data-pc-theme="dark"] .user-create .form-section,
+[data-pc-theme="dark"] .user-show .form-section {
+    border-bottom-color: #2e3b4d !important;
+}
+
+[data-pc-theme="dark"] .user-edit .section-header h5,
+[data-pc-theme="dark"] .user-create .section-header h5,
+[data-pc-theme="dark"] .user-show .section-header h5 {
+    color: #e2e8f0 !important;
+}
+
+[data-pc-theme="dark"] .user-edit .form-label,
+[data-pc-theme="dark"] .user-create .form-label {
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .user-edit .form-control,
+[data-pc-theme="dark"] .user-edit .form-select,
+[data-pc-theme="dark"] .user-create .form-control,
+[data-pc-theme="dark"] .user-create .form-select,
+[data-pc-theme="dark"] .user-management .form-control,
+[data-pc-theme="dark"] .user-management .form-select,
+[data-pc-theme="dark"] .company-management .form-control,
+[data-pc-theme="dark"] .company-management .form-select {
+    background-color: #111a22 !important;
+    border-color: #2d3748 !important;
+    color: #fff !important;
+}
+
+[data-pc-theme="dark"] .input-group-text {
+    background-color: #1a2531 !important;
+    border-color: #2d3748 !important;
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .form-label,
+[data-pc-theme="dark"] .form-check-label:not(.text-success):not(.text-danger) {
+    color: #e2e8f0 !important;
+}
+
+[data-pc-theme="dark"] .user-edit .photo-preview-container,
+[data-pc-theme="dark"] .user-create .photo-preview-container {
+    background-color: #111a22 !important;
+    border-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .breadcrumb-item.active {
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .breadcrumb-item a {
+    color: #667eea !important;
+}
+
+[data-pc-theme="dark"] .modern-text-title {
+    color: #f7fafc !important;
+}
+
+[data-pc-theme="dark"] .modern-text-muted,
+[data-pc-theme="dark"] .text-muted {
+    color: #a0aec0 !important;
+}
+
+[data-pc-theme="dark"] .opacity-50,
+[data-pc-theme="dark"] .opacity-25 {
+    opacity: 0.7 !important;
+}
+
+/* --- MODAL DARK MODE --- */
+[data-pc-theme="dark"] .modal-content {
+    background-color: #1a2531 !important;
+    color: #e2e8f0 !important;
+    border-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modal-header {
+    border-bottom-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modal-footer {
+    background-color: #111a22 !important;
+    border-top-color: #2d3748 !important;
+}
+
+[data-pc-theme="dark"] .modal .btn-light {
+    background-color: #2d3748 !important;
+    color: #e2e8f0 !important;
+    border-color: #4a5568 !important;
+}
+
+[data-pc-theme="dark"] .modal .btn-light:hover {
+    background-color: #4a5568 !important;
+}
+
+[data-pc-theme="dark"] .modal .form-text {
+    color: #718096 !important;
+}
+
+/* --- PAYMENT SHOW MODERN HEADER --- */
+.payment-show .user-profile-header {
+    background: radial-gradient(circle at top left, #4834d4, #686de0), url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+    padding: 2.5rem 2rem;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(72, 52, 212, 0.25);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+
+.payment-show .user-profile-header::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+    transform: rotate(30deg);
+    pointer-events: none;
+}
+
+.payment-show .glass-stat-card {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 1rem;
+    transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.payment-show .glass-stat-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.payment-show .badge-modern-status {
+    padding: 6px 20px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.75rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.payment-show .amount-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    opacity: 0.8;
+}
+
+.payment-show .amount-value {
+    font-size: 1.15rem;
+    font-weight: 700;
+}
