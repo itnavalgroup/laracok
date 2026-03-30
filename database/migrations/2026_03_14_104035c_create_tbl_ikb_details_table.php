@@ -17,7 +17,7 @@ return new class extends Migration
             $table->bigInteger('id_item_category')->unsigned()->index();
             $table->bigInteger('id_item')->unsigned()->index();
             $table->bigInteger('id_uom')->unsigned()->index();
-            $table->bigInteger('id_contract')->unsigned()->index();
+            $table->bigInteger('id_contract')->unsigned()->index()->nullable();
             $table->bigInteger('id_packaging')->unsigned()->index();
             $table->decimal('qty', 20, 4);
             $table->timestamps();
