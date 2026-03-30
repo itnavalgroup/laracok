@@ -121,10 +121,24 @@ class Form extends Component
         DB::beginTransaction();
         try {
             $allowed = [
-                'id_pr', 'id_doc_type', 'id_departement', 'id_cost_type', 'id_cost_category', 'id_branch',
-                'id_loan', 'id_company', 'id_vendor', 'id_email_vendor', 'id_norek_vendor',
-                'id_email_user', 'subject', 'no_invoice',
-                'additional_discount', 'nama_bank', 'nama_penerima', 'norek',
+                'id_pr',
+                'id_doc_type',
+                'id_departement',
+                'id_cost_type',
+                'id_cost_category',
+                'id_branch',
+                'id_loan',
+                'id_company',
+                'id_vendor',
+                'id_email_vendor',
+                'id_norek_vendor',
+                'id_email_user',
+                'subject',
+                'no_invoice',
+                'additional_discount',
+                'nama_bank',
+                'nama_penerima',
+                'norek',
                 'payment_method',
             ];
             $data = array_intersect_key($formData, array_flip($allowed));
@@ -160,28 +174,8 @@ class Form extends Component
                 $sr = Sr::create($data);
 
                 // Fetch PR details and copy to SR details automatically since it's a settlement
-                if ($sr->id_pr) {
-                    $prOrig = Pr::with('details')->find($sr->id_pr);
-                    if ($prOrig) {
-                        foreach ($prOrig->details as $det) {
-                            $sr->details()->create([
-                                'id_uom' => $det->id_uom,
-                                'detail' => $det->detail,
-                                'qty' => $det->qty,
-                                'price' => $det->price,
-                                'discount' => $det->discount,
-                                'id_tax1' => $det->id_tax1,
-                                'tax1' => $det->tax1,
-                                'id_tax2' => $det->id_tax2,
-                                'tax2' => $det->tax2,
-                                'gross' => $det->gross,
-                                'progresif' => $det->progresif,
-                                'ammount' => $det->ammount,
-                                'bl_number' => $det->bl_number,
-                            ]);
-                        }
-                    }
-                }
+                // Diubah: tidak lagi menyalin detail otomatis, agar user mengisi manual
+
             }
 
             DB::commit();

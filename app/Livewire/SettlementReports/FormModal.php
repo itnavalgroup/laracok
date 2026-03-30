@@ -29,16 +29,16 @@ class FormModal extends Component
             // Dalam konteks ini, ID yang dikirim dari tombol Create Settlement 
             // di PR Show = id_pr. SR Form akan membukanya sebagai data awal,
             // ATAU edit jika sudah ada draft SR untuk PR tersebut.
-            
+
             // Cek apakah SR sudah ada
             $sr = Sr::where('id_pr', $id)->first();
-            
+
             if ($sr) {
                 // Mode Edit SR
                 abort_if(
                     Auth::user()->level !== 1
-                    && !Auth::user()->hasPermission('sr.edit')
-                    && Auth::user()->id_user !== $sr->id_user,
+                        && !Auth::user()->hasPermission('sr.edit')
+                        && Auth::user()->id_user !== $sr->id_user,
                     403
                 );
 
@@ -84,10 +84,24 @@ class FormModal extends Component
         DB::beginTransaction();
         try {
             $allowed = [
-                'id_pr', 'id_doc_type', 'id_departement', 'id_cost_type', 'id_cost_category', 'id_branch',
-                'id_loan', 'id_company', 'id_vendor', 'id_email_vendor', 'id_norek_vendor',
-                'id_email_user', 'subject', 'no_invoice',
-                'additional_discount', 'nama_bank', 'nama_penerima', 'norek',
+                'id_pr',
+                'id_doc_type',
+                'id_departement',
+                'id_cost_type',
+                'id_cost_category',
+                'id_branch',
+                'id_loan',
+                'id_company',
+                'id_vendor',
+                'id_email_vendor',
+                'id_norek_vendor',
+                'id_email_user',
+                'subject',
+                'no_invoice',
+                'additional_discount',
+                'nama_bank',
+                'nama_penerima',
+                'norek',
                 'payment_method',
             ];
             $data = array_intersect_key($formData, array_flip($allowed));
@@ -101,11 +115,11 @@ class FormModal extends Component
                 $sr->update($data);
             } else {
                 $prSource = \App\Models\Pr::findOrFail($formData['id_pr']);
-                
+
                 $data['id_user'] = Auth::id();
                 $data['status']  = 0;
                 $data['id_doc_type'] = 3; // Settlement Doc Type
-                
+
                 // Warisi dari PR
                 $data['id_departement'] = $prSource->id_departement;
                 $data['id_company'] = $prSource->id_company;
@@ -113,37 +127,12 @@ class FormModal extends Component
                 $data['id_cost_category'] = $prSource->id_cost_category;
                 $data['id_cost_type'] = $prSource->id_cost_type;
                 $data['id_email_user'] = $prSource->id_email_user;
-                $data['id_loan'] = $prSource->id_loan; 
+                $data['id_loan'] = $prSource->id_loan;
 
                 $sr = Sr::create($data);
-                
-                // Copy details if created from PR
-                if (!empty($formData['id_pr'])) {
-                    $prSource = \App\Models\Pr::with('details')->find($formData['id_pr']);
-                    if ($prSource) {
-                        foreach ($prSource->details as $prDetail) {
-                            \App\Models\SrDetail::create([
-                                'id_sr'       => $sr->id_sr,
-                                'id_uom'      => $prDetail->id_uom,
-                                'detail'      => $prDetail->detail,
-                                'qty'         => $prDetail->qty,
-                                'price'       => $prDetail->price,
-                                'ammount'     => $prDetail->ammount,
-                                'id_tax_type1' => $prDetail->id_tax_type1,
-                                'id_tax1'      => $prDetail->id_tax1,
-                                'tax1'         => $prDetail->tax1,
-                                'id_tax_type2' => $prDetail->id_tax_type2,
-                                'id_tax2'      => $prDetail->id_tax2,
-                                'tax2'         => $prDetail->tax2,
-                                'dpp_pph'      => $prDetail->dpp_pph,
-                                'gross'        => $prDetail->gross,
-                                'progresif'    => $prDetail->progresif,
-                                'discount'     => $prDetail->discount,
-                                'bl_number'    => $prDetail->bl_number,
-                            ]);
-                        }
-                    }
-                }
+
+                // Tidak lagi menyalin otomatis dari PR, user akan mengisi manual
+
             }
 
             DB::commit();
@@ -157,7 +146,7 @@ class FormModal extends Component
 
     public function render()
     {
-        $ttl = 7200; 
+        $ttl = 7200;
 
         // Untuk form SR, DocType umumnya 3 (Settlement Report)
         $docTypes = Cache::remember('sr_doc_types', $ttl, fn() => DocType::where('id_doc_type', 3)->get());
@@ -175,4 +164,3 @@ class FormModal extends Component
         ]);
     }
 }
-
