@@ -8,64 +8,19 @@ use Illuminate\Support\Facades\Schema;
 
 class TblPositionSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
         Schema::disableForeignKeyConstraints();
-
-        $payload = [
-                    [
-                        'id_position' => 1,
-                        'position' => 'CEO',
-                        'created_at' => '2025-05-02 19:05:50',
-                        'updated_at' => '2025-05-02 19:05:50',
-                        'deleted_at' => null,
-                    ],
-                    [
-                        'id_position' => 2,
-                        'position' => 'Kepala Gudang',
-                        'created_at' => '2025-05-02 19:05:50',
-                        'updated_at' => '2025-11-20 02:12:47',
-                        'deleted_at' => null,
-                    ],
-                    [
-                        'id_position' => 3,
-                        'position' => 'Staff',
-                        'created_at' => '2025-05-02 19:06:08',
-                        'updated_at' => '2025-05-03 20:54:22',
-                        'deleted_at' => null,
-                    ],
-                    [
-                        'id_position' => 6,
-                        'position' => 'Manager',
-                        'created_at' => '2025-11-20 02:13:33',
-                        'updated_at' => '2025-11-20 02:13:33',
-                        'deleted_at' => null,
-                    ],
-                    [
-                        'id_position' => 7,
-                        'position' => 'CFO',
-                        'created_at' => '2025-11-20 02:13:46',
-                        'updated_at' => '2025-11-20 02:13:46',
-                        'deleted_at' => null,
-                    ],
-                    [
-                        'id_position' => 8,
-                        'position' => 'Supervisor',
-                        'created_at' => '2025-11-20 02:14:18',
-                        'updated_at' => '2025-11-20 02:14:18',
-                        'deleted_at' => null,
-                    ]
-        ];
-
-        // Break payload into manageable memory chunks and insert
-        $chunks = array_chunk($payload, 50);
-        foreach ($chunks as $chunk) {
-            DB::table('tbl_position')->insertOrIgnore($chunk);
-        }
-
+        DB::unprepared(<<<'SQL'
+INSERT IGNORE INTO `tbl_position` (`id_position`, `position`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, 'CEO', '2025-05-02 12:05:50', '2025-05-02 12:05:50', NULL),
+(2, 'Kepala Gudang', '2025-05-02 12:05:50', '2025-11-19 19:12:47', NULL),
+(3, 'Staff', '2025-05-02 12:06:08', '2025-05-03 13:54:22', NULL),
+(6, 'Manager', '2025-11-19 19:13:33', '2025-11-19 19:13:33', NULL),
+(7, 'CFO', '2025-11-19 19:13:46', '2025-11-19 19:13:46', NULL),
+(8, 'Supervisor', '2025-11-19 19:14:18', '2025-11-19 19:14:18', NULL);
+SQL
+        );
         Schema::enableForeignKeyConstraints();
     }
 }

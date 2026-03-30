@@ -751,6 +751,104 @@ return new class extends Migration
             }
         });
 
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_user', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_user')->references('id_user')->on('tbl_user')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_company', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_company')->references('id_company')->on('tbl_company')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_departement', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_departement')->references('id_departement')->on('tbl_departement')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_attachment', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_attachment')->references('id_attachment')->on('tbl_attachment')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract_detail'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_contract', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_contract')->references('id_contract')->on('tbl_contract')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract_detail'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_item_category', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_item_category')->references('id_item_category')->on('tbl_item_categories')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_contract_detail'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_item', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_item')->references('id_item')->on('tbl_items')->onDelete('restrict');
+            }
+        });
+
         Schema::table('tbl_ikb_details', function (Blueprint $table) {
             $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_ikb_details'));
             $exists = false;
@@ -804,6 +902,20 @@ return new class extends Migration
             }
             if (!$exists) {
                 $table->foreign('id_uom')->references('id_uom')->on('tbl_uoms')->onDelete('restrict');
+            }
+        });
+
+        Schema::table('tbl_ikb_details', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_ikb_details'));
+            $exists = false;
+            foreach ($foreignKeys as $columns) {
+                if (in_array('id_uom', $columns)) {
+                    $exists = true;
+                    break;
+                }
+            }
+            if (!$exists) {
+                $table->foreign('id_contract')->references('id_contract')->on('tbl_contract')->onDelete('restrict');
             }
         });
 
@@ -2847,6 +2959,174 @@ return new class extends Migration
             }
         });
 
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_user', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_user']);
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_company', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_company']);
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_departement', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_departement']);
+            }
+        });
+        
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_attachment', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_attachment']);
+            }
+        });
+
+         Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_contract', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_contract']);
+            }
+        });
+
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_item_category', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_item_category']);
+            }
+        });
+        
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_item', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_item']);
+            }
+        });
+
+         Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_user', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_user']);
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_company', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_company']);
+            }
+        });
+
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_departement', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_departement']);
+            }
+        });
+        
+        Schema::table('tbl_contract', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_attachment', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_attachment']);
+            }
+        });
+
+         Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_contract', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_contract']);
+            }
+        });
+
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_item_category', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_item_category']);
+            }
+        });
+        
+        Schema::table('tbl_contract_detail', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_contract_detail');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_item', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_item']);
+            }
+        });
+
         Schema::table('tbl_ikb_details', function (Blueprint $table) {
             $sm = Schema::getConnection()->getDoctrineSchemaManager();
             $foreignKeys = $sm->listTableForeignKeys('tbl_ikb_details');
@@ -2892,6 +3172,18 @@ return new class extends Migration
             
             if ($exists) {
                 $table->dropForeign(['id_uom']);
+            }
+        });
+
+        Schema::table('tbl_ikb_details', function (Blueprint $table) {
+            $sm = Schema::getConnection()->getDoctrineSchemaManager();
+            $foreignKeys = $sm->listTableForeignKeys('tbl_ikb_details');
+            $exists = collect($foreignKeys)->contains(function ($fk) {
+                return in_array('id_contract', $fk->getLocalColumns());
+            });
+            
+            if ($exists) {
+                $table->dropForeign(['id_contract']);
             }
         });
 
