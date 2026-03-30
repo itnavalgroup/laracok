@@ -47,8 +47,8 @@
                             <label class="fw-bold small text-uppercase">Payment Method <span class="text-danger">*</span></label>
                             <select x-model="form.payment_method" class="form-select select2-pr" id="pr_payment_method">
                                 <option value="">-- Pilih Method --</option>
-                                <option value="1">Cash</option>
-                                <option value="2">Bank Transfer</option>
+                                <option value="1">Transfer</option>
+                                <option value="2">Cash</option>
                             </select>
                             <span class="text-danger small" x-show="errors.payment_method" x-text="errors.payment_method"></span>
                         </div>

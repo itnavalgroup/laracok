@@ -42,8 +42,8 @@
                             <label class="fw-bold small text-uppercase">Payment Method <span class="text-danger">*</span></label>
                             <select x-model="form.payment_method" class="form-select select2-sr" id="sr_payment_method" :disabled="isNewFromPr">
                                 <option value="">-- Pilih Method --</option>
-                                <option value="1">Cash</option>
-                                <option value="2">Bank Transfer</option>
+                                <option value="1">Transfer</option>
+                                <option value="2">Cash</option>
                             </select>
                             <span class="text-danger small" x-show="errors.payment_method" x-text="errors.payment_method"></span>
                         </div>
@@ -75,9 +75,9 @@
                             <select x-model="form.id_vendor" @change="onVendorChange()" class="form-select select2-sr" id="sr_vendor" :disabled="isNewFromPr">
                                 <option value="">-- Pilih Vendor --</option>
                                 @foreach($vendors as $v)
-                                    @if($v->is_active == 1)
-                                    <option value="{{ $v->id_vendor }}">{{ $v->vendor_name ?: $v->vendor }}</option>
-                                    @endif
+                                @if($v->is_active == 1)
+                                <option value="{{ $v->id_vendor }}">{{ $v->vendor_name ?: $v->vendor }}</option>
+                                @endif
                                 @endforeach
                             </select>
                             <span class="text-danger small" x-show="errors.id_vendor" x-text="errors.id_vendor"></span>
@@ -269,14 +269,12 @@
                     Object.keys(this.form).forEach(k => {
                         const val = data.sr[k];
                         if (val && k === 'payment_due_date') {
-                            this.form[k] = ''; // Reset settlement date usually when creating new, or set to today
-                        } else if (val && k === 'est_settlement_date') {
-                            this.form['payment_due_date'] = String(val).split('T')[0].split(' ')[0]; // Pre-fill with PR est
-                        } else if(k !== 'id_pr') {
+                            this.form[k] = String(val).split('T')[0].split(' ')[0];
+                        } else {
                             this.form[k] = (val !== null && val !== undefined) ? String(val) : '';
                         }
                     });
-                    
+
                     this.form.id_doc_type = '3'; // Force Settlement type
                     if (data.is_new_from_pr) {
                         this.form.payment_due_date = new Date().toISOString().split('T')[0];
@@ -307,7 +305,7 @@
                 const modal = bootstrap.Modal.getOrCreateInstance(document.getElementById('srFormModal'));
                 modal.show();
 
-                this.$nextTick(() => { 
+                this.$nextTick(() => {
                     this.initSelect2();
                     // trigger refresh of select2 elements after data is loaded so they show correct values even if disabled
                     setTimeout(() => {
@@ -330,7 +328,9 @@
                 this.loadingVendor = true;
                 try {
                     const res = await fetch(`/api/vendors/${vendorId}/details`, {
-                        headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content }
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                        }
                     });
                     const json = await res.json();
                     this.vendorEmails = json.emails || [];
@@ -338,7 +338,11 @@
                     await this.$nextTick();
                     if (prevEmailId) this.form.id_email_vendor = String(prevEmailId);
                     if (prevBankId) this.form.id_norek_vendor = String(prevBankId);
-                } catch (e) { console.error(e); } finally { this.loadingVendor = false; }
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    this.loadingVendor = false;
+                }
             },
 
             async loadCostTypes(categoryId, prevTypeId = null) {
@@ -346,13 +350,19 @@
                 this.loadingCostTypes = true;
                 try {
                     const res = await fetch(`/api/cost-categories/${categoryId}/types`, {
-                        headers: { 'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content }
+                        headers: {
+                            'X-CSRF-TOKEN': document.querySelector('meta[name=csrf-token]').content
+                        }
                     });
                     const json = await res.json();
                     this.costTypes = json || [];
                     await this.$nextTick();
                     if (prevTypeId) this.form.id_cost_type = String(prevTypeId);
-                } catch (e) { console.error(e); } finally { this.loadingCostTypes = false; }
+                } catch (e) {
+                    console.error(e);
+                } finally {
+                    this.loadingCostTypes = false;
+                }
             },
 
             async onVendorChange() {
@@ -442,11 +452,16 @@
         animation: spin 1s linear infinite;
         display: inline-block;
     }
+
     @keyframes spin {
-        from { transform: rotate(0deg); }
-        to { transform: rotate(360deg); }
+        from {
+            transform: rotate(0deg);
+        }
+
+        to {
+            transform: rotate(360deg);
+        }
     }
 </style>
 @endpush
 </div>
-
