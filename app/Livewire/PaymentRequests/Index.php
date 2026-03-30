@@ -142,7 +142,7 @@ class Index extends Component
         }
 
         $pr->attachmentPrs()->delete();
-        $pr->signTransactions()->delete();
+        $pr->signTransactions()->forceDelete();
         $pr->details()->delete();
         $pr->delete();
 
