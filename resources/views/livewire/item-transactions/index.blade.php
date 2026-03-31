@@ -1,4 +1,4 @@
-<div class="items-management" wire:poll.5s>
+<div class="items-management">
     <div class="row">
         <!-- Breadcrumb -->
         <div class="col-12 mb-4">
@@ -578,13 +578,33 @@
                             <!-- Vendor -->
                             <div class="col-md-4">
                                 <label class="form-label fw-bold small text-uppercase">VENDOR</label>
-                                <select class="form-select @error('id_vendor') is-invalid @enderror" wire:model="id_vendor">
-                                    <option value="">Pilih Vendor</option>
-                                    @foreach($vendors as $v)
-                                    <option value="{{ $v->id_vendor }}">{{ $v->vendor }}</option>
-                                    @endforeach
-                                </select>
-                                @error('id_vendor') <div class="invalid-feedback">{{ $message }}</div> @enderror
+                                <div wire:ignore wire:key="vendor-select-wrapper" x-data="{
+                                    initVendor() {
+                                        if ($(this.$refs.select).data('select2')) {
+                                            $(this.$refs.select).select2('destroy');
+                                        }
+                                        $(this.$refs.select).select2({ 
+                                            dropdownParent: $('#transactionModal'), 
+                                            width: '100%' 
+                                        }).on('change', (e) => {
+                                            if ($wire.id_vendor !== e.target.value) {
+                                                $wire.set('id_vendor', e.target.value);
+                                            }
+                                        });
+                                    }
+                                }" x-init="$watch('$wire.id_vendor', value => {
+                                    if ($($refs.select).val() != value) {
+                                        $($refs.select).val(value).trigger('change.select2');
+                                    }
+                                })">
+                                    <select x-ref="select" x-init="initVendor()" class="form-select select2-trx-vendor" style="width: 100%;">
+                                        <option value="">Pilih Vendor</option>
+                                        @foreach($vendors as $v)
+                                        <option value="{{ $v->id_vendor }}">{{ $v->vendor }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                @error('id_vendor') <div class="text-danger small mt-1">{{ $message }}</div> @enderror
                             </div>
 
                             <!-- Police Number -->
@@ -836,14 +856,62 @@
                 }) => {
                     // Restore the scroll smoothly after the DOM merges
                     setTimeout(() => {
-                        window.scrollTo({
-                            top: scrollY,
-                            behavior: 'instant'
-                        });
+                        // Jangan trigger scroll jika ada modal yang sedang terbuka,
+                        // karena bisa menyebabkan dropdown Select2 (atau UI lainnya) tertutup secara paksa.
+                        if (!document.body.classList.contains('modal-open')) {
+                            window.scrollTo({
+                                top: scrollY,
+                                behavior: 'instant'
+                            });
+                        }
                     }, 0);
                 });
             });
         });
+
+        // -------------------------------------------------------
+        // Manual polling: pause saat modal terbuka, agar Select2
+        // dropdown tidak tertutup paksa saat Livewire re-render.
+        // -------------------------------------------------------
+        let pollInterval = null;
+
+        function startPolling() {
+            if (pollInterval) return;
+            pollInterval = setInterval(() => {
+                if (!document.body.classList.contains('modal-open')) {
+                    // Refresh semua komponen Livewire aktif di halaman ini
+                    Livewire.all().forEach(c => {
+                        if (c.el && c.el.closest('.items-management')) {
+                            c.$refresh();
+                        }
+                    });
+                }
+            }, 5000);
+        }
+
+        function stopPolling() {
+            if (pollInterval) {
+                clearInterval(pollInterval);
+                pollInterval = null;
+            }
+        }
+
+        // Mulai polling saat halaman dimuat
+        startPolling();
+
+        // Pause polling saat modal transaction dibuka
+        const transactionModal = document.getElementById('transactionModal');
+        if (transactionModal) {
+            transactionModal.addEventListener('show.bs.modal', stopPolling);
+            transactionModal.addEventListener('hidden.bs.modal', startPolling);
+        }
+
+        // Pause polling saat modal import dibuka
+        const importModal = document.getElementById('importModal');
+        if (importModal) {
+            importModal.addEventListener('show.bs.modal', stopPolling);
+            importModal.addEventListener('hidden.bs.modal', startPolling);
+        }
 
         function formatNumber(input) {
             let value = input.value.replace(/,/g, '');
