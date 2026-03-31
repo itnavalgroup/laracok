@@ -129,14 +129,19 @@ class Index extends Component
         $pr = Pr::findOrFail($id);
         $user = Auth::user();
 
-        // Restricted to Admin or Owner
-        abort_if($user->level !== 1 && $user->id_user !== $pr->id_user, 403);
+        // Restricted to Admin, Owner, or users with pr.delete permission
+        abort_if(
+            $user->level !== 1 
+            && $user->id_user !== $pr->id_user 
+            && !$user->hasPermission('pr.delete'), 
+            403
+        );
 
-        if ($pr->status > 0) {
+        if (!in_array($pr->status, [0, null, 13])) {
             $this->dispatch('alert', [
                 'type' => 'danger',
                 'title' => 'Gagal',
-                'message' => 'Payment Request yang sudah diajukan tidak dapat dihapus.',
+                'message' => 'Payment Request yang sedang atau sudah diproses tidak dapat dihapus.',
             ]);
             return;
         }

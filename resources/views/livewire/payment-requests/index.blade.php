@@ -425,7 +425,7 @@
                                         <i class="ti ti-eye fs-5"></i>
                                     </a>
 
-                                    @if($pr->status == 0 && (auth()->user()->level === 1 || auth()->user()->hasPermission('pr.delete') || auth()->user()->id_user == $pr->id_user))
+                                    @if(in_array($pr->status, [0, null, 13]) && (auth()->user()->level === 1 || auth()->user()->hasPermission('pr.delete') || auth()->user()->id_user == $pr->id_user))
                                     <button type="button" wire:click="$dispatch('open-pr-form', { id: {{ $pr->id_pr }} })" class="btn btn-icon bg-light-warning rounded-circle" title="Edit">
                                         <i class="ti ti-edit fs-5"></i>
                                     </button>
