@@ -158,10 +158,10 @@ class FormModal extends Component
 
         return view('livewire.ikb.form-modal', [
             'docTypes'           => $doctypes,
-            'departements'       => Cache::remember('ikb_departements',    $ttl, fn() => Departement::orderBy('departement')->get()),
-            'companies'          => Cache::remember('ikb_companies',       $ttl, fn() => Company::all()),
-            'warehouses'         => Cache::remember('ikb_warehouses',      $ttl, fn() => Warehouse::where('is_active', 1)->get()),
-            'vendors'            => Cache::remember('ikb_vendors',         $ttl, fn() => Vendor::where('is_active', 1)->get()),
+            'departements'       => Departement::orderBy('departement')->get(),
+            'companies'          => Company::all(),
+            'warehouses'         => Warehouse::where('is_active', 1)->get(),
+            'vendors'            => Vendor::where('is_active', 1)->get(),
             'transactionTypes'   => IkbTransactionType::where('is_active', 1)->orderBy('transaction_type')->get(),
             'users'              => $users,
         ]);
