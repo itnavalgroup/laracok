@@ -8,8 +8,8 @@
     $isSales = $user->id_user == $ikb->sales;
 
     // canSubmit, canEditDetail, canDeleteDetail are passed from component
-    $canSubmit = ($ikb->status === 0 || $ikb->status === 11) && ($isAdmin || ($isSales && $user->hasPermission('ikb.submit')));
-    $canEditHeader = ($ikb->status == 0 || $ikb->status == 11) && ($isAdmin || ($isOwner && $user->hasPermission('ikb.edit')));
+    $canSubmit = ($status === 0 || $status === 11) && ($isAdmin || ($isSales && $user->hasPermission('ikb.submit')));
+    $canEditHeader = ($status === 0 || $status === 11) && ($isAdmin || ($isOwner && $user->hasPermission('ikb.edit')));
     $canDownload = $isAdmin || $isOwner || $user->hasPermission('ikb.download');
     $canPrint = $isAdmin || $isOwner || $user->hasPermission('ikb.print');
 

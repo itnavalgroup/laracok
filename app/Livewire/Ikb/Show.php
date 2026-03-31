@@ -100,7 +100,7 @@ class Show extends Component
 
         // Determine if current user can submit
         $canSubmit = ($ikb->status == 0 || $ikb->status == 11) &&
-            ($isLevel1 || (Auth::id() == $ikb->sales && $user->hasPermission('ikb.submit')));
+            ($isLevel1 || ($user->id_user == $ikb->sales && $user->hasPermission('ikb.submit')));
 
         // Subordinate logic for Step 1
         $isSubordinateOfCurrentUser = in_array($ikb->sales, $user->subordinates()->pluck('id_user')->toArray());
