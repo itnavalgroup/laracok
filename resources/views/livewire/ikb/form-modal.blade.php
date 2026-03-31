@@ -112,13 +112,14 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label class="fw-bold small text-uppercase">Vendor</label>
+                            <label class="fw-bold small text-uppercase">Vendor <span class="text-danger">*</span></label>
                             <select x-model="form.id_vendor" class="form-select select2-ikb" id="ikb_vendor">
-                                <option value="">-- Pilih Vendor (Opsional) --</option>
+                                <option value="">-- Pilih Vendor --</option>
                                 @foreach($vendors as $v)
                                     <option value="{{ $v->id_vendor }}">{{ $v->vendor_name ?: $v->vendor }}</option>
                                 @endforeach
                             </select>
+                            <span class="text-danger small" x-show="errors.id_vendor" x-text="errors.id_vendor"></span>
                         </div>
 
                         <div class="col-md-6">

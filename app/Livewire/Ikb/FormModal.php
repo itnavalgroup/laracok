@@ -49,6 +49,7 @@ class FormModal extends Component
             'id_departement'          => 'required',
             'id_warehouse'            => 'required',
             'sales'                   => 'required', // Sales/Requestor User ID
+            'id_vendor'               => 'required',
             'id_ikb_transaction_type' => 'required',
             'booking_date'            => 'required|date',
             'destination'             => 'required',
@@ -60,6 +61,7 @@ class FormModal extends Component
             'id_departement.required'          => 'Departement wajib diisi.',
             'id_warehouse.required'            => 'Warehouse wajib diisi.',
             'sales.required'                   => 'Sales (Requestor) wajib dipilih.',
+            'id_vendor.required'               => 'Vendor wajib dipilih.',
             'id_ikb_transaction_type.required' => 'Transaction Type wajib diisi.',
             'booking_date.required'            => 'Booking Date wajib diisi.',
             'destination.required'             => 'Destination wajib diisi.',
