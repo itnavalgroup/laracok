@@ -2,19 +2,18 @@
 
 namespace App\Livewire\Ikb;
 
-use Livewire\Component;
-use Livewire\Attributes\On;
 use App\Models\Contract;
 use App\Models\Ikb;
 use App\Models\IkbDetail;
 use App\Models\Item;
-use App\Models\Uom;
 use App\Models\ItemCategory;
 use App\Models\Packaging;
+use App\Models\Uom;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
-use App\Models\ItemTransaction;
+use Livewire\Attributes\On;
+use Livewire\Component;
 
 class FormDetailModal extends Component
 {
@@ -45,19 +44,19 @@ class FormDetailModal extends Component
 
         $rules = [
             'id_item_category' => 'required',
-            'id_item'          => 'required',
-            'qty'              => 'required|numeric|min:0.01',
-            'id_uom'           => 'required',
-            'id_packaging'     => 'required',
+            'id_item' => 'required',
+            'qty' => 'required|numeric|min:0.01',
+            'id_uom' => 'required',
+            'id_packaging' => 'required',
         ];
 
         $messages = [
             'id_item_category.required' => 'Category wajib dipilih.',
-            'id_item.required'          => 'Item wajib dipilih.',
-            'qty.required'              => 'Quantity wajib diisi.',
-            'qty.min'                   => 'Quantity harus lebih besar dari 0.',
-            'id_uom.required'           => 'UOM wajib dipilih.',
-            'id_packaging.required'     => 'Packaging wajib dipilih.',
+            'id_item.required' => 'Item wajib dipilih.',
+            'qty.required' => 'Quantity wajib diisi.',
+            'qty.min' => 'Quantity harus lebih besar dari 0.',
+            'id_uom.required' => 'UOM wajib dipilih.',
+            'id_packaging.required' => 'Packaging wajib dipilih.',
         ];
 
         $validator = Validator::make($formData, $rules, $messages);
@@ -76,17 +75,17 @@ class FormDetailModal extends Component
         if ($detailId) {
             // Edit permission: Admin OR (Owner AND ikb_detail.edit) OR (InvCtrl in status 4)
             $isOwnerEditor = $user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.edit');
-            if ($user->level !== 1 && !$isOwnerEditor && !$isInvCtrlEdit) {
+            if ($user->level !== 1 && ! $isOwnerEditor && ! $isInvCtrlEdit) {
                 return ['error' => 'Anda tidak memiliki hak akses untuk mengedit item.'];
             }
         } else {
             // Create permission: Admin OR (Owner AND ikb_detail.create)
-            if ($user->level !== 1 && !($user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.create'))) {
+            if ($user->level !== 1 && ! ($user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.create'))) {
                 return ['error' => 'Anda tidak memiliki hak akses untuk menambah item.'];
             }
         }
 
-        if (!in_array($ikb->status, [0, 11]) && !$isInvCtrlEdit) {
+        if (! in_array($ikb->status, [0, 11]) && ! $isInvCtrlEdit) {
             return ['error' => 'Item tidak dapat dimodifikasi saat IKB sedang diproses.'];
         }
 
@@ -121,6 +120,7 @@ class FormDetailModal extends Component
         if ($availableStock < $qtyInput) {
             $item = Item::find($itemIdInput);
             $itemName = $item->item_name ?? 'Item selected';
+
             return ['error' => "Stok untuk {$itemName} tidak mencukupi untuk Company ini. (Available: {$availableStock}, Requested: {$qtyInput})"];
         }
 
@@ -132,11 +132,12 @@ class FormDetailModal extends Component
             } else {
                 $data = [
                     'id_item_category' => $formData['id_item_category'],
-                    'id_item'          => $formData['id_item'],
-                    'qty'              => $formData['qty'],
-                    'id_uom'           => $formData['id_uom'],
-                    'id_packaging'     => $formData['id_packaging'],
-                    'id_contract'      => !empty($formData['id_contract']) ? $formData['id_contract'] : null,
+                    'description' => $formData['description'],
+                    'id_item' => $formData['id_item'],
+                    'qty' => $formData['qty'],
+                    'id_uom' => $formData['id_uom'],
+                    'id_packaging' => $formData['id_packaging'],
+                    'id_contract' => ! empty($formData['id_contract']) ? $formData['id_contract'] : null,
                 ];
             }
 
@@ -157,10 +158,12 @@ class FormDetailModal extends Component
 
             DB::commit();
             $this->dispatch('ikb-refresh');
+
             return ['success' => true];
         } catch (\Exception $e) {
             DB::rollBack();
-            return ['error' => 'Gagal menyimpan detail: ' . $e->getMessage()];
+
+            return ['error' => 'Gagal menyimpan detail: '.$e->getMessage()];
         }
     }
 
@@ -171,7 +174,7 @@ class FormDetailModal extends Component
 
         if ($ikb) {
             $idWarehouse = $ikb->id_warehouse;
-            $idCompany   = $ikb->id_company;
+            $idCompany = $ikb->id_company;
 
             // Subquery for Income
             $incomeSub = DB::table('tbl_item_transactions')
@@ -236,12 +239,12 @@ class FormDetailModal extends Component
             $contractQuery = Contract::orderByDesc('id_contract');
 
             // Filter contracts that have items matching those available in this IKB
-            if (!empty($itemIds)) {
-                $contractQuery->whereHas('details', fn($q) => $q->whereIn('id_item', $itemIds));
+            if (! empty($itemIds)) {
+                $contractQuery->whereHas('details', fn ($q) => $q->whereIn('id_item', $itemIds));
             }
 
             // Scope by permission level
-            if ($user->level != 1 && !$user->hasPermission('contract.view.all')) {
+            if ($user->level != 1 && ! $user->hasPermission('contract.view.all')) {
                 $contractQuery->where(function ($q) use ($user, $ikb) {
                     if ($user->hasPermission('contract.view.departement')) {
                         $q->orWhere('id_departement', $ikb->id_departement);
@@ -260,17 +263,17 @@ class FormDetailModal extends Component
         $isInvCtrlEditMode = false;
         if ($ikb && $ikb->status == 4) {
             $isOwnerEditor = $user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.edit');
-            $isInvCtrlApprover = !$user->level == 1 && $user->hasPermission('ikb.approve.step4');
-            $isInvCtrlEditMode = $isInvCtrlApprover && !$isOwnerEditor;
+            $isInvCtrlApprover = ! $user->level == 1 && $user->hasPermission('ikb.approve.step4');
+            $isInvCtrlEditMode = $isInvCtrlApprover && ! $isOwnerEditor;
         }
 
         return view('livewire.ikb.form-detail-modal', [
-            'uoms'              => Uom::all(),
-            'categories'        => $categories,
-            'packagings'        => Packaging::all(),
-            'items'             => $items,
-            'contracts'         => $contracts,
-            'canViewContract'   => $canViewContract,
+            'uoms' => Uom::all(),
+            'categories' => $categories,
+            'packagings' => Packaging::all(),
+            'items' => $items,
+            'contracts' => $contracts,
+            'canViewContract' => $canViewContract,
             'isInvCtrlEditMode' => $isInvCtrlEditMode,
         ]);
     }

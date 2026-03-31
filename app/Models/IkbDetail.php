@@ -11,7 +11,9 @@ class IkbDetail extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'tbl_ikb_details';
+
     protected $primaryKey = 'id_ikb_detail';
+
     public $timestamps = true;
 
     protected $fillable = [
@@ -21,6 +23,7 @@ class IkbDetail extends Model
         'id_uom',
         'id_packaging',
         'id_contract',
+        'description',
         'qty',
     ];
 
@@ -38,7 +41,7 @@ class IkbDetail extends Model
     {
         return $this->belongsTo(Item::class, 'id_item', 'id_item');
     }
-    
+
     public function itemCategory()
     {
         return $this->belongsTo(ItemCategory::class, 'id_item_category', 'id_item_category');

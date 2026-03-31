@@ -19,6 +19,7 @@ return new class extends Migration
             $table->bigInteger('id_uom')->unsigned()->index();
             $table->bigInteger('id_contract')->unsigned()->index()->nullable();
             $table->bigInteger('id_packaging')->unsigned()->index();
+            $table->longText('description')->nullable();
             $table->decimal('qty', 20, 4);
             $table->timestamps();
             $table->softDeletes();

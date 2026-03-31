@@ -295,8 +295,9 @@
             </div>
             <div class="doc-meta">
                 <div class="ikb-number">{{ $ikb->ikb_number ?? 'DRAFT' }}</div>
-                <span class="status-badge 
-                @if($ikb->status == 0) bg-draft 
+                <span
+                    class="status-badge 
+                @if ($ikb->status == 0) bg-draft 
                 @elseif($ikb->status == 10) bg-approved 
                 @elseif($ikb->status == 12) bg-rejected 
                 @else bg-pending @endif">
@@ -308,8 +309,8 @@
             </div>
             <div class="qr-section no-print">
                 @php
-                $qrData = 'IKB|' . $ikb->id_ikb . '|' . $ikb->ikb_number . '|' . $ikb->status;
-                $qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=' . urlencode($qrData);
+                    $qrData = 'IKB|' . $ikb->id_ikb . '|' . $ikb->ikb_number . '|' . $ikb->status;
+                    $qrUrl = 'https://api.qrserver.com/v1/create-qr-code/?size=80x80&data=' . urlencode($qrData);
                 @endphp
                 <img src="{{ $qrUrl }}" alt="QR Code" title="{{ $ikb->ikb_number ?? '' }}">
             </div>
@@ -321,8 +322,10 @@
             <tr>
                 <td class="label">Tipe Transaksi</td>
                 <td class="colon">:</td>
-                <td class="value">{{ $ikb->transactionType->transaction_type_name ?? ($ikb->transactionType->transaction_type ?? '-') }}</td>
-                <td class="label">Vendor</td>
+                <td class="value">
+                    {{ $ikb->transactionType->transaction_type_name ?? ($ikb->transactionType->transaction_type ?? '-') }}
+                </td>
+                <td class="label">Customer</td>
                 <td class="colon">:</td>
                 <td class="value">{{ $ikb->vendor->vendor ?? '-' }}</td>
             </tr>
@@ -397,19 +400,19 @@
             </thead>
             <tbody>
                 @forelse($ikb->details as $i => $d)
-                <tr>
-                    <td class="center">{{ $i + 1 }}</td>
-                    <td>{{ $d->itemCategory->item_category ?? '-' }}</td>
-                    <td>{{ $d->item->item_code ?? '-' }}</td>
-                    <td>{{ $d->item->item_name ?? '-' }}</td>
-                    <td class="center" style="font-weight: bold;">{{ number_format($d->qty, 2, ',', '.') }}</td>
-                    <td class="center">{{ $d->uom->uom ?? '-' }}</td>
-                    <td class="center">{{ $d->packaging->packaging ?? '-' }}</td>
-                </tr>
+                    <tr>
+                        <td class="center">{{ $i + 1 }}</td>
+                        <td>{{ $d->itemCategory->item_category ?? '-' }}</td>
+                        <td>{{ $d->item->item_code ?? '-' }}</td>
+                        <td>{{ $d->item->item_name ?? '-' }}</td>
+                        <td class="center" style="font-weight: bold;">{{ number_format($d->qty, 2, ',', '.') }}</td>
+                        <td class="center">{{ $d->uom->uom ?? '-' }}</td>
+                        <td class="center">{{ $d->packaging->packaging ?? '-' }}</td>
+                    </tr>
                 @empty
-                <tr>
-                    <td colspan="8" class="center" style="padding: 10px;">Belum ada item detail</td>
-                </tr>
+                    <tr>
+                        <td colspan="8" class="center" style="padding: 10px;">Belum ada item detail</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
@@ -418,41 +421,41 @@
         <div class="section-title mt-4">Persetujuan & Validasi (Izin Keluar Barang)</div>
 
         @php
-        $signMap = [];
-        foreach($ikb->signTransactions as $st) {
-        $signMap[$st->status] = $st;
-        }
+            $signMap = [];
+            foreach ($ikb->signTransactions as $st) {
+                $signMap[$st->status] = $st;
+            }
         @endphp
 
         <div class="sign-section">
             <div class="sign-grid sign-grid-5">
                 @php
-                $step1_5 = [
-                1 => 'SPV / MGR',
-                2 => 'Dir Logistik',
-                3 => 'PPIC',
-                4 => 'Inventory Control',
-                5 => 'Logistic Coord',
-                ];
+                    $step1_5 = [
+                        1 => 'SPV / MGR',
+                        2 => 'Dir Logistik',
+                        3 => 'PPIC',
+                        4 => 'Inventory Control',
+                        5 => 'Logistic Coord',
+                    ];
                 @endphp
-                @foreach($step1_5 as $step => $role)
-                @php $st = $signMap[$step] ?? null; @endphp
-                <div class="sign-box">
-                    <div class="sign-role">{{ $role }}</div>
-                    <div class="sign-area">
-                        @if($st)
-                        @if($st->qr)
-                        <img src="{{ $st->qr }}" class="sign-img mb-1" alt="QR">
-                        @else
-                        <div style="font-size: 12px; color: #198754; font-weight: bold;">✓ Signed</div>
-                        @endif
-                        <div class="sign-name">{{ $st->user?->name ?? 'Unknown' }}</div>
-                        <div class="sign-date">{{ $st->created_at->format('d/m/y H:i') }}</div>
-                        @else
-                        <div style="color:#ccc; font-size:9px;">-</div>
-                        @endif
+                @foreach ($step1_5 as $step => $role)
+                    @php $st = $signMap[$step] ?? null; @endphp
+                    <div class="sign-box">
+                        <div class="sign-role">{{ $role }}</div>
+                        <div class="sign-area">
+                            @if ($st)
+                                @if ($st->qr)
+                                    <img src="{{ $st->qr }}" class="sign-img mb-1" alt="QR">
+                                @else
+                                    <div style="font-size: 12px; color: #198754; font-weight: bold;">✓ Signed</div>
+                                @endif
+                                <div class="sign-name">{{ $st->user?->name ?? 'Unknown' }}</div>
+                                <div class="sign-date">{{ $st->created_at->format('d/m/y H:i') }}</div>
+                            @else
+                                <div style="color:#ccc; font-size:9px;">-</div>
+                            @endif
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
@@ -460,31 +463,31 @@
         <div class="sign-section" style="border-top: none; padding-top: 5px; margin-top: 5px;">
             <div class="sign-grid sign-grid-4">
                 @php
-                $step6_9 = [
-                6 => 'Warehouse Staff',
-                7 => 'Warehouse SPV',
-                8 => 'Security Officer',
-                9 => 'Log. Coord Final',
-                ];
+                    $step6_9 = [
+                        6 => 'Warehouse Staff',
+                        7 => 'Warehouse SPV',
+                        8 => 'Security Officer',
+                        9 => 'Log. Coord Final',
+                    ];
                 @endphp
-                @foreach($step6_9 as $step => $role)
-                @php $st = $signMap[$step] ?? null; @endphp
-                <div class="sign-box">
-                    <div class="sign-role">{{ $role }}</div>
-                    <div class="sign-area">
-                        @if($st)
-                        @if($st->qr)
-                        <img src="{{ $st->qr }}" class="sign-img mb-1" alt="QR">
-                        @else
-                        <div style="font-size: 12px; color: #198754; font-weight: bold;">✓ Signed</div>
-                        @endif
-                        <div class="sign-name">{{ $st->user?->name ?? 'Unknown' }}</div>
-                        <div class="sign-date">{{ $st->created_at->format('d/m/y H:i') }}</div>
-                        @else
-                        <div style="color:#ccc; font-size:9px;">-</div>
-                        @endif
+                @foreach ($step6_9 as $step => $role)
+                    @php $st = $signMap[$step] ?? null; @endphp
+                    <div class="sign-box">
+                        <div class="sign-role">{{ $role }}</div>
+                        <div class="sign-area">
+                            @if ($st)
+                                @if ($st->qr)
+                                    <img src="{{ $st->qr }}" class="sign-img mb-1" alt="QR">
+                                @else
+                                    <div style="font-size: 12px; color: #198754; font-weight: bold;">✓ Signed</div>
+                                @endif
+                                <div class="sign-name">{{ $st->user?->name ?? 'Unknown' }}</div>
+                                <div class="sign-date">{{ $st->created_at->format('d/m/y H:i') }}</div>
+                            @else
+                                <div style="color:#ccc; font-size:9px;">-</div>
+                            @endif
+                        </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
