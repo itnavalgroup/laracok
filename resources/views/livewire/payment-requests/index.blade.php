@@ -77,13 +77,15 @@
                         $compLabel = $companies->firstWhere('id_company', $filterCompany)?->company_name ?? 'Company';
                         $activeFilters['filterCompany'] = $compLabel;
                         }
-                        $prStatusLabels = ['0'=>'Draft','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','8'=>'Payment Parsial','11'=>'Paid','12'=>'Revision','13'=>'Rejected','14'=>'Pending Director Sign Payment','15'=>'Pending Manager Sign Payment'];
-                        if ($filterStatus !== '') {
-                        $activeFilters['filterStatus'] = 'PR: ' . ($prStatusLabels[$filterStatus] ?? $filterStatus);
+                        $prStatusLabels = ['0'=>'Draft','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','8'=>'Payment Parsial','9'=>'Pending Receipt Parsial','10'=>'Pending Receipt','11'=>'Paid / Selesai','12'=>'Revision','13'=>'Rejected','14'=>'Pending Director Sign Payment','15'=>'Pending Manager Sign Payment'];
+                        if (!empty($filterStatus)) {
+                            $m_pr = array_map(fn($v) => $prStatusLabels[$v] ?? $v, $filterStatus);
+                            $activeFilters['filterStatus'] = 'PR: ' . implode(', ', $m_pr);
                         }
-                        $srStatusLabels = ['0'=>'Pending SR','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','10'=>'Pending Receipt','11'=>'Balance','12'=>'Revision','13'=>'Rejected'];
-                        if ($filterSrStatus !== '') {
-                        $activeFilters['filterSrStatus'] = 'SR: ' . ($srStatusLabels[$filterSrStatus] ?? $filterSrStatus);
+                        $srStatusLabels = ['0'=>'Draft','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','8'=>'Payment Parsial','9'=>'Pending Receipt Parsial','10'=>'Pending Receipt','11'=>'Paid / Selesai','12'=>'Revision','13'=>'Rejected'];
+                        if (!empty($filterSrStatus)) {
+                            $m_sr = array_map(fn($v) => $srStatusLabels[$v] ?? $v, $filterSrStatus);
+                            $activeFilters['filterSrStatus'] = 'SR: ' . implode(', ', $m_sr);
                         }
                         if ($dateFrom) {
                         $activeFilters['dateFrom'] = 'Dari: ' . \Carbon\Carbon::parse($dateFrom)->format('d M Y');
@@ -165,47 +167,49 @@
                             <!-- Status PR Filter -->
                             <div class="col-md-4">
                                 <label class="form-label small text-muted">Status PR</label>
-                                <select wire:model.live="filterStatus" class="form-select border-0 bg-white shadow-none rounded-3">
-                                    <option value="">Semua Status PR</option>
-                                    <option value="0">Draft</option>
-                                    <option value="1">Pending Dept Sign</option>
-                                    <option value="2">Pending Director Sign</option>
-                                    <option value="3">Pending Accounting Sign</option>
-                                    <option value="4">Pending Finance Sign</option>
-                                    <option value="5">Pending SPV Finance Sign</option>
-                                    <option value="6">Pending CFO Sign</option>
-                                    <option value="7">Pending Payment</option>
-                                    <option value="8">Payment Parsial</option>
-                                    <option value="9">Pending Receipt Parsial</option>
-                                    <option value="10">Pending Receipt</option>
-                                    <option value="11">Paid</option>
-                                    <option value="12">Revision</option>
-                                    <option value="13">Rejected</option>
-                                    <option value="14">Pending Director Sign Payment</option>
-                                    <option value="15">Pending Manager Sign Payment</option>
-                                </select>
+                                <div class="dropdown">
+                                    <button class="form-select border-0 bg-white shadow-none rounded-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                        <span class="text-truncate">
+                                            {{ empty($filterStatus) ? 'Semua Status PR' : count($filterStatus) . ' Status Dipilih' }}
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu w-100 p-2 shadow-sm border-0" style="max-height: 250px; overflow-y: auto;">
+                                        @foreach(['0'=>'Draft','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','8'=>'Payment Parsial','9'=>'Pending Receipt Parsial','10'=>'Pending Receipt','11'=>'Paid / Selesai','12'=>'Revision','13'=>'Rejected','14'=>'Pending Director Sign Payment','15'=>'Pending Manager Sign Payment'] as $val => $label)
+                                        <li>
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" style="cursor: pointer;" type="checkbox" wire:model.live="filterStatus" value="{{ $val }}" id="chk-pr-{{ $val }}">
+                                                <label class="form-check-label w-100 d-block" style="cursor: pointer;" for="chk-pr-{{ $val }}">
+                                                    {{ $label }}
+                                                </label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
 
                             <!-- Status SR Filter -->
                             <div class="col-md-4">
-                                <label class="form-label small text-muted">Status SR (Advance)</label>
-                                <select wire:model.live="filterSrStatus" class="form-select border-0 bg-white shadow-none rounded-3">
-                                    <option value="">Semua Status SR</option>
-                                    <option value="0">Pending SR</option>
-                                    <option value="1">Pending Dept Sign</option>
-                                    <option value="2">Pending Director Sign</option>
-                                    <option value="3">Pending Accounting Sign</option>
-                                    <option value="4">Pending Finance Sign</option>
-                                    <option value="5">Pending SPV Finance Sign</option>
-                                    <option value="6">Pending CFO Sign</option>
-                                    <option value="7">Pending Payment</option>
-                                    <option value="8">Payment Parsial</option>
-                                    <option value="9">Pending Receipt Parsial</option>
-                                    <option value="10">Pending Receipt</option>
-                                    <option value="11">Balance</option>
-                                    <option value="12">Revision</option>
-                                    <option value="13">Rejected</option>
-                                </select>
+                                <label class="form-label small text-muted">Status SR</label>
+                                <div class="dropdown">
+                                    <button class="form-select border-0 bg-white shadow-none rounded-3 text-start d-flex justify-content-between align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="outside">
+                                        <span class="text-truncate">
+                                            {{ empty($filterSrStatus) ? 'Semua Status SR' : count($filterSrStatus) . ' Status Dipilih' }}
+                                        </span>
+                                    </button>
+                                    <ul class="dropdown-menu w-100 p-2 shadow-sm border-0" style="max-height: 250px; overflow-y: auto;">
+                                        @foreach(['0'=>'Draft','1'=>'Pending Dept Sign','2'=>'Pending Director Sign','3'=>'Pending Accounting Sign','4'=>'Pending Finance Sign','5'=>'Pending SPV Finance Sign','6'=>'Pending CFO Sign','7'=>'Pending Payment','8'=>'Payment Parsial','9'=>'Pending Receipt Parsial','10'=>'Pending Receipt','11'=>'Paid / Selesai','12'=>'Revision','13'=>'Rejected'] as $val => $label)
+                                        <li>
+                                            <div class="form-check mb-1">
+                                                <input class="form-check-input" style="cursor: pointer;" type="checkbox" wire:model.live="filterSrStatus" value="{{ $val }}" id="chk-sr-{{ $val }}">
+                                                <label class="form-check-label w-100 d-block" style="cursor: pointer;" for="chk-sr-{{ $val }}">
+                                                    {{ $label }}
+                                                </label>
+                                            </div>
+                                        </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
                             </div>
 
                             <!-- Date Range -->

@@ -24,8 +24,8 @@ class Index extends Component
     public $perPage = 10;
     public $filterDepartement = '';
     public $filterCompany = '';
-    public $filterStatus = '';
-    public $filterSrStatus = '';
+    public $filterStatus = [];
+    public $filterSrStatus = [];
     public $dateFrom = '';
     public $dateTo = '';
 
@@ -48,8 +48,8 @@ class Index extends Component
             $this->perPage          = $saved['perPage']           ?? 10;
             $this->filterDepartement = $saved['filterDepartement'] ?? '';
             $this->filterCompany    = $saved['filterCompany']     ?? '';
-            $this->filterStatus     = $saved['filterStatus']      ?? '';
-            $this->filterSrStatus   = $saved['filterSrStatus']    ?? '';
+            $this->filterStatus     = is_array($saved['filterStatus'] ?? null) ? $saved['filterStatus'] : [];
+            $this->filterSrStatus   = is_array($saved['filterSrStatus'] ?? null) ? $saved['filterSrStatus'] : [];
             $this->dateFrom         = $saved['dateFrom']          ?? '';
             $this->dateTo           = $saved['dateTo']            ?? '';
         }
@@ -115,8 +115,8 @@ class Index extends Component
         $this->search            = '';
         $this->filterDepartement = '';
         $this->filterCompany     = '';
-        $this->filterStatus      = '';
-        $this->filterSrStatus    = '';
+        $this->filterStatus      = [];
+        $this->filterSrStatus    = [];
         $this->dateFrom          = '';
         $this->dateTo            = '';
         session()->forget(self::SESSION_KEY);
@@ -182,22 +182,26 @@ class Index extends Component
             $query->where('id_company', $this->filterCompany);
         }
 
-        if ($this->filterStatus !== '' || $this->filterSrStatus !== '') {
+        if (!empty($this->filterStatus) || !empty($this->filterSrStatus)) {
             $query->where(function ($q) {
-                if ($this->filterStatus !== '') {
-                    $q->where('status', $this->filterStatus);
-                    if ($this->filterStatus == '0') {
-                        $q->orWhereNull('status');
-                    }
+                if (!empty($this->filterStatus)) {
+                    $q->where(function($fq) {
+                        $fq->whereIn('status', $this->filterStatus);
+                        if (in_array('0', $this->filterStatus)) {
+                            $fq->orWhereNull('status');
+                        }
+                    });
                 }
 
-                if ($this->filterSrStatus !== '') {
-                    $orTag = ($this->filterStatus !== '') ? 'orWhereHas' : 'whereHas';
+                if (!empty($this->filterSrStatus)) {
+                    $orTag = !empty($this->filterStatus) ? 'orWhereHas' : 'whereHas';
                     $q->$orTag('srs', function ($sq) {
-                        $sq->where('status', $this->filterSrStatus);
-                        if ($this->filterSrStatus == '0') {
-                            $sq->orWhereNull('status');
-                        }
+                        $sq->where(function($fsq) {
+                            $fsq->whereIn('status', $this->filterSrStatus);
+                            if (in_array('0', $this->filterSrStatus)) {
+                                $fsq->orWhereNull('status');
+                            }
+                        });
                     });
                 }
             });
