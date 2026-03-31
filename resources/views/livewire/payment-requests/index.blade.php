@@ -30,6 +30,12 @@
                                 <p class="text-muted small mb-0">Kelola dan lacak siklus persetujuan Payment Request</p>
                             </div>
                             <div class="d-flex gap-2">
+                                <button type="button" wire:click="export" wire:loading.attr="disabled" wire:target="export" class="btn btn-success text-white rounded-pill px-4 d-flex align-items-center gap-2">
+                                    <span wire:loading wire:target="export" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                    <i wire:loading.remove wire:target="export" class="ti ti-file-spreadsheet fs-4"></i>
+                                    <span wire:loading.remove wire:target="export" class="fw-semibold text-uppercase">Export</span>
+                                    <span wire:loading wire:target="export" class="fw-semibold text-uppercase">Exporting...</span>
+                                </button>
                                 @if(auth()->user()->level === 1 || auth()->user()->hasPermission('pr.create'))
                                 <button type="button" wire:click="$dispatch('open-pr-form')" class="btn btn-primary rounded-pill px-4 d-flex align-items-center gap-2">
                                     <i class="ti ti-plus fs-4"></i>

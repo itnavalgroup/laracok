@@ -158,9 +158,9 @@ class Index extends Component
         ]);
     }
 
-    public function render()
+    public function getFilteredQuery()
     {
-        $query = Pr::with(['user', 'departement', 'company', 'vendor', 'norek_vendor', 'details', 'payments', 'srs.details'])
+        $query = Pr::with(['user', 'departement', 'company', 'vendor', 'docType', 'norek_vendor', 'details', 'payments', 'srs.details', 'srs.payments'])
             ->withSum('details as total_amount', 'ammount')
             ->visibleTo(Auth::user());
 
@@ -295,7 +295,21 @@ class Index extends Component
             ");
         }
 
-        $prs = $query->orderBy('tbl_pr.id_pr', 'desc')->paginate($this->perPage);
+        return $query->orderBy('tbl_pr.id_pr', 'desc');
+    }
+
+    public function export()
+    {
+        ini_set('max_execution_time', 0); // 0 = Bebas waktu (tanpa batas)
+        ini_set('memory_limit', '1024M'); // Menaikkan RAM sementara khusus untuk method ini
+
+        $prs = $this->getFilteredQuery()->get();
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\PaymentRequestExport($prs), 'Payment_Requests_' . date('Ymd_His') . '.xlsx');
+    }
+
+    public function render()
+    {
+        $prs = $this->getFilteredQuery()->paginate($this->perPage);
 
         return view('livewire.payment-requests.index', [
             'prs' => $prs,
