@@ -323,7 +323,7 @@
                                 <th>UOM</th>
                                 <th>PACKAGING</th>
                                 <th>DESCRIPTION</th>
-                                @if ($status == 0 || $status == 11 || ($status == 4 && $canEditDetail))
+                                @if (($status == 0 || $status == 11 || ($status == 4 && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
                                     <th style="width: 80px;" class="no-print-btn">AKSI</th>
                                 @endif
                             </tr>
