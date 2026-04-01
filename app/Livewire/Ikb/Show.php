@@ -168,9 +168,9 @@ class Show extends Component
         $isInvCtrlApprover = !$isLevel1 && $user->hasPermission('ikb.approve.step4');
         $canEditDetail = $isLevel1
             || (($isOwnerEditor) && ($ikb->status == 0 || $ikb->status == 11))
-            || ($ikb->status == 4 && ($isLevel1 || $user->hasPermission('ikb.approve.step4')));
+            || (($ikb->status >= 4 && $ikb->status <= 9) && ($isLevel1 || $user->hasPermission('ikb.approve.step4')));
         // isInvCtrlEditMode = true means only qty can be edited (not category/item/uom/packaging)
-        $isInvCtrlEditMode = $ikb->status == 4 && $isInvCtrlApprover && !$isOwnerEditor;
+        $isInvCtrlEditMode = ($ikb->status >= 4 && $ikb->status <= 9) && $isInvCtrlApprover && !$isOwnerEditor;
         $canDeleteDetail = $isLevel1 || (($user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.delete')) && ($ikb->status == 0 || $ikb->status == 11));
 
         return view('livewire.ikb.show', [
