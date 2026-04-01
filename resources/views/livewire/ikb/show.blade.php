@@ -407,6 +407,7 @@
                             @endphp
                             @foreach ($ikb->attachments as $att)
                             @php
+                            $canViewThisAtt = $canViewAtt || $att->id_user == $user->id_user;
                             $canEditAtt = false;
                             if ($isAdmin) {
                             $canEditAtt = true;
@@ -448,7 +449,7 @@
                                             data-update="{{ route('ikb.attachment.update', $attHash) }}"
                                             data-catid="{{ $att->id_attachment }}"
                                             data-can-edit="{{ $canEditAtt ? 'true' : 'false' }}"
-                                            onclick="{{ $canViewAtt ? 'window.previewAttachment(this)' : 'window.dispatchEvent(new CustomEvent(\'alert\', { detail: { type: \'error\', title: \'Access Denied\', message: \'Anda tidak memiliki izin untuk melihat lampiran ini.\' } }))' }}; return false;"
+                                            onclick="{{ $canViewThisAtt ? 'window.previewAttachment(this)' : 'window.dispatchEvent(new CustomEvent(\'alert\', { detail: { type: \'error\', title: \'Access Denied\', message: \'Anda tidak memiliki izin untuk melihat lampiran ini.\' } }))' }}; return false;"
                                             style="color:inherit;text-decoration:none;">
                                             {{ $att->type->attachment ?? ($att->note ?: '-') }}
                                         </a>
