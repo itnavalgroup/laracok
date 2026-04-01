@@ -312,7 +312,6 @@
                                 @endif
                             </div>
                         </div>
-<<<<<<< HEAD
                         <div class="table-responsive mt-2">
                             <table class="table table-bordered table-striped" style="font-size: 15px;">
                                 <thead class="text-center" style="background-color: #2e7d32; color: white;">
@@ -344,91 +343,6 @@
                                         <td class="text-center">{{ $detail->packaging->packaging ?? '-' }}</td>
                                         <td class="text-center">{{ $detail->description ?? '-' }}</td>
                                         @if (($status == 0 || $status == 11 || ($status == 4 && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
-=======
-                    </div>
-                </div>
-
-                <hr class="my-4">
-
-                <div class="row g-3" style="font-size: 15px;">
-                    <div class="col-md-6">
-                        <div class="row mb-2 no-print-btn">
-                            <div class="col-4 fw-bold text-uppercase">CREATOR</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->user->name ?? '-' }}</div>
-                        </div>
-                        <div class="row mb-2 no-print-btn">
-                            <div class="col-4 fw-bold text-uppercase">SALES</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->salesUser->name ?? '-' }}</div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4 fw-bold text-uppercase">DEPARTEMENT</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->departement->departement ?? '-' }}</div>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="row mb-2">
-                            <div class="col-4 fw-bold text-uppercase">WAREHOUSE</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->warehouse->warehouse_name ?? '-' }}</div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4 fw-bold text-uppercase">CUSTOMER</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->vendor->vendor ?? '-' }}</div>
-                        </div>
-                        <div class="row mb-2">
-                            <div class="col-4 fw-bold text-uppercase">DESTINATION</div>
-                            <div class="col-1 text-center">:</div>
-                            <div class="col-7">{{ $ikb->destination ?? '-' }}</div>
-                        </div>
-                    </div>
-                </div>
-
-                {{-- Item Table Setup --}}
-                <div class="card-header align-items-center bg-transparent d-flex px-0 py-3 mt-4 border-bottom">
-                    <h5 class="fw-bold mb-0 flex-grow-1">LIST ITEMS</h5>
-                    <div class="d-flex gap-2">
-                        @if (($status == 0 || $status == 11) && ($isAdmin || ($isOwner && $user->hasPermission('ikb_detail.create'))))
-                            <button class="btn btn-primary btn-sm no-print-btn"
-                                wire:click="$dispatchTo('ikb.form-detail-modal', 'openModal')">ADD ITEM</button>
-                        @endif
-                    </div>
-                </div>
-                <div class="table-responsive mt-2">
-                    <table class="table table-bordered table-striped" style="font-size: 15px;">
-                        <thead class="text-center" style="background-color: #2e7d32; color: white;">
-                            <tr>
-                                <th style="width: 50px;">NO</th>
-                                <th>CATEGORY</th>
-                                <th>CODE & ITEM NAME</th>
-                                <th>QTY</th>
-                                <th>UOM</th>
-                                <th>PACKAGING</th>
-                                <th>DESCRIPTION</th>
-                                @if (($status == 0 || $status == 11 || ($status == 4 && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
-                                    <th style="width: 80px;" class="no-print-btn">AKSI</th>
-                                @endif
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @forelse($ikb->details as $index => $detail)
-                                <tr>
-                                    <td class="text-center">{{ $index + 1 }}</td>
-                                    <td class="text-center">{{ $detail->itemCategory->item_category ?? '-' }}</td>
-                                    <td>
-                                        <span class="fw-bold">{{ $detail->item->item_code ?? 'N/A' }}</span><br>
-                                        {{ $detail->item->item_name ?? 'N/A' }}
-                                    </td>
-                                    <td class="text-center fw-bold">{{ number_format($detail->qty, 2, '.', ',') }}
-                                    </td>
-                                    <td class="text-center">{{ $detail->uom->uom ?? '-' }}</td>
-                                    <td class="text-center">{{ $detail->packaging->packaging ?? '-' }}</td>
-                                    <td class="text-center">{{ $detail->description ?? '-' }}</td>
-                                    @if (($status == 0 || $status == 11 || ($status == 4 && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
->>>>>>> eb3c9835ad27005a95aa82ee0951732c1ba0db9f
                                         <td class="text-center no-print-btn">
                                             @if ($canEditDetail)
                                             <button class="btn btn-link p-0 text-warning me-2" title="Edit Item"
