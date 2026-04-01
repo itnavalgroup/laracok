@@ -67,8 +67,8 @@ class FormDetailModal extends Component
         $user = Auth::user();
         $ikb = Ikb::findOrFail($this->ikbId);
 
-        // Check if this is Inventory Control edit mode (status=4, approver editing qty only)
-        $isInvCtrlEdit = $ikb->status == 4
+        // Check if this is Inventory Control edit mode (status 4-9, approver editing qty only)
+        $isInvCtrlEdit = ($ikb->status >= 4 && $ikb->status <= 9)
             && $detailId
             && ($user->level === 1 || $user->hasPermission('ikb.approve.step4'));
 
@@ -261,7 +261,7 @@ class FormDetailModal extends Component
 
         // Determine if user is inventory control in edit mode
         $isInvCtrlEditMode = false;
-        if ($ikb && $ikb->status == 4) {
+        if ($ikb && ($ikb->status >= 4 && $ikb->status <= 9)) {
             $isOwnerEditor = $user->id_user == $ikb->id_user && $user->hasPermission('ikb_detail.edit');
             $isInvCtrlApprover = ! $user->level == 1 && $user->hasPermission('ikb.approve.step4');
             $isInvCtrlEditMode = $isInvCtrlApprover && ! $isOwnerEditor;
