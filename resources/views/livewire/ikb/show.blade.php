@@ -76,23 +76,25 @@
                         onclick="openApprovalModal('approve', {{ $status }})">
                         <i class="ti ti-check me-1"></i> Approve
                     </button>
-                    <button type="button" class="btn btn-warning btn-sm rounded-pill shadow-sm px-3 fw-bold"
+                    @if ($status < 6)
+                        <button type="button" class="btn btn-warning btn-sm rounded-pill shadow-sm px-3 fw-bold"
                         onclick="openApprovalModal('revision', {{ $status }})">
                         <i class="ti ti-refresh me-1"></i> Revision
-                    </button>
-                    <button type="button" class="btn btn-danger btn-sm rounded-pill shadow-sm px-3 fw-bold"
-                        onclick="openApprovalModal('reject', {{ $status }})">
-                        <i class="ti ti-x me-1"></i> Reject
-                    </button>
-                    @endif
+                        </button>
+                        <button type="button" class="btn btn-danger btn-sm rounded-pill shadow-sm px-3 fw-bold"
+                            onclick="openApprovalModal('reject', {{ $status }})">
+                            <i class="ti ti-x me-1"></i> Reject
+                        </button>
+                        @endif
+                        @endif
 
-                    @if ($canCancelCurrent)
-                    <button type="button"
-                        class="btn btn-outline-danger btn-sm rounded-pill shadow-sm px-3 fw-bold bg-white"
-                        onclick="showCancelModal('cancelApproval')">
-                        <i class="ti ti-arrow-back-up me-1"></i> Cancel
-                    </button>
-                    @endif
+                        @if ($canCancelCurrent)
+                        <button type="button"
+                            class="btn btn-outline-danger btn-sm rounded-pill shadow-sm px-3 fw-bold bg-white"
+                            onclick="showCancelModal('cancelApproval')">
+                            <i class="ti ti-arrow-back-up me-1"></i> Cancel
+                        </button>
+                        @endif
                 </div>
             </template>
 
