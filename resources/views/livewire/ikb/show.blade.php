@@ -325,7 +325,7 @@
                                         <th>UOM</th>
                                         <th>PACKAGING</th>
                                         <th>DESCRIPTION</th>
-                                        @if ($status == 0 || $status == 11 || ($status == 4 && $canEditDetail))
+                                        @if ($status == 0 || $status == 11 || (($status >= 4 && $status <= 9) && $canEditDetail))
                                         <th style="width: 80px;" class="no-print-btn">AKSI</th>
                                         @endif
                                     </tr>
@@ -344,7 +344,7 @@
                                         <td class="text-center">{{ $detail->uom->uom ?? '-' }}</td>
                                         <td class="text-center">{{ $detail->packaging->packaging ?? '-' }}</td>
                                         <td class="text-center">{{ $detail->description ?? '-' }}</td>
-                                        @if (($status == 0 || $status == 11 || ($status == 4 && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
+                                        @if (($status == 0 || $status == 11 || (($status >= 4 && $status <= 9) && $canEditDetail)) && ($canEditDetail || $canDeleteDetail))
                                         <td class="text-center no-print-btn">
                                             @if ($canEditDetail)
                                             <button class="btn btn-link p-0 text-warning me-2" title="Edit Item"
