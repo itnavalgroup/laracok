@@ -2,8 +2,8 @@
 
 namespace App\Livewire\PaymentRequests;
 
-use App\Models\Pr;
 use App\Models\Departement;
+use App\Models\Pr;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
@@ -21,13 +21,24 @@ class Index extends Component
     }
 
     public $search = '';
+
     public $perPage = 10;
+
     public $filterDepartement = '';
+
     public $filterCompany = '';
+
     public $filterStatus = [];
+
     public $filterSrStatus = [];
-    public $dateFrom = '';
-    public $dateTo = '';
+
+    public $dateFromCreated = '';
+
+    public $dateToCreated = '';
+
+    public $dateFromDueDate = '';
+
+    public $dateToDueDate = '';
 
     const SESSION_KEY = 'pr_index_filters';
 
@@ -35,37 +46,41 @@ class Index extends Component
     {
         abort_if(
             Auth::user()->level !== 1
-                && !Auth::user()->hasPermission('pr.view.all')
-                && !Auth::user()->hasPermission('pr.view.dept')
-                && !Auth::user()->hasPermission('pr.view.subordinate'),
+                && ! Auth::user()->hasPermission('pr.view.all')
+                && ! Auth::user()->hasPermission('pr.view.dept')
+                && ! Auth::user()->hasPermission('pr.view.subordinate'),
             403
         );
 
         // Restore filters from PHP session if exist
         $saved = session(self::SESSION_KEY, []);
-        if (!empty($saved)) {
-            $this->search           = $saved['search']            ?? '';
-            $this->perPage          = $saved['perPage']           ?? 10;
+        if (! empty($saved)) {
+            $this->search = $saved['search'] ?? '';
+            $this->perPage = $saved['perPage'] ?? 10;
             $this->filterDepartement = $saved['filterDepartement'] ?? '';
-            $this->filterCompany    = $saved['filterCompany']     ?? '';
-            $this->filterStatus     = is_array($saved['filterStatus'] ?? null) ? $saved['filterStatus'] : [];
-            $this->filterSrStatus   = is_array($saved['filterSrStatus'] ?? null) ? $saved['filterSrStatus'] : [];
-            $this->dateFrom         = $saved['dateFrom']          ?? '';
-            $this->dateTo           = $saved['dateTo']            ?? '';
+            $this->filterCompany = $saved['filterCompany'] ?? '';
+            $this->filterStatus = is_array($saved['filterStatus'] ?? null) ? $saved['filterStatus'] : [];
+            $this->filterSrStatus = is_array($saved['filterSrStatus'] ?? null) ? $saved['filterSrStatus'] : [];
+            $this->dateFromCreated = $saved['dateFromCreated'] ?? '';
+            $this->dateToCreated = $saved['dateToCreated'] ?? '';
+            $this->dateFromDueDate = $saved['dateFromDueDate'] ?? '';
+            $this->dateToDueDate = $saved['dateToDueDate'] ?? '';
         }
     }
 
     private function saveFiltersToSession(): void
     {
         session([self::SESSION_KEY => [
-            'search'            => $this->search,
-            'perPage'           => $this->perPage,
+            'search' => $this->search,
+            'perPage' => $this->perPage,
             'filterDepartement' => $this->filterDepartement,
-            'filterCompany'     => $this->filterCompany,
-            'filterStatus'      => $this->filterStatus,
-            'filterSrStatus'    => $this->filterSrStatus,
-            'dateFrom'          => $this->dateFrom,
-            'dateTo'            => $this->dateTo,
+            'filterCompany' => $this->filterCompany,
+            'filterStatus' => $this->filterStatus,
+            'filterSrStatus' => $this->filterSrStatus,
+            'dateFromCreated' => $this->dateFromCreated,
+            'dateToCreated' => $this->dateToCreated,
+            'dateFromDueDate' => $this->dateFromDueDate,
+            'dateToDueDate' => $this->dateToDueDate,
         ]]);
     }
 
@@ -74,37 +89,56 @@ class Index extends Component
         $this->resetPage();
         $this->saveFiltersToSession();
     }
+
     public function updatedPerPage()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
+
     public function updatedFilterDepartement()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
+
     public function updatedFilterCompany()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
+
     public function updatedFilterStatus()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
+
     public function updatedFilterSrStatus()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
-    public function updatedDateFrom()
+
+    public function updatedDateFromCreated()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
     }
-    public function updatedDateTo()
+
+    public function updatedDateToCreated()
+    {
+        $this->resetPage();
+        $this->saveFiltersToSession();
+    }
+
+    public function updatedDateFromDueDate()
+    {
+        $this->resetPage();
+        $this->saveFiltersToSession();
+    }
+
+    public function updatedDateToDueDate()
     {
         $this->resetPage();
         $this->saveFiltersToSession();
@@ -112,17 +146,18 @@ class Index extends Component
 
     public function resetFilters()
     {
-        $this->search            = '';
+        $this->search = '';
         $this->filterDepartement = '';
-        $this->filterCompany     = '';
-        $this->filterStatus      = [];
-        $this->filterSrStatus    = [];
-        $this->dateFrom          = '';
-        $this->dateTo            = '';
+        $this->filterCompany = '';
+        $this->filterStatus = [];
+        $this->filterSrStatus = [];
+        $this->dateFromCreated = '';
+        $this->dateToCreated = '';
+        $this->dateFromDueDate = '';
+        $this->dateToDueDate = '';
         session()->forget(self::SESSION_KEY);
         $this->resetPage();
     }
-
 
     public function delete($id)
     {
@@ -131,18 +166,19 @@ class Index extends Component
 
         // Restricted to Admin, Owner, or users with pr.delete permission
         abort_if(
-            $user->level !== 1 
-            && $user->id_user !== $pr->id_user 
-            && !$user->hasPermission('pr.delete'), 
+            $user->level !== 1
+            && $user->id_user !== $pr->id_user
+            && ! $user->hasPermission('pr.delete'),
             403
         );
 
-        if (!in_array($pr->status, [0, null, 13])) {
+        if (! in_array($pr->status, [0, null, 13])) {
             $this->dispatch('alert', [
                 'type' => 'danger',
                 'title' => 'Gagal',
                 'message' => 'Payment Request yang sedang atau sudah diproses tidak dapat dihapus.',
             ]);
+
             return;
         }
 
@@ -165,12 +201,12 @@ class Index extends Component
             ->visibleTo(Auth::user());
 
         if ($this->search) {
-            $s = '%' . $this->search . '%';
+            $s = '%'.$this->search.'%';
             $query->where(function ($q) use ($s) {
                 $q->where('pr_number', 'like', $s)
                     ->orWhere('subject', 'like', $s)
-                    ->orWhereHas('vendor', fn($vq) => $vq->where('vendor', 'like', $s))
-                    ->orWhereHas('user', fn($uq) => $uq->where('name', 'like', $s));
+                    ->orWhereHas('vendor', fn ($vq) => $vq->where('vendor', 'like', $s))
+                    ->orWhereHas('user', fn ($uq) => $uq->where('name', 'like', $s));
             });
         }
 
@@ -182,10 +218,10 @@ class Index extends Component
             $query->where('id_company', $this->filterCompany);
         }
 
-        if (!empty($this->filterStatus) || !empty($this->filterSrStatus)) {
+        if (! empty($this->filterStatus) || ! empty($this->filterSrStatus)) {
             $query->where(function ($q) {
-                if (!empty($this->filterStatus)) {
-                    $q->where(function($fq) {
+                if (! empty($this->filterStatus)) {
+                    $q->where(function ($fq) {
                         $fq->whereIn('status', $this->filterStatus);
                         if (in_array('0', $this->filterStatus)) {
                             $fq->orWhereNull('status');
@@ -193,10 +229,10 @@ class Index extends Component
                     });
                 }
 
-                if (!empty($this->filterSrStatus)) {
-                    $orTag = !empty($this->filterStatus) ? 'orWhereHas' : 'whereHas';
+                if (! empty($this->filterSrStatus)) {
+                    $orTag = ! empty($this->filterStatus) ? 'orWhereHas' : 'whereHas';
                     $q->$orTag('srs', function ($sq) {
-                        $sq->where(function($fsq) {
+                        $sq->where(function ($fsq) {
                             $fsq->whereIn('status', $this->filterSrStatus);
                             if (in_array('0', $this->filterSrStatus)) {
                                 $fsq->orWhereNull('status');
@@ -207,12 +243,20 @@ class Index extends Component
             });
         }
 
-        if ($this->dateFrom) {
-            $query->whereDate('created_at', '>=', $this->dateFrom);
+        if ($this->dateFromCreated) {
+            $query->whereDate('created_at', '>=', $this->dateFromCreated);
         }
 
-        if ($this->dateTo) {
-            $query->whereDate('created_at', '<=', $this->dateTo);
+        if ($this->dateToCreated) {
+            $query->whereDate('created_at', '<=', $this->dateToCreated);
+        }
+
+        if ($this->dateFromDueDate) {
+            $query->whereDate('payment_due_date', '>=', $this->dateFromDueDate);
+        }
+
+        if ($this->dateToDueDate) {
+            $query->whereDate('payment_due_date', '<=', $this->dateToDueDate);
         }
 
         // Advanced Sorting: Prioritize PRs/SRs that need the current user's approval
@@ -230,15 +274,15 @@ class Index extends Component
         // 1. If user is a Department Head / Spv, prioritize their subordinates' Draft (0) or Pending Dept Sign (1)
         if ($isLevel1 || $user->hasPermission('pr.approve.step1')) {
             $subordinateIds = $user->subordinates()->pluck('id_user')->toArray();
-            if (!empty($subordinateIds)) {
+            if (! empty($subordinateIds)) {
                 $subIdsStr = implode(',', $subordinateIds);
-                // Subordinate draft/revised might need attention but the main step is status 1 (Pending Dept Sign). 
+                // Subordinate draft/revised might need attention but the main step is status 1 (Pending Dept Sign).
                 // We'll prioritize Pending Dept Sign (1) for subordinates. Drafts (0) are primarily for creator, but we can include them if wanted.
                 $caseStatements[] = "WHEN tbl_pr.status IN (0, 1) AND tbl_pr.id_user IN ($subIdsStr) THEN 1";
                 $caseStatements[] = "WHEN EXISTS (SELECT 1 FROM tbl_sr WHERE tbl_sr.id_pr = tbl_pr.id_pr AND tbl_sr.status IN (0, 1) AND tbl_sr.id_user IN ($subIdsStr)) THEN 1";
             }
-            $caseStatements[] = "WHEN tbl_pr.status = 1 THEN 2"; // General Dept Sign
-            $caseStatements[] = "WHEN EXISTS (SELECT 1 FROM tbl_sr WHERE tbl_sr.id_pr = tbl_pr.id_pr AND tbl_sr.status = 1) THEN 2";
+            $caseStatements[] = 'WHEN tbl_pr.status = 1 THEN 2'; // General Dept Sign
+            $caseStatements[] = 'WHEN EXISTS (SELECT 1 FROM tbl_sr WHERE tbl_sr.id_pr = tbl_pr.id_pr AND tbl_sr.status = 1) THEN 2';
         }
 
         // 2. Map other approval steps priorities for PR and SR
@@ -253,7 +297,7 @@ class Index extends Component
             7 => 'pr.create',
             9 => 'pr.create',
             10 => 'pr.create',
-            14 => 'pr.approve.step2'
+            14 => 'pr.approve.step2',
         ];
 
         $srStepPermissions = [
@@ -289,7 +333,7 @@ class Index extends Component
         }
 
         // Apply Custom Ordering if any rules match
-        if (!empty($caseStatements)) {
+        if (! empty($caseStatements)) {
             $caseClause = implode(' ', $caseStatements);
             $query->orderByRaw("
                 CASE 
@@ -308,7 +352,8 @@ class Index extends Component
         ini_set('memory_limit', '1024M'); // Menaikkan RAM sementara khusus untuk method ini
 
         $prs = $this->getFilteredQuery()->get();
-        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\PaymentRequestExport($prs), 'Payment_Requests_' . date('Ymd_His') . '.xlsx');
+
+        return \Maatwebsite\Excel\Facades\Excel::download(new \App\Exports\PaymentRequestExport($prs), 'Payment_Requests_'.date('Ymd_His').'.xlsx');
     }
 
     public function render()
@@ -318,7 +363,7 @@ class Index extends Component
         return view('livewire.payment-requests.index', [
             'prs' => $prs,
             'departements' => Departement::orderBy('departement')->get(),
-            'companies' => \App\Models\Company::orderBy('company_name')->get()
+            'companies' => \App\Models\Company::orderBy('company_name')->get(),
         ])->layout('layouts.app');
     }
 }
