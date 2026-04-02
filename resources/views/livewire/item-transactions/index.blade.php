@@ -60,17 +60,74 @@
         <!-- Report Visualization Section -->
         <div class="col-12 mb-4">
             <div class="card border-0 shadow-sm h-100 theme-responsive-card">
-                <div class="card-header border-0 pt-4 pb-0 d-flex justify-content-between align-items-center bg-transparent">
-                    <h5 class="mb-0 fw-bold modern-text-title text-uppercase">Ringkasan Transaksi</h5>
-                    <!-- Toggle Filters Button -->
-                    <button class="btn btn-light border-0 shadow-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#advancedChartFilters" aria-expanded="false" aria-controls="advancedChartFilters">
-                        <i class="ti ti-filter fs-5"></i>
-                        <span class="d-none d-sm-inline">Filters Chart</span>
-                    </button>
+                <div class="card-header border-0 pt-4 pb-0 bg-transparent">
+                    @php
+                        $activeChartFilters = [];
+                        if ($reportCategory) {
+                            $rCatLabel = collect($categories)->firstWhere('id_item_category', $reportCategory)?->item_category ?? 'Kategori';
+                            $activeChartFilters['reportCategory'] = $rCatLabel;
+                        }
+                        if ($reportItem) {
+                            $rItemLabel = collect($reportItemsDropdown)->firstWhere('id_item', $reportItem)?->item_name ?? 'Barang';
+                            $activeChartFilters['reportItem'] = $rItemLabel;
+                        }
+                        if ($reportWarehouse) {
+                            $rWhLabel = collect($warehouses)->firstWhere('id_warehouse', $reportWarehouse)?->warehouse_name ?? 'Gudang';
+                            $activeChartFilters['reportWarehouse'] = $rWhLabel;
+                        }
+                        if ($reportCompany) {
+                            $rCmpLabel = collect($companies)->firstWhere('id_company', $reportCompany)?->company_name ?? 'Company';
+                            $activeChartFilters['reportCompany'] = $rCmpLabel;
+                        }
+                        if ($reportDateFilter !== 'all') {
+                            $rDateLabels = ['today' => 'Hari Ini', 'this_week' => 'Minggu Ini', 'this_month' => 'Bulan Ini', 'custom' => 'Custom'];
+                            $activeChartFilters['reportDateFilter'] = $rDateLabels[$reportDateFilter] ?? $reportDateFilter;
+                        }
+                        $hasActiveChartFilter = count($activeChartFilters) > 0;
+                    @endphp
+
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                        <h5 class="mb-0 fw-bold modern-text-title text-uppercase">Ringkasan Transaksi</h5>
+
+                        <div class="d-flex align-items-center gap-2 flex-wrap justify-content-end">
+                            {{-- Active Chart Filter Badges --}}
+                            @if($hasActiveChartFilter)
+                                <div class="d-flex flex-wrap gap-1 align-items-center">
+                                    @foreach($activeChartFilters as $field => $label)
+                                        <span class="badge rounded-pill bg-primary d-flex align-items-center gap-1"
+                                            style="font-size:0.75rem; padding: 5px 10px;">
+                                            {{ $label }}
+                                            <button type="button" wire:click="$set('{{ $field }}', '')"
+                                                class="btn-close btn-close-white ms-1" style="font-size:0.55rem;"
+                                                aria-label="Hapus filter"></button>
+                                        </span>
+                                    @endforeach
+                                    <button wire:click="resetFilters"
+                                        class="btn btn-sm btn-link text-danger p-0 text-decoration-none"
+                                        style="font-size:0.78rem;">Reset All</button>
+                                </div>
+                            @endif
+
+                            {{-- Toggle Filters Button --}}
+                            <button
+                                class="btn btn-light border-0 shadow-sm d-flex align-items-center gap-2 {{ $hasActiveChartFilter ? 'border-primary border' : '' }}"
+                                type="button" data-bs-toggle="collapse"
+                                data-bs-target="#advancedChartFilters"
+                                aria-expanded="{{ $hasActiveChartFilter ? 'true' : 'false' }}"
+                                aria-controls="advancedChartFilters">
+                                <i class="ti ti-filter fs-5 {{ $hasActiveChartFilter ? 'text-primary' : '' }}"></i>
+                                <span class="d-none d-sm-inline">Filters Chart</span>
+                                @if($hasActiveChartFilter)
+                                    <span class="badge bg-primary rounded-pill"
+                                        style="font-size:0.7rem;">{{ count($activeChartFilters) }}</span>
+                                @endif
+                            </button>
+                        </div>
+                    </div>
                 </div>
                 <div class="card-body">
                     <!-- Report Filters (Collapsible) -->
-                    <div class="collapse mb-4" id="advancedChartFilters" wire:ignore.self>
+                    <div class="collapse mb-4 {{ $hasActiveChartFilter ? 'show' : '' }}" id="advancedChartFilters" wire:ignore.self>
                         <div class="p-3 bg-light rounded-3 bg-opacity-50">
                             <div class="row g-3">
                                 <div class="col-md-3">
@@ -185,9 +242,104 @@
         </div>
         @endif
 
+        @if($stockSummaryCategoryId)
+        <!-- Stock Summary Table -->
+        <div class="col-12 mb-4">
+            <div class="card border-0 shadow-sm theme-responsive-card">
+                <div class="card-header bg-transparent border-0 pt-4 pb-0 d-flex align-items-center gap-2">
+                    <i class="ti ti-chart-bar fs-4 text-primary"></i>
+                    <h5 class="mb-0 fw-bold modern-text-title text-uppercase">
+                        Ringkasan Stock: {{ $stockSummaryCategoryName }}
+                        @if($stockSummaryItemName)
+                            <span class="text-muted fw-normal">— {{ $stockSummaryItemName }}</span>
+                        @endif
+                    </h5>
+                </div>
+                <div class="card-body pt-3">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped modern-table mb-0">
+                            <thead style="background-color: #1a4a8a; color: white;">
+                                <tr>
+                                    @if(!$stockSummaryItemId)
+                                    <th>BARANG</th>
+                                    @endif
+                                    <th>GUDANG</th>
+                                    <th>COMPANY</th>
+                                    <th class="text-end">INCOME</th>
+                                    <th class="text-end">OUTCOME</th>
+                                    <th class="text-end">STOCK (NET)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse($stockSummary as $summary)
+                                <tr>
+                                    @if(!$stockSummaryItemId)
+                                    <td>
+                                        <span class="fw-bold">{{ $summary->item->item_name ?? '-' }}</span><br>
+                                        <small class="text-muted">{{ $summary->item->item_code ?? '' }}</small>
+                                    </td>
+                                    @endif
+                                    <td>{{ $summary->warehouse->warehouse_name ?? '-' }}</td>
+                                    <td>{{ $summary->company->company_name ?? '-' }}</td>
+                                    <td class="text-end text-success fw-bold">{{ number_format($summary->total_income, 2) }}</td>
+                                    <td class="text-end text-danger fw-bold">{{ number_format($summary->total_outcome, 2) }}</td>
+                                    @php $net = $summary->total_income - $summary->total_outcome; @endphp
+                                    <td class="text-end fw-bold {{ $net >= 0 ? 'text-primary' : 'text-danger' }}">
+                                        {{ number_format($net, 2) }}
+                                    </td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="{{ !$stockSummaryItemId ? 6 : 5 }}" class="text-center py-4 text-muted">Belum ada data stok untuk filter ini.</td>
+                                </tr>
+                                @endforelse
+                            </tbody>
+                            @if($stockSummary->count() > 1)
+                            <tfoot class="table-light fw-bold">
+                                <tr>
+                                    @if(!$stockSummaryItemId)<td>TOTAL</td>@endif
+                                    <td colspan="2" class="text-muted small">{{ $stockSummary->count() }} kombinasi data</td>
+                                    <td class="text-end text-success">{{ number_format($stockSummary->sum('total_income'), 2) }}</td>
+                                    <td class="text-end text-danger">{{ number_format($stockSummary->sum('total_outcome'), 2) }}</td>
+                                    <td class="text-end text-primary">{{ number_format($stockSummary->sum('total_income') - $stockSummary->sum('total_outcome'), 2) }}</td>
+                                </tr>
+                            </tfoot>
+                            @endif
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @endif
+
         <!-- Filter Section -->
         <div class="col-12 mb-4">
             <div class="filter-section shadow-sm border-0 theme-responsive-card p-3 rounded-3">
+
+                @php
+                    $activeFilters = [];
+                    if ($filterCategory) {
+                        $catLabel = collect($categories)->firstWhere('id_item_category', $filterCategory)?->item_category ?? 'Kategori';
+                        $activeFilters['filterCategory'] = $catLabel;
+                    }
+                    if ($filterItem) {
+                        $itemLabel = collect($filterItemsDropdown)->firstWhere('id_item', $filterItem)?->item_name ?? 'Barang';
+                        $activeFilters['filterItem'] = $itemLabel;
+                    }
+                    if ($filterWarehouse) {
+                        $whLabel = collect($warehouses)->firstWhere('id_warehouse', $filterWarehouse)?->warehouse_name ?? 'Gudang';
+                        $activeFilters['filterWarehouse'] = $whLabel;
+                    }
+                    if ($filterCompany) {
+                        $cmpLabel = collect($companies)->firstWhere('id_company', $filterCompany)?->company_name ?? 'Company';
+                        $activeFilters['filterCompany'] = $cmpLabel;
+                    }
+                    if ($filterDate !== 'all') {
+                        $dateLabels = ['today' => 'Hari Ini', 'this_week' => 'Minggu Ini', 'this_month' => 'Bulan Ini', 'custom' => 'Custom'];
+                        $activeFilters['filterDate'] = $dateLabels[$filterDate] ?? $filterDate;
+                    }
+                    $hasActiveFilter = count($activeFilters) > 0;
+                @endphp
 
                 <!-- Primary Filter Bar (Always visible) -->
                 <div class="row g-3 align-items-center">
@@ -202,17 +354,46 @@
                         </div>
                     </div>
 
-                    <div class="col-md-6 col-lg-8 d-flex justify-content-md-end justify-content-between align-items-center gap-2">
-                        <!-- Toggle Filters Button -->
-                        <button class="btn btn-light border-0 shadow-sm d-flex align-items-center gap-2" type="button" data-bs-toggle="collapse" data-bs-target="#advancedTableFilters" aria-expanded="false" aria-controls="advancedTableFilters">
-                            <i class="ti ti-filter fs-5"></i>
+                    <div class="col-md-6 col-lg-8 d-flex justify-content-md-end justify-content-between align-items-center gap-2 flex-wrap">
+
+                        {{-- Active Filter Badges --}}
+                        @if($hasActiveFilter)
+                            <div class="d-flex flex-wrap gap-1 align-items-center">
+                                @foreach($activeFilters as $field => $label)
+                                    <span class="badge rounded-pill bg-primary d-flex align-items-center gap-1"
+                                        style="font-size:0.75rem; padding: 5px 10px;">
+                                        {{ $label }}
+                                        <button type="button" wire:click="$set('{{ $field }}', '')"
+                                            class="btn-close btn-close-white ms-1" style="font-size:0.55rem;"
+                                            aria-label="Hapus filter"></button>
+                                    </span>
+                                @endforeach
+                                <button wire:click="resetFilters"
+                                    class="btn btn-sm btn-link text-danger p-0 text-decoration-none"
+                                    style="font-size:0.78rem;">Reset All</button>
+                            </div>
+                        @endif
+
+                        {{-- Toggle Filters Button --}}
+                        <button
+                            class="btn btn-light border-0 shadow-sm d-flex align-items-center gap-2 {{ $hasActiveFilter ? 'border-primary border' : '' }}"
+                            type="button" id="filterToggleBtn" data-bs-toggle="collapse"
+                            data-bs-target="#advancedTableFilters"
+                            aria-expanded="{{ $hasActiveFilter ? 'true' : 'false' }}"
+                            aria-controls="advancedTableFilters">
+                            <i class="ti ti-filter fs-5 {{ $hasActiveFilter ? 'text-primary' : '' }}"></i>
                             <span class="d-none d-sm-inline">Filters</span>
+                            @if($hasActiveFilter)
+                                <span class="badge bg-primary rounded-pill"
+                                    style="font-size:0.7rem;">{{ count($activeFilters) }}</span>
+                            @endif
                         </button>
 
-                        <!-- Show Pagination -->
+                        {{-- Show Pagination --}}
                         <div class="d-flex align-items-center gap-2">
                             <span class="text-muted small text-nowrap d-none d-sm-inline">Show:</span>
-                            <select wire:model.live="perPage" class="form-select border-0 bg-light shadow-none rounded-3 w-auto">
+                            <select wire:model.live="perPage"
+                                class="form-select border-0 bg-light shadow-none rounded-3 w-auto">
                                 <option value="10">10</option>
                                 <option value="25">25</option>
                                 <option value="50">50</option>
@@ -222,7 +403,8 @@
                 </div>
 
                 <!-- Advanced Filters (Collapsible) -->
-                <div class="collapse mt-3" id="advancedTableFilters" wire:ignore.self>
+                <div class="collapse mt-3 {{ $hasActiveFilter ? 'show' : '' }}" id="advancedTableFilters"
+                    wire:ignore.self>
                     <div class="p-3 bg-light rounded-3 bg-opacity-50">
                         <div class="row g-3">
                             <div class="col-md-4">
@@ -293,6 +475,9 @@
                 </div>
             </div>
         </div>
+
+
+
 
         <!-- Table Section -->
         <div class="col-12">

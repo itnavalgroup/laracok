@@ -30,7 +30,7 @@ class Index extends Component
     public $perPage = 10;
     public $filterWarehouse = '';
     public $filterCategory = '';
-    public $filterDate = 'all'; // all, today, this_week, this_month, custom
+    public $filterDate = 'all';
     public $filterStartDate;
     public $filterEndDate;
     public $filterItem = '';
@@ -59,15 +59,15 @@ class Index extends Component
 
     public $uploaded_file;
     public $captured_photo;
-    public $upload_mode = 'upload'; // 'upload' or 'camera'
+    public $upload_mode = 'upload';
 
     public $isEditing = false;
     public $file_excel;
 
-    public $items = []; // Items based on selected category
+    public $items = [];
 
     // Report Visualization Filters
-    public $reportDateFilter = 'all'; // all, today, this_week, this_month, custom
+    public $reportDateFilter = 'all';
     public $reportStartDate;
     public $reportEndDate;
     public $reportCategory = '';
@@ -75,14 +75,8 @@ class Index extends Component
     public $reportWarehouse = '';
     public $reportCompany = '';
 
-    protected $queryString = [
-        'search' => ['except' => ''],
-        'perPage' => ['except' => 10],
-        'filterWarehouse' => ['except' => ''],
-        'filterCategory' => ['except' => ''],
-        'filterDate' => ['except' => 'all'],
-        'reportDateFilter' => ['except' => 'all'],
-    ];
+    const SESSION_KEY = 'item_transaction_index_filters';
+
 
     public function mount()
     {
@@ -93,43 +87,116 @@ class Index extends Component
             $user->hasPermission('item_transaction.view.subordinate');
 
         abort_if(!$hasPermission, 403);
+
+        // Restore filters dari PHP session
+        $saved = session(self::SESSION_KEY, []);
+        if (!empty($saved)) {
+            $this->search             = $saved['search'] ?? '';
+            $this->perPage            = $saved['perPage'] ?? 10;
+            $this->filterWarehouse    = $saved['filterWarehouse'] ?? '';
+            $this->filterCategory     = $saved['filterCategory'] ?? '';
+            $this->filterDate         = $saved['filterDate'] ?? 'all';
+            $this->filterStartDate    = $saved['filterStartDate'] ?? null;
+            $this->filterEndDate      = $saved['filterEndDate'] ?? null;
+            $this->filterItem         = $saved['filterItem'] ?? '';
+            $this->filterCompany      = $saved['filterCompany'] ?? '';
+            $this->reportDateFilter   = $saved['reportDateFilter'] ?? 'all';
+            $this->reportStartDate    = $saved['reportStartDate'] ?? null;
+            $this->reportEndDate      = $saved['reportEndDate'] ?? null;
+            $this->reportCategory     = $saved['reportCategory'] ?? '';
+            $this->reportItem         = $saved['reportItem'] ?? '';
+            $this->reportWarehouse    = $saved['reportWarehouse'] ?? '';
+            $this->reportCompany      = $saved['reportCompany'] ?? '';
+        }
+    }
+
+    private function saveFiltersToSession(): void
+    {
+        session([self::SESSION_KEY => [
+            'search'           => $this->search,
+            'perPage'          => $this->perPage,
+            'filterWarehouse'  => $this->filterWarehouse,
+            'filterCategory'   => $this->filterCategory,
+            'filterDate'       => $this->filterDate,
+            'filterStartDate'  => $this->filterStartDate,
+            'filterEndDate'    => $this->filterEndDate,
+            'filterItem'       => $this->filterItem,
+            'filterCompany'    => $this->filterCompany,
+            'reportDateFilter' => $this->reportDateFilter,
+            'reportStartDate'  => $this->reportStartDate,
+            'reportEndDate'    => $this->reportEndDate,
+            'reportCategory'   => $this->reportCategory,
+            'reportItem'       => $this->reportItem,
+            'reportWarehouse'  => $this->reportWarehouse,
+            'reportCompany'    => $this->reportCompany,
+        ]]);
+    }
+
+    public function resetFilters()
+    {
+        $this->search           = '';
+        $this->filterWarehouse  = '';
+        $this->filterCategory   = '';
+        $this->filterDate       = 'all';
+        $this->filterStartDate  = null;
+        $this->filterEndDate    = null;
+        $this->filterItem       = '';
+        $this->filterCompany    = '';
+        $this->reportDateFilter = 'all';
+        $this->reportStartDate  = null;
+        $this->reportEndDate    = null;
+        $this->reportCategory   = '';
+        $this->reportItem       = '';
+        $this->reportWarehouse  = '';
+        $this->reportCompany    = '';
+        session()->forget(self::SESSION_KEY);
+        $this->resetPage();
+        $this->updateChart();
     }
 
     public function updatedSearch()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
 
     public function updatedFilterWarehouse()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
 
     public function updatedFilterCategory()
     {
         $this->filterItem = '';
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
 
     public function updatedFilterDate()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
     public function updatedFilterStartDate()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
     public function updatedFilterEndDate()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
     public function updatedFilterItem()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
     public function updatedFilterCompany()
     {
         $this->resetPage();
+        $this->saveFiltersToSession();
     }
 
     public function updatedIdItemCategory($value)
@@ -144,34 +211,40 @@ class Index extends Component
 
     public function updatedReportCategory($value)
     {
-        // When report category changes, reset report item
         $this->reportItem = '';
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
 
     public function updatedReportDateFilter()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
     public function updatedReportStartDate()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
     public function updatedReportEndDate()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
     public function updatedReportItem()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
     public function updatedReportWarehouse()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
     public function updatedReportCompany()
     {
         $this->updateChart();
+        $this->saveFiltersToSession();
     }
 
     public function updateChart()
@@ -818,6 +891,77 @@ class Index extends Component
             $filterItemsDropdown = Item::where('id_item_category', $this->filterCategory)->where('is_active', 1)->get();
         }
 
+        // Stock summary: hanya triggered oleh reportCategory (chart filters)
+        $stockSummaryCategoryId = $this->reportCategory ?: null;
+        $stockSummaryItemId = $this->reportItem ?: null;
+        $stockSummary = collect([]);
+        $stockSummaryCategoryName = '';
+        $stockSummaryItemName = '';
+
+        if ($stockSummaryCategoryId) {
+            $summaryQuery = ItemTransaction::query()
+                ->selectRaw('id_item, id_warehouse, id_company, SUM(income) as total_income, SUM(outcome) as total_outcome')
+                ->where('id_item_category', $stockSummaryCategoryId);
+
+            if ($user->level !== 1 && !$user->hasPermission('item_transaction.view.all')) {
+                if ($user->hasPermission('item_transaction.view.warehouse')) {
+                    if ($user->id_warehouse) {
+                        $summaryQuery->where('id_warehouse', $user->id_warehouse);
+                    } else {
+                        $summaryQuery->whereRaw('1 = 0');
+                    }
+                } elseif ($user->hasPermission('item_transaction.view.subordinate')) {
+                    $subordinateIds = User::where('supervisor', $user->id_user)->pluck('id_user')->toArray();
+                    $allowIds = array_merge([$user->id_user], $subordinateIds);
+                    $summaryQuery->whereIn('id_user', $allowIds);
+                } else {
+                    $summaryQuery->where('id_user', $user->id_user);
+                }
+            }
+
+            if ($stockSummaryItemId) {
+                $summaryQuery->where('id_item', $stockSummaryItemId);
+            }
+
+            // Apply report filters (warehouse, company, date)
+            if ($this->reportWarehouse) {
+                $summaryQuery->where('id_warehouse', $this->reportWarehouse);
+            }
+            if ($this->reportCompany) {
+                $summaryQuery->where('id_company', $this->reportCompany);
+            }
+            if ($this->reportDateFilter !== 'all') {
+                $now = \Carbon\Carbon::now();
+                if ($this->reportDateFilter === 'today') {
+                    $summaryQuery->whereDate('transaction_date', $now->toDateString());
+                } elseif ($this->reportDateFilter === 'this_week') {
+                    $summaryQuery->whereBetween('transaction_date', [$now->startOfWeek()->toDateString(), $now->endOfWeek()->toDateString()]);
+                } elseif ($this->reportDateFilter === 'this_month') {
+                    $summaryQuery->whereMonth('transaction_date', $now->month)
+                        ->whereYear('transaction_date', $now->year);
+                } elseif ($this->reportDateFilter === 'custom') {
+                    if ($this->reportStartDate && $this->reportEndDate) {
+                        $summaryQuery->whereBetween('transaction_date', [$this->reportStartDate, $this->reportEndDate]);
+                    } else {
+                        $summaryQuery->whereRaw('1 = 0');
+                    }
+                }
+            }
+
+            $summaryQuery->groupBy('id_item', 'id_warehouse', 'id_company');
+            $summaryQuery->with(['item', 'warehouse', 'company']);
+
+            $stockSummary = $summaryQuery->get();
+
+            // Get readable names for display
+            $catObj = ItemCategory::find($stockSummaryCategoryId);
+            $stockSummaryCategoryName = $catObj->item_category ?? '';
+            if ($stockSummaryItemId) {
+                $itemObj = Item::find($stockSummaryItemId);
+                $stockSummaryItemName = $itemObj->item_name ?? '';
+            }
+        }
+
         return view('livewire.item-transactions.index', [
             'transactions' => $transactions,
             'ikbMap' => $ikbMap,
@@ -830,6 +974,11 @@ class Index extends Component
             'totalTransactions' => ItemTransaction::count(),
             'reportItemsDropdown' => $reportItemsDropdown,
             'filterItemsDropdown' => $filterItemsDropdown,
+            'stockSummary' => $stockSummary,
+            'stockSummaryCategoryName' => $stockSummaryCategoryName,
+            'stockSummaryItemName' => $stockSummaryItemName,
+            'stockSummaryCategoryId' => $stockSummaryCategoryId ?? null,
+            'stockSummaryItemId' => $stockSummaryItemId ?? null,
             'reportData' => $this->reportData // Accessing the computed property
         ])->layout('layouts.app');
     }
