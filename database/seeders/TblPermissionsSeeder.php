@@ -261,7 +261,13 @@ INSERT IGNORE INTO `tbl_permissions` (`id_permission`, `permission_name`, `permi
 (251, 'contract.edit', 'Edit Contract', 'Contract', '2026-03-17 11:22:39', '2026-03-17 11:22:39'),
 (252, 'contract.delete', 'Delete Contract', 'Contract', '2026-03-17 11:23:13', '2026-03-17 11:23:13'),
 (253, 'contract.upload', 'Upload Contract Document', 'Contract', '2026-03-17 11:24:04', '2026-03-17 11:24:04'),
-(254, 'contract.download', 'Download Contract', 'Contract', '2026-03-17 11:26:12', '2026-03-17 11:26:12');
+(254, 'contract.download', 'Download Contract', 'Contract', '2026-03-17 11:26:12', '2026-03-17 11:26:12'),
+(255, 'production.view.all', 'View All Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(256, 'production.view.dept', 'View Department Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(257, 'production.view.warehouse', 'View Warehouse Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(258, 'production.create', 'Create Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(259, 'production.edit', 'Edit Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(260, 'production.delete', 'Delete Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00');
 SQL
         );
         Schema::enableForeignKeyConstraints();

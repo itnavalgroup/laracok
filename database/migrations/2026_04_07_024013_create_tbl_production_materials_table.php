@@ -12,12 +12,12 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_production_materials', function (Blueprint $table) {
-            $table->increments('id_production_material');
-            $table->unsignedInteger('id_production');
-            $table->unsignedInteger('id_item')->nullable();
-            $table->unsignedInteger('id_item_category')->nullable();
-            $table->unsignedInteger('id_uom')->nullable();
-            $table->unsignedInteger('id_packaging')->nullable();
+            $table->bigIncrements('id_production_material');
+            $table->unsignedBigInteger('id_production');
+            $table->unsignedBigInteger('id_item')->nullable();
+            $table->unsignedBigInteger('id_item_category')->nullable();
+            $table->unsignedBigInteger('id_uom')->nullable();
+            $table->unsignedBigInteger('id_packaging')->nullable();
             $table->decimal('qty', 15, 4)->default(0);
             $table->timestamps();
             $table->softDeletes();

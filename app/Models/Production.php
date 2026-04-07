@@ -16,6 +16,7 @@ class Production extends Model
     protected $fillable = [
         'production_number',
         'id_user',
+        'id_requestor',
         'id_warehouse',
         'id_departement',
         'id_company',
@@ -32,6 +33,11 @@ class Production extends Model
     public function user()
     {
         return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+
+    public function requestor()
+    {
+        return $this->belongsTo(User::class, 'id_requestor', 'id_user');
     }
 
     public function warehouse()

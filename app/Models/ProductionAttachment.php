@@ -14,9 +14,10 @@ class ProductionAttachment extends Model
 
     protected $fillable = [
         'id_production',
+        'id_attachment',
+        'id_user',
+        'note',
         'filename',
-        'file_path',
-        'description',
     ];
 
     public function production()
@@ -24,8 +25,14 @@ class ProductionAttachment extends Model
         return $this->belongsTo(Production::class, 'id_production', 'id_production');
     }
 
-    public function getUrlAttribute()
+    public function attachment()
     {
-        return \Illuminate\Support\Facades\Storage::url($this->file_path);
+        return $this->belongsTo(Attachment::class, 'id_attachment', 'id_attachment');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id_user', 'id_user');
+    }
+
 }

@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Production;
 
+use App\Models\Item;
+use App\Models\ItemCategory;
+use App\Models\ItemTransaction;
+use App\Models\Packaging;
 use App\Models\Production;
 use App\Models\ProductionMaterial;
 use App\Models\ProductionResult;
-use App\Models\Item;
-use App\Models\ItemCategory;
-use App\Models\Packaging;
 use App\Models\Uom;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Livewire\Attributes\On;
@@ -18,6 +18,7 @@ use Livewire\Component;
 class FormDetailModal extends Component
 {
     public $productionId;
+
     public $type; // 'material' or 'result'
 
     public function mount($productionId = null)
@@ -67,25 +68,25 @@ class FormDetailModal extends Component
         if ($formData['type'] == 'material' && $production->status != 0) {
             return ['error' => 'Material hanya bisa diubah saat DRAFT.'];
         }
-        
-        if ($formData['type'] == 'result' && $production->status != 2) {
-            return ['error' => 'Result hanya bisa ditambahkan saat tahap PROSES (Verified By).'];
+
+        if ($formData['type'] == 'result' && $production->status > 2) {
+            return ['error' => 'Result hanya bisa ditambahkan saat tahap PROSES atau VERIFY.'];
         }
 
         $qtyInput = (float) $formData['qty'];
         $itemIdInput = $formData['id_item'];
 
         if ($formData['type'] == 'material') {
-            $actualStock = \App\Models\ItemTransaction::where('id_item', '=', $itemIdInput)
+            $actualStock = ItemTransaction::where('id_item', '=', $itemIdInput)
                 ->where('id_warehouse', '=', $production->id_warehouse)
                 ->where('id_company', '=', $production->id_company)
-                ->sum('income') - \App\Models\ItemTransaction::where('id_item', '=', $itemIdInput)
+                ->sum('income') - ItemTransaction::where('id_item', '=', $itemIdInput)
                 ->where('id_warehouse', '=', $production->id_warehouse)
                 ->where('id_company', '=', $production->id_company)
                 ->sum('outcome');
 
             $availableStock = $actualStock;
-            
+
             $reservedQty = ProductionMaterial::where('id_production', $this->productionId)
                 ->where('id_item', $itemIdInput);
             if ($detailId) {
@@ -95,7 +96,8 @@ class FormDetailModal extends Component
 
             if (($availableStock - $reservedQty) < $qtyInput) {
                 $itemName = Item::find($itemIdInput)->item_name ?? 'Item';
-                return ['error' => "Stok untuk {$itemName} tidak mencukupi (Tersedia: ".($availableStock - $reservedQty).")."];
+
+                return ['error' => "Stok untuk {$itemName} tidak mencukupi (Tersedia: ".($availableStock - $reservedQty).').'];
             }
         }
 
@@ -126,9 +128,11 @@ class FormDetailModal extends Component
 
             DB::commit();
             $this->dispatch('production-refresh');
+
             return ['success' => true];
         } catch (\Exception $e) {
             DB::rollBack();
+
             return ['error' => 'Gagal menyimpan: '.$e->getMessage()];
         }
     }
@@ -136,7 +140,7 @@ class FormDetailModal extends Component
     public function render()
     {
         $production = Production::find($this->productionId);
-        
+
         $matItems = collect();
         $resItems = collect();
 
@@ -188,7 +192,7 @@ class FormDetailModal extends Component
             'categories' => ItemCategory::where('is_active', 1)->get(),
             'packagings' => Packaging::all(),
             'matItems' => $matItems,
-            'resItems' => $resItems
+            'resItems' => $resItems,
         ]);
     }
 }

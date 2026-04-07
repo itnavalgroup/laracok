@@ -2,27 +2,30 @@
 
 namespace App\Livewire\Production;
 
+use App\Models\Item;
+use App\Models\ItemTransaction;
 use App\Models\Production;
 use App\Models\ProductionMaterial;
 use App\Models\ProductionResult;
-use App\Models\Item;
-use App\Models\ItemTransaction;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Component;
 
 class DetailModal extends Component
 {
     public $productionId;
+
     public $production;
 
     // form for material
     public $mat_id_item;
+
     public $mat_qty;
 
     // form for result
     public $res_id_item;
+
     public $res_qty;
 
     public $items = [];
@@ -35,7 +38,7 @@ class DetailModal extends Component
         $this->items = Item::where('is_active', 1)->get();
         $this->resetMaterialForm();
         $this->resetResultForm();
-        
+
         $this->dispatch('show-modal', id: 'productionDetailModal');
     }
 
@@ -58,7 +61,9 @@ class DetailModal extends Component
 
     public function addMaterial()
     {
-        if ($this->production->status > 0) return;
+        if ($this->production->status > 0) {
+            return;
+        }
 
         $this->validate([
             'mat_id_item' => 'required',
@@ -83,7 +88,9 @@ class DetailModal extends Component
 
     public function deleteMaterial($id)
     {
-        if ($this->production->status > 0) return;
+        if ($this->production->status > 0) {
+            return;
+        }
         ProductionMaterial::find($id)->delete();
         $this->loadData();
         $this->dispatch('refreshProductionIndex');
@@ -91,7 +98,9 @@ class DetailModal extends Component
 
     public function addResult()
     {
-        if ($this->production->status > 0) return;
+        if ($this->production->status > 0) {
+            return;
+        }
 
         $this->validate([
             'res_id_item' => 'required',
@@ -116,7 +125,9 @@ class DetailModal extends Component
 
     public function deleteResult($id)
     {
-        if ($this->production->status > 0) return;
+        if ($this->production->status > 0) {
+            return;
+        }
         ProductionResult::find($id)->delete();
         $this->loadData();
         $this->dispatch('refreshProductionIndex');
@@ -124,20 +135,23 @@ class DetailModal extends Component
 
     public function processProduction()
     {
-        if ($this->production->status != 0) return;
+        if ($this->production->status != 0) {
+            return;
+        }
 
         if ($this->production->materials->isEmpty() || $this->production->results->isEmpty()) {
             $this->dispatch('alert', [
                 'type' => 'danger',
                 'title' => 'Gagal',
-                'message' => 'Material dan Result tidak boleh kosong!'
+                'message' => 'Material dan Result tidak boleh kosong!',
             ]);
+
             return;
         }
 
         $this->production->update([
             'status' => 1,
-            'processed_by' => Auth::id()
+            'processed_by' => Auth::id(),
         ]);
         $this->loadData();
         $this->dispatch('refreshProductionIndex');
@@ -145,10 +159,12 @@ class DetailModal extends Component
 
     public function cancelProduction()
     {
-        if ($this->production->status >= 2) return;
+        if ($this->production->status >= 2) {
+            return;
+        }
         $this->production->update([
             'status' => 3, // Canceled
-            'canceled_by' => Auth::id()
+            'canceled_by' => Auth::id(),
         ]);
         $this->loadData();
         $this->dispatch('refreshProductionIndex');
@@ -157,7 +173,9 @@ class DetailModal extends Component
     public function finishProduction()
     {
         // Must be in Processed (1) status
-        if ($this->production->status != 1) return;
+        if ($this->production->status != 1) {
+            return;
+        }
 
         try {
             DB::beginTransaction();
@@ -181,7 +199,7 @@ class DetailModal extends Component
                     'income' => 0,
                     'outcome' => $mat->qty,
                     'transaction_date' => $this->production->production_date,
-                    'description' => 'Usage for Production ' . $this->production->production_number,
+                    'description' => 'Usage for Production '.$this->production->production_number,
                 ]);
             }
 
@@ -200,13 +218,13 @@ class DetailModal extends Component
                     'income' => $res->qty,
                     'outcome' => 0,
                     'transaction_date' => $this->production->production_date,
-                    'description' => 'Result from Production ' . $this->production->production_number,
+                    'description' => 'Result from Production '.$this->production->production_number,
                 ]);
             }
 
             $this->production->update([
                 'status' => 2, // Finished
-                'finished_by' => Auth::id()
+                'finished_by' => Auth::id(),
             ]);
 
             DB::commit();
@@ -214,7 +232,7 @@ class DetailModal extends Component
             $this->dispatch('alert', [
                 'type' => 'success',
                 'title' => 'Sukses!',
-                'message' => 'Production berhasil difinish dan inventory telah diupdate.'
+                'message' => 'Production berhasil difinish dan inventory telah diupdate.',
             ]);
 
             $this->loadData();
@@ -225,7 +243,7 @@ class DetailModal extends Component
             $this->dispatch('alert', [
                 'type' => 'danger',
                 'title' => 'Error',
-                'message' => 'Gagal memproses inventory: ' . $e->getMessage()
+                'message' => 'Gagal memproses inventory: '.$e->getMessage(),
             ]);
         }
     }

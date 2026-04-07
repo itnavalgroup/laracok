@@ -1,4 +1,4 @@
-<div class="modal fade" id="productionDetailModal" tabindex="-1" aria-labelledby="productionDetailModalLabel" aria-hidden="true" wire:ignore.self>
+<div class="modal fade" id="productionDetailModal" tabindex="-1" aria-labelledby="productionDetailModalLabel" aria-hidden="true" wire:ignore>
     <div class="modal-dialog modal-dialog-centered modal-lg">
         <div class="modal-content border-0 shadow-lg" style="border-radius: 12px;" x-data="productionDetailData()" x-init="initForm()">
 
@@ -20,20 +20,24 @@
                 <div class="row g-3">
                     <div class="col-md-12">
                         <label class="fw-bold small text-uppercase">Item Category <span class="text-danger">*</span></label>
-                        <select x-model="form.id_item_category" class="form-select select2-prod-detail" id="prod_detail_category">
-                            <option value="">-- Pilih Category --</option>
-                            @foreach ($categories as $cat)
-                                <option value="{{ $cat->id_item_category }}">{{ $cat->item_category }}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore>
+                            <select x-model="form.id_item_category" class="form-select select2-prod-detail" id="prod_detail_category">
+                                <option value="">-- Pilih Category --</option>
+                                @foreach ($categories as $cat)
+                                    <option value="{{ $cat->id_item_category }}">{{ $cat->item_category }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <span class="text-danger small" x-show="errors.id_item_category" x-text="errors.id_item_category"></span>
                     </div>
 
                     <div class="col-md-12">
                         <label class="fw-bold small text-uppercase">Pilih Item <span class="text-danger">*</span></label>
-                        <select x-model="form.id_item" class="form-select select2-prod-detail" id="prod_detail_item">
-                            <option value="">-- Pilih Item --</option>
-                        </select>
+                        <div wire:ignore>
+                            <select x-model="form.id_item" class="form-select select2-prod-detail" id="prod_detail_item">
+                                <option value="">-- Pilih Item --</option>
+                            </select>
+                        </div>
                         <span class="text-danger small" x-show="errors.id_item" x-text="errors.id_item"></span>
                     </div>
 
@@ -45,23 +49,27 @@
 
                     <div class="col-md-4">
                         <label class="fw-bold small text-uppercase">UOM</label>
-                        <select x-model="form.id_uom" class="form-select select2-prod-detail" id="prod_detail_uom">
-                            <option value="">-- Pilih UOM --</option>
-                            @foreach ($uoms as $uom)
-                                <option value="{{ $uom->id_uom }}">{{ $uom->uom }}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore>
+                            <select x-model="form.id_uom" class="form-select select2-prod-detail" id="prod_detail_uom">
+                                <option value="">-- Pilih UOM --</option>
+                                @foreach ($uoms as $uom)
+                                    <option value="{{ $uom->id_uom }}">{{ $uom->uom }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <span class="text-danger small" x-show="errors.id_uom" x-text="errors.id_uom"></span>
                     </div>
 
                     <div class="col-md-4">
                         <label class="fw-bold small text-uppercase">Packaging</label>
-                        <select x-model="form.id_packaging" class="form-select select2-prod-detail" id="prod_detail_packaging">
-                            <option value="">-- Pilih Packaging --</option>
-                            @foreach ($packagings as $pkg)
-                                <option value="{{ $pkg->id_packaging }}">{{ $pkg->packaging }}</option>
-                            @endforeach
-                        </select>
+                        <div wire:ignore>
+                            <select x-model="form.id_packaging" class="form-select select2-prod-detail" id="prod_detail_packaging">
+                                <option value="">-- Pilih Packaging --</option>
+                                @foreach ($packagings as $pkg)
+                                    <option value="{{ $pkg->id_packaging }}">{{ $pkg->packaging }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         <span class="text-danger small" x-show="errors.id_packaging" x-text="errors.id_packaging"></span>
                     </div>
                 </div>
@@ -203,32 +211,38 @@
 
                 initSelect2() {
                     const modal = document.getElementById('productionDetailModal');
-                    document.querySelectorAll('.select2-prod-detail').forEach(el => {
-                        if ($(el).data('select2')) $(el).select2('destroy');
+                    if (!modal) return; // modal not in DOM yet, skip
 
-                        $(el).select2({ dropdownParent: $(modal), width: '100%' })
-                            .on('change', e => {
-                                const mapping = {
-                                    'prod_detail_category': 'id_item_category',
-                                    'prod_detail_item': 'id_item',
-                                    'prod_detail_uom': 'id_uom',
-                                    'prod_detail_packaging': 'id_packaging',
-                                };
-                                const key = mapping[el.id];
-                                if (key) {
-                                    this.form[key] = e.target.value;
-                                    if (key === 'id_item_category') {
-                                        this.form.id_item = '';
-                                        this.$nextTick(() => this.updateItemOptions());
+                    try {
+                        modal.querySelectorAll('.select2-prod-detail').forEach(el => {
+                            if ($(el).data('select2')) $(el).select2('destroy');
+
+                            $(el).select2({ dropdownParent: $(modal), width: '100%' })
+                                .on('change', e => {
+                                    const mapping = {
+                                        'prod_detail_category': 'id_item_category',
+                                        'prod_detail_item': 'id_item',
+                                        'prod_detail_uom': 'id_uom',
+                                        'prod_detail_packaging': 'id_packaging',
+                                    };
+                                    const key = mapping[el.id];
+                                    if (key) {
+                                        this.form[key] = e.target.value;
+                                        if (key === 'id_item_category') {
+                                            this.form.id_item = '';
+                                            this.$nextTick(() => this.updateItemOptions());
+                                        }
                                     }
-                                }
-                            });
-                    });
-                    
-                    $('#prod_detail_category').val(this.form.id_item_category).trigger('change.select2');
-                    this.updateItemOptions();
-                    $('#prod_detail_uom').val(this.form.id_uom).trigger('change.select2');
-                    $('#prod_detail_packaging').val(this.form.id_packaging).trigger('change.select2');
+                                });
+                        });
+
+                        $('#prod_detail_category').val(this.form.id_item_category).trigger('change.select2');
+                        this.updateItemOptions();
+                        $('#prod_detail_uom').val(this.form.id_uom).trigger('change.select2');
+                        $('#prod_detail_packaging').val(this.form.id_packaging).trigger('change.select2');
+                    } catch (e) {
+                        console.warn('Select2 init error (non-fatal):', e);
+                    }
                 },
 
                 updateItemOptions() {

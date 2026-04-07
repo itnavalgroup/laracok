@@ -2,11 +2,13 @@
 
 namespace App\Livewire\Production;
 
-use App\Models\Production;
+use App\Models\Company;
 use App\Models\Departement;
+use App\Models\Production;
+use App\Models\Warehouse;
 use Illuminate\Support\Facades\Auth;
-use Livewire\Component;
 use Livewire\Attributes\On;
+use Livewire\Component;
 use Livewire\WithPagination;
 
 class Index extends Component
@@ -22,12 +24,19 @@ class Index extends Component
     }
 
     public $search = '';
+
     public $perPage = 10;
+
     public $filterWarehouse = '';
+
     public $filterDepartement = '';
+
     public $filterCompany = '';
+
     public $filterStatus = '';
+
     public $dateFrom = '';
+
     public $dateTo = '';
 
     protected $queryString = [
@@ -45,9 +54,9 @@ class Index extends Component
     {
         abort_if(
             Auth::user()->level !== 1 &&
-                !Auth::user()->hasPermission('production.view.all') &&
-                !Auth::user()->hasPermission('production.view.dept') &&
-                !Auth::user()->hasPermission('production.view.warehouse'),
+                ! Auth::user()->hasPermission('production.view.all') &&
+                ! Auth::user()->hasPermission('production.view.dept') &&
+                ! Auth::user()->hasPermission('production.view.warehouse'),
             403
         );
     }
@@ -56,26 +65,32 @@ class Index extends Component
     {
         $this->resetPage();
     }
+
     public function updatedFilterWarehouse()
     {
         $this->resetPage();
     }
+
     public function updatedFilterDepartement()
     {
         $this->resetPage();
     }
+
     public function updatedFilterCompany()
     {
         $this->resetPage();
     }
+
     public function updatedFilterStatus()
     {
         $this->resetPage();
     }
+
     public function updatedDateFrom()
     {
         $this->resetPage();
     }
+
     public function updatedDateTo()
     {
         $this->resetPage();
@@ -88,7 +103,7 @@ class Index extends Component
 
         abort_if(
             $user->level !== 1 &&
-                !($user->id_user == $production->id_user && $user->hasPermission('production.delete')),
+                ! ($user->id_user == $production->id_user && $user->hasPermission('production.delete')),
             403
         );
 
@@ -98,6 +113,7 @@ class Index extends Component
                 'title' => 'Gagal',
                 'message' => 'Production yang sudah diproses tidak dapat dihapus.',
             ]);
+
             return;
         }
 
@@ -124,7 +140,7 @@ class Index extends Component
         }
 
         if ($this->search) {
-            $query->where('production_number', 'like', '%' . $this->search . '%');
+            $query->where('production_number', 'like', '%'.$this->search.'%');
         }
 
         if ($this->filterDepartement) {
@@ -154,8 +170,8 @@ class Index extends Component
         return view('livewire.production.index', [
             'productions' => $productions,
             'departements' => Departement::orderBy('departement', 'asc')->get(),
-            'companies' => \App\Models\Company::orderBy('company_name', 'asc')->get(),
-            'warehouses' => \App\Models\Warehouse::orderBy('warehouse_name', 'asc')->get(),
+            'companies' => Company::orderBy('company_name', 'asc')->get(),
+            'warehouses' => Warehouse::orderBy('warehouse_name', 'asc')->get(),
         ])->layout('layouts.app');
     }
 }

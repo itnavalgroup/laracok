@@ -1,4 +1,25 @@
-<div class="production-detail">
+<div class="production-detail" id="print-area">
+    <style>
+        .btn-cancel-qr {
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 4px 12px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 12px;
+            border: 2px solid #ff4d4f;
+            color: #ff4d4f;
+            background-color: transparent;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-cancel-qr:hover {
+            background-color: #ff4d4f;
+            color: #fff;
+            border-color: #ff4d4f;
+        }
+    </style>
     @php
         $status = intval($production->status);
         $user = auth()->user();
@@ -17,7 +38,11 @@
 
     <template x-teleport="#production-header-actions">
         <div class="d-flex align-items-center gap-2" data-html2canvas-ignore="true">
-            @if ($status == 0 && (auth()->user()->id_user == $production->id_user || auth()->user()->level == 1))
+            @if (
+                $status == 0 &&
+                    (auth()->user()->id_user == $production->id_user ||
+                        auth()->user()->id_user == $production->id_requestor ||
+                        auth()->user()->level == 1))
                 <button type="button" class="btn btn-success btn-sm rounded-pill px-3 no-print-btn"
                     onclick="showConfirm({title: 'Submit Form?', message: 'Pastikan item sudah benar.', type: 'warning', onConfirm: () => @this.submitProduction()})"><i
                         class="ti ti-check me-1"></i> Submit</button>
@@ -27,15 +52,22 @@
                     Process</button>
                 <button type="button"
                     class="btn border border-danger text-danger btn-sm rounded-pill px-3 no-print-btn bg-white"
-                    data-bs-toggle="modal" data-bs-target="#modalCancelProduction"><i
+                    onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"><i
                         class="ti ti-arrow-back-up me-1"></i> Cancel</button>
             @elseif ($status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')))
-                <button type="button" class="btn btn-success btn-sm rounded-pill px-3 no-print-btn"
-                    data-bs-toggle="modal" data-bs-target="#modalFinishDate"><i class="ti ti-check me-1"></i>
-                    Verify</button>
+                @if($production->results->isEmpty())
+                    <button type="button" class="btn btn-success btn-sm rounded-pill px-3 no-print-btn"
+                        onclick="window.dispatchEvent(new CustomEvent('alert', {detail: {type: 'error', title: 'Gagal', message: 'Result (Output) belum ditambahkan. Silakan tambahkan hasil produksi terlebih dahulu!'}}))">
+                        <i class="ti ti-check me-1"></i> Verify
+                    </button>
+                @else
+                    <button type="button" class="btn btn-success btn-sm rounded-pill px-3 no-print-btn"
+                        data-bs-toggle="modal" data-bs-target="#modalFinishDate"><i class="ti ti-check me-1"></i>
+                        Verify</button>
+                @endif
                 <button type="button"
                     class="btn border border-danger text-danger btn-sm rounded-pill px-3 no-print-btn bg-white"
-                    data-bs-toggle="modal" data-bs-target="#modalCancelProduction"><i
+                    onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"><i
                         class="ti ti-arrow-back-up me-1"></i> Cancel</button>
             @endif
         </div>
@@ -43,27 +75,31 @@
 
     <div class="row">
         <div class="col-12">
-            <div class="card p-3 border-0 shadow-sm mt-3">
+            <div class="card p-4 border-0 shadow-sm">
 
                 {{-- Header Atas: Teks DETAIL & Tombol --}}
-                <div class="d-flex justify-content-between align-items-start mb-4 border-bottom pb-3">
+                <div class="d-flex justify-content-between align-items-start mb-4 border-bottom pb-3"
+                    data-html2canvas-ignore="true">
                     <div>
-                        <h5 class="fw-bold mb-0 no-print-btn">DETAIL</h5>
+                        <h5 class="fw-bold mb-0">DETAIL</h5>
                     </div>
                     <div class="d-flex align-items-center gap-3">
                         <div class="d-flex gap-2">
-                            <a href="{{ route('production.index') }}"
-                                class="btn btn-secondary btn-sm no-print-btn">Back</a>
+                            <a href="{{ route('production.index') }}" class="btn btn-secondary btn-sm">Back</a>
                             <a href="{{ route('production.download', hashid_encode($production->id_production, 'production')) }}"
-                                target="_blank" class="btn btn-danger btn-sm no-print-btn">
+                                target="_blank" class="btn btn-danger btn-sm">
                                 <i class="ti ti-download me-1"></i>Download
                             </a>
-                            <button onclick="window.print()" class="btn btn-primary btn-sm no-print-btn">Print</button>
+                            <button onclick="window.print()" class="btn btn-primary btn-sm">Print</button>
 
-                            @if ($status == 0 && (auth()->user()->id_user == $production->id_user || auth()->user()->level == 1))
+                            @if (
+                                $status == 0 &&
+                                    (auth()->user()->id_user == $production->id_user ||
+                                        auth()->user()->id_user == $production->id_requestor ||
+                                        auth()->user()->level == 1))
                                 <button type="button"
                                     wire:click="$dispatch('open-production-form', { id: {{ $production->id_production }} })"
-                                    class="btn btn-warning btn-sm no-print-btn">Edit</button>
+                                    class="btn btn-warning btn-sm">Edit</button>
                             @endif
                         </div>
                     </div>
@@ -155,6 +191,11 @@
                             <div class="col-7">{{ $production->user->name ?? '-' }}</div>
                         </div>
                         <div class="row mb-2">
+                            <div class="col-4 fw-bold text-uppercase">REQUESTOR</div>
+                            <div class="col-1 text-center">:</div>
+                            <div class="col-7">{{ $production->requestor->name ?? '-' }}</div>
+                        </div>
+                        <div class="row mb-2">
                             <div class="col-4 fw-bold text-uppercase">DEPARTEMENT</div>
                             <div class="col-1 text-center">:</div>
                             <div class="col-7">{{ $production->departement->departement ?? '-' }}</div>
@@ -190,16 +231,17 @@
                 </div>
                 <div class="table-responsive mt-2">
                     <table class="table table-bordered table-striped" style="font-size: 15px;">
-                        <thead class="text-center" style="background-color: #2e7d32; color: white;">
+                        <thead class="text-center" style="background-color: #2e7d32;">
                             <tr>
-                                <th style="width: 50px;">NO</th>
-                                <th>CATEGORY</th>
-                                <th>CODE & ITEM NAME</th>
-                                <th>QTY</th>
-                                <th>UOM</th>
-                                <th>PACKAGING</th>
+                                <th style="width: 50px; color: rgb(230, 230, 230) !important;">NO</th>
+                                <th style="color: rgb(230, 230, 230) !important;">CATEGORY</th>
+                                <th style="color: rgb(230, 230, 230) !important;">CODE & ITEM NAME</th>
+                                <th style="color: rgb(230, 230, 230) !important;">QTY</th>
+                                <th style="color: rgb(230, 230, 230) !important;">UOM</th>
+                                <th style="color: rgb(230, 230, 230) !important;">PACKAGING</th>
                                 @if ($status == 0)
-                                    <th style="width: 80px;" class="no-print-btn">AKSI</th>
+                                    <th style="width: 80px; color: rgb(230, 230, 230) !important;"
+                                        class="no-print-btn">AKSI</th>
                                 @endif
                             </tr>
                         </thead>
@@ -242,7 +284,10 @@
                 <div class="card-header align-items-center bg-transparent d-flex px-0 py-3 mt-4 border-bottom">
                     <h5 class="fw-bold mb-0 flex-grow-1 text-success">PRODUCTION RESULTS (OUTPUTS)</h5>
                     <div class="d-flex gap-2">
-                        @if ($status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')))
+                        @if (in_array($status, [1, 2]) &&
+                                (auth()->user()->level == 1 ||
+                                    auth()->user()->hasPermission('production.process') ||
+                                    auth()->user()->hasPermission('production.verify')))
                             <div class="d-flex gap-2 align-items-center no-print-btn">
                                 <button type="button" class="btn btn-primary"
                                     onclick="Livewire.dispatch('openModal', { type: 'result' })">
@@ -254,16 +299,20 @@
                 </div>
                 <div class="table-responsive mt-2">
                     <table class="table table-bordered table-striped" style="font-size: 15px;">
-                        <thead class="text-center" style="background-color: #0d47a1; color: white;">
+                        <thead class="text-center" style="background-color: #0d47a1;">
                             <tr>
-                                <th style="width: 50px;">NO</th>
-                                <th>CATEGORY</th>
-                                <th>CODE & ITEM NAME</th>
-                                <th>QTY</th>
-                                <th>UOM</th>
-                                <th>PACKAGING</th>
-                                @if ($status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')))
-                                    <th style="width: 80px;" class="no-print-btn">AKSI</th>
+                                <th style="width: 50px; color: rgb(230, 230, 230) !important;">NO</th>
+                                <th style="color: rgb(230, 230, 230) !important;">CATEGORY</th>
+                                <th style="color: rgb(230, 230, 230) !important;">CODE & ITEM NAME</th>
+                                <th style="color: rgb(230, 230, 230) !important;">QTY</th>
+                                <th style="color: rgb(230, 230, 230) !important;">UOM</th>
+                                <th style="color: rgb(230, 230, 230) !important;">PACKAGING</th>
+                                @if (in_array($status, [1, 2]) &&
+                                        (auth()->user()->level == 1 ||
+                                            auth()->user()->hasPermission('production.process') ||
+                                            auth()->user()->hasPermission('production.verify')))
+                                    <th style="width: 80px; color: rgb(230, 230, 230) !important;"
+                                        class="no-print-btn">AKSI</th>
                                 @endif
                             </tr>
                         </thead>
@@ -279,7 +328,10 @@
                                     <td class="text-end fw-bold">{{ number_format($res->qty, 2, '.', ',') }}</td>
                                     <td class="text-center">{{ $res->uom->uom ?? '-' }}</td>
                                     <td class="text-center">{{ $res->packaging->packaging ?? '-' }}</td>
-                                    @if ($status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')))
+                                    @if (in_array($status, [1, 2]) &&
+                                            (auth()->user()->level == 1 ||
+                                                auth()->user()->hasPermission('production.process') ||
+                                                auth()->user()->hasPermission('production.verify')))
                                         <td class="text-center no-print-btn">
                                             <button class="btn btn-link p-0 text-primary me-2" title="Edit Item"
                                                 onclick="Livewire.dispatch('openModal', { type: 'result', id: {{ $res->id_production_result }} })"><i
@@ -293,7 +345,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ $status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')) ? 7 : 6 }}"
+                                    <td colspan="{{ in_array($status, [1, 2]) && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.process') || auth()->user()->hasPermission('production.verify')) ? 7 : 6 }}"
                                         class="text-center py-4 text-muted small">Belum
                                         ada hasil produksi ditambahkan.</td>
                                 </tr>
@@ -301,58 +353,113 @@
                         </tbody>
                     </table>
                 </div>
-            </div>
 
-            <div class="card border-0 shadow-none" style="background: none !important;">
+                {{-- Supporting Document --}}
+                <div class="card border-0 shadow-sm theme-responsive-card">
+                    <div class="card-body p-4">
+                        @php
+                            $canManageAtt =
+                                auth()->user()->level == 1 ||
+                                auth()->user()->id_user == $production->id_user ||
+                                auth()->user()->hasPermission('production.process') ||
+                                auth()->user()->hasPermission('production.verify');
+                            $isAllowedStatus = in_array($production->status, [0, 1, 2]);
+                            $canViewAtt = true;
+                        @endphp
+                        <div class="card-header align-items-center bg-transparent d-flex px-0 py-3 mt-4 border-bottom">
+                            <h6 class="card-title mb-0 flex-grow-1 fw-bold text-uppercase">SUPPORTING DOCUMENT :</h6>
+                            <div class="flex-shrink-0">
+                                @if ($isAllowedStatus && $canManageAtt)
+                                    <button type="button" class="btn btn-primary no-print-btn"
+                                        data-bs-toggle="modal" data-bs-target="#modalAddAttachment"
+                                        data-html2canvas-ignore>
+                                        ADD
+                                    </button>
+                                @endif
+                            </div>
+                        </div>
+                        <div class="row g-3 py-3" style="font-size: 15px;">
+                            @foreach ($production->attachments as $file)
+                                @php
+                                    $canEditDeleteAtt = $production->status == 0 && $canManageAtt;
+                                    $attHash = hashid_encode($file->id_production_attachment, 'attachment-production');
+                                    $fileUrl = asset('assets/attachmentproduction/' . $file->filename);
+                                @endphp
+                                <div class="col-md-2 d-flex align-items-center mb-2">
+                                    <div class="form-check form-check-inline d-flex align-items-center mb-0">
+                                        <input type="checkbox" class="form-check-input input-primary me-2" checked
+                                            onclick="return false;" style="width: 1.2rem; height: 1.2rem;">
+                                        <label class="form-check-label text-justify flex-grow-1 fw-bold text-uppercase"
+                                            style="cursor:pointer; font-size: 0.9rem;">
+                                            <a href="javascript:void(0)" data-url="{{ $fileUrl }}"
+                                                data-type="{{ $file->attachment->attachment ?? 'GENERAL' }}"
+                                                data-note="{{ $file->note }}"
+                                                data-delete="{{ route('production.attachment.delete', $attHash) }}"
+                                                data-update="{{ route('production.attachment.update', $attHash) }}"
+                                                data-catid="{{ $file->id_attachment }}"
+                                                data-can-edit="{{ $canEditDeleteAtt ? 'true' : 'false' }}"
+                                                onclick="{{ $canViewAtt ? 'previewAttachment(this)' : 'window.dispatchEvent(new CustomEvent(\'alert\', { detail: { type: \'error\', title: \'Access Denied\', message: \'Anda tidak memiliki izin untuk melihat lampiran.\' } }))' }}; return false;"
+                                                style="color: inherit; text-decoration: none;">
+                                                {{ $file->attachment->attachment ?? ($file->note ?: '-') }}
+                                            </a>
+                                        </label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
+
                 {{-- Signature Flow --}}
-                <div class="mb-5">
+                <div class="mt-5 pt-4 border-top mb-5">
                     <div class="row g-3 text-center justify-content-center">
 
                         {{-- Box 1: Requested By --}}
                         <div class="col-md-3">
                             <div class="fw-bold mb-1 small text-uppercase" style="font-size: 14px;">Requested By</div>
                             <div class="border-bottom mx-auto position-relative image-container d-flex flex-column align-items-center justify-content-center"
-                                style="height: 100px; border-color: #333 !important;">
+                                style="height: 120px; border-color: #333 !important;">
                                 @if (isset($approverSigns[0]))
                                     <img src="{{ $approverSigns[0]['qr'] }}"
-                                        style="height: 80px; width: 80px; object-fit: contain;">
+                                        style="height: 100px; width: 100px; object-fit: contain;">
                                     @if ($status == 1 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.process')))
-                                        <button type="button" data-bs-toggle="modal"
-                                            data-bs-target="#modalCancelProduction"
-                                            class="btn position-absolute no-print-btn text-danger bg-white"
-                                            style="top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 2px 10px; border-radius: 6px; font-weight: bold; border: 2px solid #dc3545; font-size: 11px;">Cancel</button>
+                                        <button type="button"
+                                            onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"
+                                            class="btn position-absolute no-print-btn btn-cancel-qr">Cancel</button>
                                     @endif
                                 @elseif($status == 0)
-                                    @if (auth()->user()->id_user == $production->id_user || auth()->user()->level == 1)
+                                    @if (auth()->user()->id_user == $production->id_user ||
+                                            auth()->user()->id_user == $production->id_requestor ||
+                                            auth()->user()->level == 1)
                                         <div class="d-flex justify-content-center gap-2 w-100">
                                             <button type="button"
                                                 onclick="showConfirm({title: 'Submit Form?', message: 'Pastikan item sudah benar.', type: 'warning', onConfirm: () => @this.submitProduction()})"
-                                                class="btn btn-success rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
-                                                style="width: 35px; height: 35px;" title="Submit"><i
-                                                    class="ti ti-check fs-4"></i></button>
+                                                class="btn btn-outline-primary btn-xs mt-4 no-print-btn"
+                                                style="font-size: 12px;">SUBMIT</button>
                                         </div>
                                     @endif
                                 @endif
                             </div>
                             <div class="mt-2 fw-bold small text-uppercase" style="font-size: 14px;">
-                                {{ $approverSigns[0]['user_name'] ?? ($production->user->name ?? '-') }}
+                                {{ $approverSigns[0]['user_name'] ?? ($production->requestor->name ?? ($production->user->name ?? '-')) }}
                             </div>
-                            <div class="mt-1 x-small fw-bold">REQUESTOR</div>
+                            <div class="mt-1 x-small fw-bold text-uppercase">
+                                {{ $production->requestor->departement->departement ?? ($production->user->departement->departement ?? 'REQUESTOR') }}
+                            </div>
                         </div>
 
                         {{-- Box 2: Processed By --}}
                         <div class="col-md-3 mx-1">
                             <div class="fw-bold mb-1 small text-uppercase" style="font-size: 14px;">Processed By</div>
                             <div class="border-bottom mx-auto position-relative image-container d-flex flex-column align-items-center justify-content-center"
-                                style="height: 100px; border-color: #333 !important;">
+                                style="height: 120px; border-color: #333 !important;">
                                 @if (isset($approverSigns[1]))
                                     <img src="{{ $approverSigns[1]['qr'] }}"
-                                        style="height: 80px; width: 80px; object-fit: contain;">
+                                        style="height: 100px; width: 100px; object-fit: contain;">
                                     @if ($status == 2 && (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify')))
-                                        <button type="button" data-bs-toggle="modal"
-                                            data-bs-target="#modalCancelProduction"
-                                            class="btn position-absolute no-print-btn text-danger bg-white"
-                                            style="top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 2px 10px; border-radius: 6px; font-weight: bold; border: 2px solid #dc3545; font-size: 11px;">Cancel</button>
+                                        <button type="button"
+                                            onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"
+                                            class="btn position-absolute no-print-btn btn-cancel-qr">Cancel</button>
                                     @endif
                                 @elseif($status == 1)
                                     @if (auth()->user()->level == 1 || auth()->user()->hasPermission('production.process'))
@@ -362,8 +469,8 @@
                                                 class="btn btn-success rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
                                                 style="width: 35px; height: 35px;" title="Process"><i
                                                     class="ti ti-check fs-4"></i></button>
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modalCancelProduction"
+                                            <button type="button"
+                                                onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"
                                                 class="btn btn-danger rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
                                                 style="width: 35px; height: 35px;" title="Cancel"><i
                                                     class="ti ti-x fs-4"></i></button>
@@ -381,20 +488,28 @@
                         <div class="col-md-3 mx-1">
                             <div class="fw-bold mb-1 small text-uppercase" style="font-size: 14px;">Verified By</div>
                             <div class="border-bottom mx-auto position-relative image-container d-flex flex-column align-items-center justify-content-center"
-                                style="height: 100px; border-color: #333 !important;">
+                                style="height: 120px; border-color: #333 !important;">
                                 @if (isset($approverSigns[2]))
                                     <img src="{{ $approverSigns[2]['qr'] }}"
-                                        style="height: 80px; width: 80px; object-fit: contain;">
+                                        style="height: 100px; width: 100px; object-fit: contain;">
                                 @elseif($status == 2)
                                     @if (auth()->user()->level == 1 || auth()->user()->hasPermission('production.verify'))
                                         <div class="d-flex justify-content-center gap-2 w-100">
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modalFinishDate"
-                                                class="btn btn-success rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
-                                                style="width: 35px; height: 35px;" title="Verify"><i
-                                                    class="ti ti-check fs-4"></i></button>
-                                            <button type="button" data-bs-toggle="modal"
-                                                data-bs-target="#modalCancelProduction"
+                                            @if($production->results->isEmpty())
+                                                <button type="button"
+                                                    onclick="window.dispatchEvent(new CustomEvent('alert', {detail: {type: 'error', title: 'Gagal', message: 'Result (Output) belum ditambahkan. Silakan tambahkan hasil produksi terlebih dahulu!'}}))"
+                                                    class="btn btn-success rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
+                                                    style="width: 35px; height: 35px;" title="Verify"><i
+                                                        class="ti ti-check fs-4"></i></button>
+                                            @else
+                                                <button type="button" data-bs-toggle="modal"
+                                                    data-bs-target="#modalFinishDate"
+                                                    class="btn btn-success rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
+                                                    style="width: 35px; height: 35px;" title="Verify"><i
+                                                        class="ti ti-check fs-4"></i></button>
+                                            @endif
+                                            <button type="button"
+                                                onclick="showConfirm({ title: 'Batalkan Step?', message: 'Mundur satu langkah ke status sebelumnya?', type: 'warning', onConfirm: () => @this.cancelProduction() })"
                                                 class="btn btn-danger rounded-circle p-0 d-flex align-items-center justify-content-center no-print-btn text-white hover-scale"
                                                 style="width: 35px; height: 35px;" title="Cancel"><i
                                                     class="ti ti-x fs-4"></i></button>
@@ -411,27 +526,33 @@
                     </div>
                 </div>
 
-                @if ($production->cancel_reason)
-                    <div class="alert alert-danger d-flex align-items-center" role="alert">
-                        <div style="text-decoration: underline;">Cancel Reason</div>
+                @if ($production->cancel_reason && $status == 0)
+                    <div class="alert alert-danger d-flex align-items-center mb-2 no-print-history" role="alert"
+                        style="padding: 5px 15px;">
+                        <div style="text-decoration: underline; font-weight:600; font-size: 12px;">REJECT / REVISION
+                            HISTORY</div>
                     </div>
-                    <div class="table-responsive dt-responsive">
-                        <table class="table table-striped table-bordered nowrap">
-                            <thead class="text-center" style="background-color: green; color:white;">
-                                <tr>
+                    <div class="table-responsive mb-4 no-print-history">
+                        <table class="table table-sm table-bordered table-striped" style="font-size: 11px;">
+                            <thead class="bg-danger text-white">
+                                <tr class="text-center">
                                     <th>No</th>
-                                    <th>Name</th>
-                                    <th>Cancel Reason</th>
+                                    <th>Status</th>
+                                    <th>By</th>
+                                    <th>Reason</th>
                                     <th>Date</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="text-center">1</td>
-                                    <td>{{ strtoupper($production->canceledBy->name ?? '-') }}</td>
-                                    <td>{{ strtoupper($production->cancel_reason) }}</td>
                                     <td class="text-center">
-                                        {{ $production->updated_at ? strtoupper(\Carbon\Carbon::parse($production->updated_at)->format('d F Y')) : '-' }}
+                                        <span class="badge bg-danger">REJECTED</span>
+                                    </td>
+                                    <td>{{ $production->canceledBy->name ?? 'Admin / System' }}</td>
+                                    <td>{{ $production->cancel_reason }}</td>
+                                    <td class="text-center">
+                                        {{ $production->updated_at ? \Carbon\Carbon::parse($production->updated_at)->format('d/m/Y H:i') : '-' }}
                                     </td>
                                 </tr>
                             </tbody>
@@ -439,104 +560,70 @@
                     </div>
                 @endif
             </div>
-
-            <livewire:production.form-modal />
-            <livewire:production.form-detail-modal :productionId="$production->id_production" />
-
-            {{-- Modal Process Date --}}
-            <div class="modal fade" id="modalProcessDate" tabindex="-1" aria-labelledby="modalProcessDateLabel"
-                aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header py-2 bg-success text-white">
-                            <h6 class="modal-title fw-bold" id="modalProcessDateLabel">Mulai Proses Production</h6>
-                            <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="form-label fw-bold small text-uppercase">Production Date (Process) <span
-                                    class="text-danger">*</span></label>
-                            <input type="date" wire:model="process_date" class="form-control">
-                            @error('process_date')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="modal-footer py-2 justify-content-between">
-                            <button type="button" class="btn btn-light btn-sm"
-                                data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-success btn-sm fw-bold"
-                                wire:click="processProduction" data-bs-dismiss="modal">
-                                PROCESS
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Modal Finished Date --}}
-            <div class="modal fade" id="modalFinishDate" tabindex="-1" aria-labelledby="modalFinishDateLabel"
-                aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-dialog-centered modal-sm">
-                    <div class="modal-content">
-                        <div class="modal-header py-2 bg-success text-white">
-                            <h6 class="modal-title fw-bold" id="modalFinishDateLabel">Selesaikan & Potong Stok</h6>
-                            <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="form-label fw-bold small text-uppercase">Finished Date <span
-                                    class="text-danger">*</span></label>
-                            <input type="date" wire:model="finish_date" class="form-control">
-                            @error('finish_date')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="modal-footer py-2 justify-content-between">
-                            <button type="button" class="btn btn-light btn-sm"
-                                data-bs-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-success btn-sm fw-bold"
-                                wire:click="verifyProduction" data-bs-dismiss="modal">
-                                VERIFY & FINISH
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {{-- Modal Cancel Reason --}}
-            <div class="modal fade" id="modalCancelProduction" tabindex="-1"
-                aria-labelledby="modalCancelProductionLabel" aria-hidden="true" wire:ignore.self>
-                <div class="modal-dialog modal-dialog-centered modal-md">
-                    <div class="modal-content">
-                        <div class="modal-header py-2 bg-danger text-white">
-                            <h6 class="modal-title fw-bold" id="modalCancelProductionLabel">Alasan Pembatalan /
-                                Penolakan</h6>
-                            <button type="button" class="btn-close btn-close-white"
-                                data-bs-dismiss="modal"></button>
-                        </div>
-                        <div class="modal-body">
-                            <label class="form-label fw-bold small text-uppercase">Reason <span
-                                    class="text-danger">*</span></label>
-                            <textarea wire:model="cancel_reason" class="form-control" rows="3"
-                                placeholder="Masukkan alasan kenapa form ini dikembalikan/ditolak..."></textarea>
-                            @error('cancel_reason')
-                                <div class="text-danger small mt-1">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <div class="modal-footer py-2 justify-content-between">
-                            <button type="button" class="btn btn-light btn-sm"
-                                data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-danger btn-sm fw-bold"
-                                wire:click="cancelProduction" data-bs-dismiss="modal">
-                                SUBMIT CANCEL
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </div>
+
+    <livewire:production.form-modal />
+    <livewire:production.form-detail-modal :productionId="$production->id_production" />
+
+    {{-- Modal Process Date --}}
+    <div class="modal fade" id="modalProcessDate" tabindex="-1" aria-labelledby="modalProcessDateLabel"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header py-2 bg-success text-white">
+                    <h6 class="modal-title fw-bold" id="modalProcessDateLabel">Mulai Proses Production</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label fw-bold small text-uppercase">Production Date (Process) <span
+                            class="text-danger">*</span></label>
+                    <input type="date" wire:model="process_date" class="form-control">
+                    @error('process_date')
+                        <div class="text-danger small mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="modal-footer py-2 justify-content-between">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success btn-sm fw-bold" wire:click="processProduction">
+                        PROCESS
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{-- Modal Finished Date --}}
+    <div class="modal fade" id="modalFinishDate" tabindex="-1" aria-labelledby="modalFinishDateLabel"
+        aria-hidden="true" wire:ignore.self>
+        <div class="modal-dialog modal-dialog-centered modal-sm">
+            <div class="modal-content">
+                <div class="modal-header py-2 bg-success text-white">
+                    <h6 class="modal-title fw-bold" id="modalFinishDateLabel">Selesaikan & Potong Stok</h6>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <label class="form-label fw-bold small text-uppercase">Finished Date <span
+                            class="text-danger">*</span></label>
+                    <input type="date" wire:model="finish_date" class="form-control"
+                        min="{{ $production->production_date ? \Carbon\Carbon::parse($production->production_date)->format('Y-m-d') : '' }}">
+                    @error('finish_date')
+                        <div class="text-danger small mt-1">{{ $message }}</div>
+                    @enderror
+                </div>
+                <div class="modal-footer py-2 justify-content-between">
+                    <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-success btn-sm fw-bold" wire:click="verifyProduction">
+                        VERIFY & FINISH
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @include('livewire.production.attachment-modals', ['productionHash' => $hash])
 </div>
 
 
@@ -544,11 +631,37 @@
 
 
 @push('scripts')
+    @include('livewire.production.attachment-scripts')
     <script>
         document.addEventListener('livewire:initialized', () => {
             Livewire.on('production-refresh', () => {
                 window.location.reload();
             });
+
+            Livewire.on('close-modal-process', () => {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('modalProcessDate'));
+                if (modal) modal.hide();
+                cleanupBackdrops();
+            });
+
+            Livewire.on('close-modal-verify', () => {
+                const modal = bootstrap.Modal.getInstance(document.getElementById('modalFinishDate'));
+                if (modal) modal.hide();
+                cleanupBackdrops();
+            });
         });
+
+        function cleanupBackdrops() {
+            setTimeout(() => {
+                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                if (!document.querySelector('.modal.show')) {
+                    document.body.classList.remove('modal-open');
+                    document.body.style.overflow = '';
+                    document.body.style.paddingRight = '';
+                }
+            }, 300);
+        }
+
+
     </script>
 @endpush

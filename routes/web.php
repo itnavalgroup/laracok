@@ -252,7 +252,7 @@ Route::middleware('auth')->group(function () {
                 'user', 'warehouse', 'departement', 'company',
                 'materials.item.category', 'materials.uom', 
                 'results.item.category', 'results.uom',
-                'processedBy', 'finishedBy', 'canceledBy'
+                'processedBy', 'finishedBy', 'canceledBy', 'attachments'
             ])->findOrFail($id);
             
             return view('production.print', compact('production'));
@@ -260,6 +260,11 @@ Route::middleware('auth')->group(function () {
 
         // SHOW
         Route::get('/{hash}', \App\Livewire\Production\Show::class)->name('show');
+        
+        // ATTACHMENT
+        Route::post('/{hash}/attachment/store', [\App\Http\Controllers\ProductionAttachmentController::class, 'store'])->name('attachment.store');
+        Route::post('/attachment/{hash}/update', [\App\Http\Controllers\ProductionAttachmentController::class, 'update'])->name('attachment.update');
+        Route::get('/attachment/{hash}/delete', [\App\Http\Controllers\ProductionAttachmentController::class, 'destroy'])->name('attachment.delete');
     });
 
     // =========================================================================

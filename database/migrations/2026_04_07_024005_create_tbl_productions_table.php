@@ -12,19 +12,20 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tbl_productions', function (Blueprint $table) {
-            $table->increments('id_production');
+            $table->bigIncrements('id_production');
             $table->string('production_number', 50)->unique();
-            $table->unsignedInteger('id_user')->nullable(); // Requestor
-            $table->unsignedInteger('id_warehouse')->nullable();
-            $table->unsignedInteger('id_departement')->nullable();
-            $table->unsignedInteger('id_company')->nullable();
+            $table->unsignedBigInteger('id_user')->nullable(); // Requestor
+            $table->unsignedBigInteger('id_warehouse')->nullable();
+            $table->unsignedBigInteger('id_departement')->nullable();
+            $table->unsignedBigInteger('id_company')->nullable();
+            $table->unsignedBigInteger('id_requestor')->nullable();
             $table->dateTime('production_date')->nullable();
             $table->dateTime('finished_date')->nullable();
             $table->integer('status')->default(0)->comment('0: Draft, 1: Processed, 2: Finished, 3: Canceled');
             $table->text('description')->nullable();
-            $table->unsignedInteger('processed_by')->nullable();
-            $table->unsignedInteger('finished_by')->nullable();
-            $table->unsignedInteger('canceled_by')->nullable();
+            $table->unsignedBigInteger('processed_by')->nullable();
+            $table->unsignedBigInteger('finished_by')->nullable();
+            $table->unsignedBigInteger('canceled_by')->nullable();
             $table->text('cancel_reason')->nullable();
             $table->timestamps();
             $table->softDeletes();
