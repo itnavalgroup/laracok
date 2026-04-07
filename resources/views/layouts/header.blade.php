@@ -19,6 +19,7 @@
             <div id="ikb-header-actions" class="d-flex align-items-center gap-2 me-2"></div>
             <div id="pr-header-actions" class="d-flex align-items-center gap-2 me-2"></div>
             <div id="sr-header-actions" class="d-flex align-items-center gap-2 me-2"></div>
+            <div id="production-header-actions" class="d-flex align-items-center gap-2 me-2"></div>
             <ul class="list-unstyled mb-0 d-flex align-items-center">
                 <li class="pc-h-item">
                     <a href="#!" class="pc-head-link me-0" id="dark-mode-toggle">
