@@ -2,55 +2,74 @@
 
 namespace App\Livewire\Users;
 
-use App\Models\User;
+use App\Models\Departement;
 use App\Models\Level;
 use App\Models\Position;
-use App\Models\Departement;
-use App\Models\UserEmail;
-use App\Models\UserBankAccount;
 use App\Models\Pr;
 use App\Models\Sr;
-use Livewire\Component;
-use Livewire\WithFileUploads;
+use App\Models\User;
+use App\Models\UserBankAccount;
+use App\Models\UserEmail;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Livewire\Component;
+use Livewire\WithFileUploads;
 
 class Edit extends Component
 {
     use WithFileUploads;
 
     public $userId;
+
     public $id_employee;
+
     public $name;
+
     public $emails = [];
+
     public $bankAccounts = [];
+
     public $nik;
+
     public $npwp;
+
     public $phone;
+
     public $level;
+
     public $levelName;
+
     public $id_company;
+
     public $id_departement;
+
     public $id_position;
+
     public $supervisor;
+
     public $id_warehouse;
+
     public $is_active;
+
     public $photo;
+
     public $existingPhoto;
+
     public $croppedPhoto; // Base64 cropped image
 
     public $isReadOnly = false;
+
     public $canEditSecurity = false;
 
     public function mount($hash)
     {
         $id = hashid_decode($hash);
-        abort_if(!$id, 404);
+        abort_if(! $id, 404);
 
         $user = User::with(['emails', 'bankAccounts'])->findOrFail($id);
         $currentUser = Auth::user();
 
-        if (!$currentUser->canEditUser($user)) {
+        if (! $currentUser->canEditUser($user)) {
             abort(403);
         }
 
@@ -75,7 +94,7 @@ class Edit extends Component
             return [
                 'id' => $e->id_email_user,
                 'email' => $e->email,
-                'isUsed' => $this->checkEmailUsage($e->id_email_user)
+                'isUsed' => $this->checkEmailUsage($e->id_email_user),
             ];
         })->toArray();
 
@@ -90,7 +109,7 @@ class Edit extends Component
                 'nama_bank' => $b->nama_bank,
                 'nama_penerima' => $b->nama_penerima,
                 'norek' => $b->norek,
-                'isUsed' => $this->checkBankUsage($b->norek)
+                'isUsed' => $this->checkBankUsage($b->norek),
             ];
         })->toArray();
 
@@ -104,13 +123,19 @@ class Edit extends Component
 
     private function checkEmailUsage($id)
     {
-        if (!$id) return false;
+        if (! $id) {
+            return false;
+        }
+
         return Pr::where('id_email_user', $id)->exists() || Sr::where('id_email_user', $id)->exists();
     }
 
     private function checkBankUsage($norek)
     {
-        if (!$norek) return false;
+        if (! $norek) {
+            return false;
+        }
+
         return Pr::where('norek', $norek)->exists() || Sr::where('norek', $norek)->exists();
     }
 
@@ -124,6 +149,7 @@ class Edit extends Component
         if (isset($this->emails[$index])) {
             if ($this->emails[$index]['isUsed']) {
                 $this->dispatch('alert', type: 'error', message: 'Email ini tidak dapat dihapus karena sudah digunakan dalam transaksi.');
+
                 return;
             }
             if (count($this->emails) > 1) {
@@ -143,6 +169,7 @@ class Edit extends Component
         if (isset($this->bankAccounts[$index])) {
             if ($this->bankAccounts[$index]['isUsed']) {
                 $this->dispatch('alert', type: 'error', message: 'Rekening ini tidak dapat dihapus karena sudah digunakan dalam transaksi.');
+
                 return;
             }
             unset($this->bankAccounts[$index]);
@@ -152,8 +179,9 @@ class Edit extends Component
 
     public function resetPassword()
     {
-        if (Auth::user()->level !== 1 && !Auth::user()->hasPermission('user.reset_password')) {
+        if (Auth::user()->level !== 1 && ! Auth::user()->hasPermission('user.reset_password')) {
             $this->dispatch('alert', type: 'error', message: 'Anda tidak memiliki akses untuk meriset password!');
+
             return;
         }
 
@@ -173,10 +201,11 @@ class Edit extends Component
             'phone' => 'nullable|string|max:20',
             'emails.0.email' => 'required|email',
             'emails.*.email' => 'nullable|email',
+            'id_warehouse' => 'nullable|exists:tbl_warehouse,id_warehouse',
         ];
 
         if ($this->canEditSecurity) {
-            $rules['id_employee'] = 'required|unique:tbl_user,id_employee,' . $this->userId . ',id_user';
+            $rules['id_employee'] = 'required|unique:tbl_user,id_employee,'.$this->userId.',id_user';
             $rules['level'] = 'required|exists:tbl_levels,level';
         }
 
@@ -193,7 +222,7 @@ class Edit extends Component
                 'id_company' => $this->id_company,
                 'id_departement' => $this->id_departement,
                 'id_position' => $this->id_position,
-                'id_warehouse' => $this->id_warehouse,
+                'id_warehouse' => $this->id_warehouse === '' ? null : $this->id_warehouse,
                 'supervisor' => $this->supervisor,
                 'is_active' => $this->is_active,
             ];
@@ -204,18 +233,18 @@ class Edit extends Component
             }
 
             if ($this->croppedPhoto) {
-                $photoName = time() . '_user.png';
+                $photoName = time().'_user.png';
                 $imageData = str_replace('data:image/png;base64,', '', $this->croppedPhoto);
                 $imageData = str_replace(' ', '+', $imageData);
 
-                if ($this->existingPhoto && \Illuminate\Support\Facades\Storage::disk('public')->exists('image/' . $this->existingPhoto)) {
-                    \Illuminate\Support\Facades\Storage::disk('public')->delete('image/' . $this->existingPhoto);
+                if ($this->existingPhoto && \Illuminate\Support\Facades\Storage::disk('public')->exists('image/'.$this->existingPhoto)) {
+                    \Illuminate\Support\Facades\Storage::disk('public')->delete('image/'.$this->existingPhoto);
                 }
 
-                \Illuminate\Support\Facades\Storage::disk('public')->put('image/' . $photoName, base64_decode($imageData));
+                \Illuminate\Support\Facades\Storage::disk('public')->put('image/'.$photoName, base64_decode($imageData));
                 $data['photo'] = $photoName;
             } elseif ($this->photo instanceof \Livewire\Features\SupportFileUploads\TemporaryUploadedFile) {
-                $photoName = time() . '_' . $this->photo->getClientOriginalName();
+                $photoName = time().'_'.$this->photo->getClientOriginalName();
                 $this->photo->storeAs('public/image', $photoName);
                 $data['photo'] = $photoName;
             }
@@ -258,10 +287,11 @@ class Edit extends Component
 
             DB::commit();
             $this->dispatch('alert', type: 'success', message: 'Data user berhasil diperbarui.');
+
             return redirect()->route('users.index');
         } catch (\Exception $e) {
             DB::rollBack();
-            $this->dispatch('alert', type: 'error', message: 'Gagal update user: ' . $e->getMessage());
+            $this->dispatch('alert', type: 'error', message: 'Gagal update user: '.$e->getMessage());
         }
     }
 
