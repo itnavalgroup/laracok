@@ -4,23 +4,61 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblPositionSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_position` (`id_position`, `position`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'CEO', '2025-05-02 12:05:50', '2025-05-02 12:05:50', NULL),
-(2, 'Kepala Gudang', '2025-05-02 12:05:50', '2025-11-19 19:12:47', NULL),
-(3, 'Staff', '2025-05-02 12:06:08', '2025-05-03 13:54:22', NULL),
-(6, 'Manager', '2025-11-19 19:13:33', '2025-11-19 19:13:33', NULL),
-(7, 'CFO', '2025-11-19 19:13:46', '2025-11-19 19:13:46', NULL),
-(8, 'Supervisor', '2025-11-19 19:14:18', '2025-11-19 19:14:18', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_position')->truncate();
+
+        $data = [
+            [
+                'id_position' => 1,
+                'position' => 'CEO',
+                'created_at' => '2025-05-02 12:05:50',
+                'updated_at' => '2025-05-02 12:05:50',
+                'deleted_at' => null
+            ],
+            [
+                'id_position' => 2,
+                'position' => 'Kepala Gudang',
+                'created_at' => '2025-05-02 12:05:50',
+                'updated_at' => '2025-11-19 19:12:47',
+                'deleted_at' => null
+            ],
+            [
+                'id_position' => 3,
+                'position' => 'Staff',
+                'created_at' => '2025-05-02 12:06:08',
+                'updated_at' => '2025-05-03 13:54:22',
+                'deleted_at' => null
+            ],
+            [
+                'id_position' => 6,
+                'position' => 'Manager',
+                'created_at' => '2025-11-19 19:13:33',
+                'updated_at' => '2025-11-19 19:13:33',
+                'deleted_at' => null
+            ],
+            [
+                'id_position' => 7,
+                'position' => 'CFO',
+                'created_at' => '2025-11-19 19:13:46',
+                'updated_at' => '2025-11-19 19:13:46',
+                'deleted_at' => null
+            ],
+            [
+                'id_position' => 8,
+                'position' => 'Supervisor',
+                'created_at' => '2025-11-19 19:14:18',
+                'updated_at' => '2025-11-19 19:14:18',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_position')->insert($chunk);
+        }
     }
 }

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('id_attachment')->nullable();
             $table->unsignedBigInteger('id_user')->nullable();
             $table->string('filename')->nullable();
+            $table->integer('upload_status')->default(0);
             $table->string('file_path')->nullable();
             $table->text('note')->nullable();
             $table->timestamps();

@@ -73,6 +73,14 @@ class FormModal extends Component
 
         if ($this->isEdit) {
             $production = Production::findOrFail($this->productionId);
+            $user = Auth::user();
+            $isAdmin = $user->level == 1;
+            $isOwner = $user->id_user == $production->id_user;
+            $isRequestor = $user->id_user == $production->id_requestor;
+            $canEdit = $production->status == 0 && ($isAdmin || $user->hasPermission('production.edit.all') || (($isOwner || $isRequestor) && $user->hasPermission('production.edit')));
+
+            abort_if(!$canEdit, 403, 'Unauthorized action.');
+
             $production->update([
                 'id_requestor' => $this->id_requestor,
                 'id_warehouse' => $this->id_warehouse,
@@ -86,6 +94,8 @@ class FormModal extends Component
                 'title' => 'Sukses!',
                 'message' => 'Data Production berhasil diubah.',
             ]);
+
+            $this->dispatch('production-updated');
         } else {
             // Generate Production Number
             $warehouseCode = Warehouse::find($this->id_warehouse)->warehouse_code ?? 'WH';

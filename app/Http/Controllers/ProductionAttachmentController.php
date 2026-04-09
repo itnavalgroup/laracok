@@ -20,8 +20,8 @@ class ProductionAttachmentController extends Controller
 
         $canAdd = $user->level === 1
             || $user->id_user == $production->id_user
-            || $user->hasPermission('production.process')
-            || $user->hasPermission('production.verify');
+            || $user->hasPermission('production.approve.step2')
+            || $user->hasPermission('production.approve.step3');
 
         if (!$canAdd) {
             return back()->with('error', 'Anda tidak berhak menambahkan attachment.');
@@ -98,11 +98,15 @@ class ProductionAttachmentController extends Controller
 
         $canEdit = $user->level === 1
             || $user->id_user == $production->id_user
-            || $user->hasPermission('production.process')
-            || $user->hasPermission('production.verify');
+            || $user->hasPermission('production.approve.step2')
+            || $user->hasPermission('production.approve.step3');
 
         if (!$canEdit) {
             return back()->with('error', 'Anda tidak berhak mengubah attachment ini.');
+        }
+
+        if ($production->status == 3 || $production->status == 9) {
+            return back()->with('error', 'Attachment tidak dapat diubah karena Production sudah Selesai / Dibatalkan.');
         }
 
         if ($attachment->upload_status == 0 && $production->status > 0) {
@@ -175,11 +179,15 @@ class ProductionAttachmentController extends Controller
 
         $canDelete = $user->level === 1
             || $user->id_user == $production->id_user
-            || $user->hasPermission('production.process')
-            || $user->hasPermission('production.verify');
+            || $user->hasPermission('production.approve.step2')
+            || $user->hasPermission('production.approve.step3');
 
         if (!$canDelete) {
             return back()->with('error', 'Anda tidak berhak menghapus attachment ini.');
+        }
+
+        if ($production->status == 3 || $production->status == 9) {
+            return back()->with('error', 'Attachment tidak dapat dihapus karena Production sudah Selesai / Dibatalkan.');
         }
 
         if ($attachment->upload_status == 0 && $production->status > 0) {

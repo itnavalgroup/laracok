@@ -222,7 +222,7 @@
                     </a>
                 </li>
                 @endif
-                @if(auth()->user()->level === 1 || auth()->user()->hasPermission('production.view.all') || auth()->user()->hasPermission('production.view.warehouse') || auth()->user()->hasPermission('production.view.dept'))
+                @if(auth()->user()->level === 1 || auth()->user()->hasPermission('production.view.all') || auth()->user()->hasPermission('production.view.warehouse') || auth()->user()->hasPermission('production.view.dept') || auth()->user()->hasPermission('production.view.own') || auth()->user()->hasPermission('production.create'))
                 <li class="pc-item">
                     <a href="{{ route('production.index') }}" class="pc-link">
                         <span class="pc-micon"><i class="ti ti-tools"></i></span>

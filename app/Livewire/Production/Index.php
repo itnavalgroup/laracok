@@ -56,7 +56,9 @@ class Index extends Component
             Auth::user()->level !== 1 &&
                 ! Auth::user()->hasPermission('production.view.all') &&
                 ! Auth::user()->hasPermission('production.view.dept') &&
-                ! Auth::user()->hasPermission('production.view.warehouse'),
+                ! Auth::user()->hasPermission('production.view.warehouse') &&
+                ! Auth::user()->hasPermission('production.view.own') &&
+                ! Auth::user()->hasPermission('production.create'),
             403
         );
     }
@@ -102,7 +104,7 @@ class Index extends Component
         $user = Auth::user();
 
         $canDelete = ($user->level === 1 || $user->hasPermission('production.delete.all')) 
-                    || ($production->status == 0 && ($user->id_user == $production->id_user && $user->hasPermission('production.delete')));
+                    || ($production->status == 0 && (($user->id_user == $production->id_user || $user->id_user == $production->id_requestor) && $user->hasPermission('production.delete')));
         
         abort_if(!$canDelete, 403);
 

@@ -30,13 +30,13 @@ return new class extends Migration
             $table->integer('is_purchase_items')->nullable()->index();
             $table->text('detail')->nullable();
             $table->text('bl_number')->nullable();
-            $table->decimal('qty', 20, 4);
-            $table->decimal('price', 20, 4);
+            $table->decimal('qty', 20, 4)->nullable();
+            $table->decimal('price', 20, 4)->nullable();
             $table->decimal('dpp_pph', 20, 4)->nullable();
             $table->decimal('discount', 20, 4)->nullable();
             $table->decimal('tax1', 20, 4)->nullable();
             $table->decimal('tax2', 20, 4)->nullable();
-            $table->decimal('ammount', 20, 4)->index();
+            $table->decimal('ammount', 20, 4)->nullable()->index();
             $table->timestamps();
             $table->softDeletes();
         });

@@ -85,6 +85,11 @@ class Production extends Model
         return $this->hasMany(ProductionAttachment::class, 'id_production', 'id_production');
     }
 
+    public function notes()
+    {
+        return $this->hasMany(ProductionNote::class, 'id_production', 'id_production');
+    }
+
     /**
      * Apply visibility scope based on user permissions
      */
@@ -95,7 +100,12 @@ class Production extends Model
         }
 
         return $query->where(function($q) use ($user) {
-            $q->where('id_user', $user->id_user);
+            $q->whereRaw('0 = 1');
+
+            if ($user->hasPermission('production.view.own')) {
+                $q->orWhere('id_user', $user->id_user)
+                  ->orWhere('id_requestor', $user->id_user);
+            }
 
             if ($user->hasPermission('production.view.dept') && $user->id_departement) {
                 $q->orWhere('id_departement', $user->id_departement);

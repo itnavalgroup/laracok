@@ -28,14 +28,14 @@ class Show extends Component
     public $mat_qty;
 
     // form for result
-    public $res_id_item;
-
-    public $res_qty;
+    public $res_id_item;    public $res_qty;
 
     // approval dates
     public $process_date;
+    public $process_note;
 
     public $finish_date;
+    public $verify_note;
 
     public function mount($hash)
     {
@@ -50,14 +50,17 @@ class Show extends Component
         $this->process_date = $production->production_date ? \Carbon\Carbon::parse($production->production_date)->format('Y-m-d') : date('Y-m-d');
         $this->finish_date = $production->finished_date ? \Carbon\Carbon::parse($production->finished_date)->format('Y-m-d') : date('Y-m-d');
 
-        // Check Permissions
-        $canView = $user->level === 1
-            || $user->id_user == $production->id_user
+        // 1. Must have Master Detail Access (Global or Specific)
+        $hasMasterDetailAccess = $user->level === 1 || $user->hasPermission('production.view.all') || $user->hasPermission('production.view.detail');
+
+        // 2. Must be within the allowed visible scope
+        $isInScope = $user->level === 1
             || $user->hasPermission('production.view.all')
             || ($user->hasPermission('production.view.dept') && $user->id_departement == $production->id_departement)
-            || ($user->hasPermission('production.view.warehouse') && $user->id_warehouse == $production->id_warehouse);
+            || ($user->hasPermission('production.view.warehouse') && $user->id_warehouse == $production->id_warehouse)
+            || ($user->id_user == $production->id_user || $user->id_user == $production->id_requestor);
 
-        abort_if(! $canView, 403);
+        abort_if(!($hasMasterDetailAccess && $isInScope), 403);
     }
 
     public function getQr($text)
@@ -334,6 +337,15 @@ class Show extends Component
             ]);
         }
 
+        if ($this->process_note) {
+            \App\Models\ProductionNote::create([
+                'id_production' => $production->id_production,
+                'id_user' => Auth::id(),
+                'note_type' => 1,
+                'note' => $this->process_note,
+            ]);
+        }
+
         $this->dispatch('alert', ['type' => 'success', 'message' => 'Production has been processed.']);
         $this->dispatch('close-modal-process');
     }
@@ -342,7 +354,7 @@ class Show extends Component
     {
         $production = Production::findOrFail($this->productionId);
 
-        if ($production->status == 1 && (Auth::user()->hasPermission('production.process') || Auth::user()->level == 1)) {
+        if ($production->status == 1 && (Auth::user()->hasPermission('production.cancel_approve.step1') || Auth::user()->hasPermission('production.approve.step2') || Auth::user()->level == 1)) {
             // Process Rejecting -> Back to Draft
             $production->update([
                 'status' => 0,
@@ -350,7 +362,7 @@ class Show extends Component
                 'cancel_reason' => null,
             ]);
             $this->dispatch('alert', ['type' => 'success', 'message' => 'Status dikembalikan mundur ke Draft.']);
-        } elseif ($production->status == 2 && (Auth::user()->hasPermission('production.verify') || Auth::user()->level == 1)) {
+        } elseif ($production->status == 2 && (Auth::user()->hasPermission('production.cancel_approve.step2') || Auth::user()->hasPermission('production.approve.step3') || Auth::user()->level == 1)) {
             // Verify Rejecting -> Back to Submitted
             $production->update([
                 'status' => 1,
@@ -366,7 +378,7 @@ class Show extends Component
                 ->delete();
 
             $this->dispatch('alert', ['type' => 'success', 'message' => 'Status dikembalikan mundur ke Submitted.']);
-        } elseif ($production->status == 3 && (Auth::user()->hasPermission('production.verify') || Auth::user()->level == 1)) {
+        } elseif ($production->status == 3 && (Auth::user()->hasPermission('production.cancel_approve.step3') || Auth::user()->level == 1)) {
             // Verify Rejecting -> Back to Processed
             $production->update([
                 'status' => 2,
@@ -442,6 +454,15 @@ class Show extends Component
                 'finished_date' => $this->finish_date,
             ]);
 
+            if ($this->verify_note) {
+                \App\Models\ProductionNote::create([
+                    'id_production' => $production->id_production,
+                    'id_user' => Auth::id(),
+                    'note_type' => 2,
+                    'note' => $this->verify_note,
+                ]);
+            }
+
             DB::commit();
 
             $this->dispatch('alert', [
@@ -467,7 +488,7 @@ class Show extends Component
         $production = Production::with([
             'materials.item', 'materials.uom', 'materials.category', 'materials.packaging',
             'results.item', 'results.uom', 'results.category', 'results.packaging',
-            'attachments.attachment',
+            'attachments.attachment', 'notes.user',
             'user', 'requestor', 'warehouse', 'departement', 'company',
             'processedBy', 'finishedBy', 'canceledBy',
         ])->find($this->productionId);
@@ -532,6 +553,10 @@ class Show extends Component
 
         $approverSigns = [];
 
+        // Map existing notes by note_type for quick lookup
+        $processNotes = $production->notes->where('note_type', 1)->first();
+        $verifyNotes = $production->notes->where('note_type', 2)->first();
+
         // Box 1 - Requestor (Creator)
         if ($production->status >= 1) {
             $reqName = $production->requestor->name ?? $production->user->name;
@@ -540,6 +565,7 @@ class Show extends Component
                 'user_name' => $reqName,
                 'date' => $production->created_at->format('d/m/Y H:i'),
                 'qr' => $this->getQr($reqName.' - '.$production->created_at->format('Y-m-d H:i')),
+                'note' => null,
             ];
         }
 
@@ -550,6 +576,7 @@ class Show extends Component
                 'user_name' => $production->processedBy->name,
                 'date' => $production->updated_at->format('d/m/Y H:i'),
                 'qr' => $this->getQr($production->processedBy->name.' - Processed'),
+                'note' => $processNotes ? $processNotes->note : null,
             ];
         }
 
@@ -560,6 +587,7 @@ class Show extends Component
                 'user_name' => $production->finishedBy->name,
                 'date' => $production->updated_at->format('d/m/Y H:i'),
                 'qr' => $this->getQr($production->finishedBy->name.' - Verified'),
+                'note' => $verifyNotes ? $verifyNotes->note : null,
             ];
         }
 

@@ -28,31 +28,44 @@
         $isRequestor = $user->id_user == $production->id_requestor;
 
         // ── Sign / Workflow Permissions ──────────────────────────────────
-        $canSubmit   = $status == 0 && ($isAdmin || $isOwner || $isRequestor || $user->hasPermission('production.submit'));
-        $canProcess  = $status == 1 && ($isAdmin || $user->hasPermission('production.process'));
-        $canVerify   = $status == 2 && ($isAdmin || $user->hasPermission('production.verify'));
+        $canSubmit = $status == 0 && ($isAdmin || $user->hasPermission('production.submit'));
+        $canProcess = $status == 1 && ($isAdmin || $user->hasPermission('production.approve.step2'));
+        $canVerify = $status == 2 && ($isAdmin || $user->hasPermission('production.approve.step3'));
 
         // Cancel per-step
-        $canCancelSubmit  = $status == 1 && ($isAdmin || $user->hasPermission('production.cancel_submit'));
-        $canCancelProcess = $status == 2 && ($isAdmin || $user->hasPermission('production.cancel_process'));
-        $canCancelVerify  = $status == 3 && ($isAdmin || $user->hasPermission('production.cancel_verify'));
+        $canCancelSubmit =
+            $status == 1 &&
+            ($isAdmin ||
+                $user->hasPermission('production.cancel_approve.step1') ||
+                $user->hasPermission('production.approve.step2'));
+        $canCancelProcess =
+            $status == 2 &&
+            ($isAdmin ||
+                $user->hasPermission('production.cancel_approve.step2') ||
+                $user->hasPermission('production.approve.step3'));
+        $canCancelVerify = $status == 3 && ($isAdmin || $user->hasPermission('production.cancel_approve.step3'));
 
         // ── Header Action Permissions ────────────────────────────────────
-        $canEdit     = $status == 0 && ($isAdmin || $isOwner || $isRequestor || $user->hasPermission('production.edit'));
-        $canPrint    = $isAdmin || $isOwner || $isRequestor || $user->hasPermission('production.print');
-        $canDownload = $isAdmin || $isOwner || $isRequestor || $user->hasPermission('production.download');
+        $canEdit =
+            $status == 0 &&
+            ($isAdmin ||
+                $user->hasPermission('production.edit.all') ||
+                (($isOwner || $isRequestor) && $user->hasPermission('production.edit')));
+        $canPrint = $isAdmin || $user->hasPermission('production.print');
+        $canDownload = $isAdmin || $user->hasPermission('production.download');
 
         // ── Detail Permissions ───────────────────────────────────────────
-        $canAddMaterial    = $status == 0 && ($isAdmin || $user->hasPermission('production_material.create'));
-        $canEditMaterial   = $status == 0 && ($isAdmin || $user->hasPermission('production_material.edit'));
+        $canAddMaterial = $status == 0 && ($isAdmin || $user->hasPermission('production_material.create'));
+        $canEditMaterial = $status == 0 && ($isAdmin || $user->hasPermission('production_material.edit'));
         $canDeleteMaterial = $status == 0 && ($isAdmin || $user->hasPermission('production_material.delete'));
 
-        $canAddResult    = $status == 2 && ($isAdmin || $user->hasPermission('production_result.create'));
-        $canEditResult   = $status == 2 && ($isAdmin || $user->hasPermission('production_result.edit'));
+        $canAddResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.create'));
+        $canEditResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.edit'));
         $canDeleteResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.delete'));
 
-        $canManageAtt = $isAdmin || $isOwner || $isRequestor || $user->hasPermission('production_attachment.create');
-        $canViewAtt   = $isAdmin || $isOwner || $isRequestor || $user->hasPermission('production.view.attachment');
+        $canManageAtt =
+            $status != 3 && $status != 9 && ($isAdmin || $user->hasPermission('production_attachment.create'));
+        $canViewAtt = $isAdmin || $user->hasPermission('production.view.attachment');
         $isAllowedStatus = in_array($production->status, [0, 1, 2]);
 
         $statusBadge = [
@@ -122,7 +135,8 @@
                                     class="btn btn-danger btn-sm">
                                     <span id="btnDownloadNormal"><i class="ti ti-download me-1"></i>Download</span>
                                     <span id="btnDownloadLoading" class="d-none">
-                                        <span class="spinner-border spinner-border-sm me-1" role="status"></span>Generating...
+                                        <span class="spinner-border spinner-border-sm me-1"
+                                            role="status"></span>Generating...
                                     </span>
                                 </button>
                             @endif
@@ -309,7 +323,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ ($canEditMaterial || $canDeleteMaterial) ? 7 : 6 }}"
+                                    <td colspan="{{ $canEditMaterial || $canDeleteMaterial ? 7 : 6 }}"
                                         class="text-center py-4 text-muted small">
                                         Belum ada bahan baku ditambahkan.</td>
                                 </tr>
@@ -379,7 +393,7 @@
                                 </tr>
                             @empty
                                 <tr>
-                                    <td colspan="{{ ($canEditResult || $canDeleteResult) ? 7 : 6 }}"
+                                    <td colspan="{{ $canEditResult || $canDeleteResult ? 7 : 6 }}"
                                         class="text-center py-4 text-muted small">Belum
                                         ada hasil produksi ditambahkan.</td>
                                 </tr>
@@ -422,11 +436,7 @@
                                             {{ number_format($trx->outcome, 2, '.', ',') }}</td>
                                         <td class="text-center">{{ $trx->uom->uom ?? '-' }}</td>
                                         <td class="text-center">
-                                            <a href="{{ route('item-transactions.show', hashid_encode($trx->id_item_transaction)) }}"
-                                                target="_blank" class="fw-bold modern-text-title text-decoration-none"
-                                                title="Detail Transaksi">
-                                                {{ $trx->transaction_code }}
-                                            </a>
+                                            {{ $trx->transaction_code }}
                                         </td>
                                     </tr>
                                 @empty
@@ -445,9 +455,8 @@
                     <h6 class="card-title mb-0 flex-grow-1 fw-bold text-uppercase">SUPPORTING DOCUMENT :</h6>
                     <div class="flex-shrink-0">
                         @if ($isAllowedStatus && $canManageAtt)
-                            <button type="button" class="btn btn-primary no-print-btn"
-                                data-bs-toggle="modal" data-bs-target="#modalAddAttachment"
-                                data-html2canvas-ignore>
+                            <button type="button" class="btn btn-primary no-print-btn" data-bs-toggle="modal"
+                                data-bs-target="#modalAddAttachment" data-html2canvas-ignore>
                                 ADD
                             </button>
                         @endif
@@ -488,13 +497,6 @@
                         <div class="col-12 text-center py-4 text-muted">
                             <i class="ti ti-file-off fs-1 mb-2 d-block"></i>
                             <p class="mb-0 small">Belum ada supporting document ditambahkan.</p>
-                            @if ($isAllowedStatus && $canManageAtt)
-                                <button type="button" class="btn btn-sm btn-outline-primary mt-3 no-print-btn"
-                                    data-bs-toggle="modal" data-bs-target="#modalAddAttachment"
-                                    data-html2canvas-ignore>
-                                    <i class="ti ti-plus me-1"></i> Tambah Document
-                                </button>
-                            @endif
                         </div>
                     @endforelse
                 </div>
@@ -569,6 +571,11 @@
                                 {{ $approverSigns[1]['user_name'] ?? '-' }}
                             </div>
                             <div class="mt-1 x-small fw-bold">PROCESSOR</div>
+                            @if (!empty($approverSigns[1]['note']))
+                                <div class="mt-2 small fst-italic text-muted" style="font-size: 11px;">
+                                    "{{ $approverSigns[1]['note'] }}"
+                                </div>
+                            @endif
                         </div>
 
                         {{-- Box 3: Verified By --}}
@@ -613,6 +620,11 @@
                                 {{ $approverSigns[2]['user_name'] ?? '-' }}
                             </div>
                             <div class="mt-1 x-small fw-bold">VERIFIER</div>
+                            @if (!empty($approverSigns[2]['note']))
+                                <div class="mt-2 small fst-italic text-muted" style="font-size: 11px;">
+                                    "{{ $approverSigns[2]['note'] }}"
+                                </div>
+                            @endif
                         </div>
 
                     </div>
@@ -674,6 +686,11 @@
                     @error('process_date')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
+                    <label class="form-label fw-bold small text-uppercase mt-2">Keterangan / Catatan (Opsional)</label>
+                    <textarea wire:model="process_note" class="form-control" rows="2" placeholder="Tambahkan catatan jika ada..."></textarea>
+                    @error('process_note')
+                        <div class="text-danger small mt-1">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="modal-footer py-2 justify-content-between">
                     <button type="button" class="btn btn-light btn-sm" data-bs-dismiss="modal">Cancel</button>
@@ -700,6 +717,11 @@
                     <input type="date" wire:model="finish_date" class="form-control"
                         min="{{ $production->production_date ? \Carbon\Carbon::parse($production->production_date)->format('Y-m-d') : '' }}">
                     @error('finish_date')
+                        <div class="text-danger small mt-1">{{ $message }}</div>
+                    @enderror
+                    <label class="form-label fw-bold small text-uppercase mt-2">Keterangan / Catatan (Opsional)</label>
+                    <textarea wire:model="verify_note" class="form-control" rows="2" placeholder="Tambahkan catatan jika ada..."></textarea>
+                    @error('verify_note')
                         <div class="text-danger small mt-1">{{ $message }}</div>
                     @enderror
                 </div>
@@ -730,6 +752,13 @@
                 window.location.reload();
             });
 
+            Livewire.on('production-updated', () => {
+                // Reload setelah delay agar notifikasi sempat tampil
+                setTimeout(() => {
+                    window.location.reload();
+                }, 1500);
+            });
+
             Livewire.on('close-modal-process', () => {
                 const modal = bootstrap.Modal.getInstance(document.getElementById('modalProcessDate'));
                 if (modal) modal.hide();
@@ -756,7 +785,8 @@
 
         window.downloadProductionPDF = function() {
             const element = document.querySelector('.card');
-            const noPrint = document.querySelectorAll('.no-print-btn, [data-html2canvas-ignore], [data-html2canvas-ignore="true"]');
+            const noPrint = document.querySelectorAll(
+                '.no-print-btn, [data-html2canvas-ignore], [data-html2canvas-ignore="true"]');
             const btnDownload = document.getElementById('btnDownloadPDF');
             const btnNormal = document.getElementById('btnDownloadNormal');
             const btnLoading = document.getElementById('btnDownloadLoading');
@@ -771,13 +801,27 @@
 
             const options = {
                 margin: 0,
-                filename: 'PRODUCTION-{{ $production->production_number ?? "DRAFT" }}.pdf',
-                image: { type: 'jpeg', quality: 0.85 },
-                html2canvas: { scale: 1.5, useCORS: true, logging: false, letterRendering: true },
-                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                filename: 'PRODUCTION-{{ $production->production_number ?? 'DRAFT' }}.pdf',
+                image: {
+                    type: 'jpeg',
+                    quality: 0.85
+                },
+                html2canvas: {
+                    scale: 1.5,
+                    useCORS: true,
+                    logging: false,
+                    letterRendering: true
+                },
+                jsPDF: {
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                }
             };
 
-            const { jsPDF } = window.jspdf;
+            const {
+                jsPDF
+            } = window.jspdf;
 
             html2canvas(element, options.html2canvas).then(canvas => {
                 const imgData = canvas.toDataURL('image/jpeg', options.image.quality);
@@ -808,12 +852,15 @@
 
         window.printProduction = function() {
             const element = document.querySelector('.card');
-            const noPrint = document.querySelectorAll('.no-print-btn, [data-html2canvas-ignore], [data-html2canvas-ignore="true"]');
+            const noPrint = document.querySelectorAll(
+                '.no-print-btn, [data-html2canvas-ignore], [data-html2canvas-ignore="true"]');
 
             // Hard hide before capture
             noPrint.forEach(b => b.style.setProperty('display', 'none', 'important'));
 
-            const { jsPDF } = window.jspdf;
+            const {
+                jsPDF
+            } = window.jspdf;
 
             html2canvas(element, {
                 scale: 1.5,
@@ -822,7 +869,11 @@
                 letterRendering: true
             }).then(canvas => {
                 const imgData = canvas.toDataURL('image/jpeg', 0.85);
-                const pdf = new jsPDF({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+                const pdf = new jsPDF({
+                    unit: 'mm',
+                    format: 'a4',
+                    orientation: 'portrait'
+                });
                 const imgProps = pdf.getImageProperties(imgData);
                 const pdfWidth = pdf.internal.pageSize.getWidth();
                 const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;

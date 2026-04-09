@@ -207,13 +207,18 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
+                                    <?php
+                                    $canViewDetail = auth()->user()->level === 1 || auth()->user()->hasPermission('production.view.all') || auth()->user()->hasPermission('production.view.detail');
+                                    ?>
+                                    <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($canViewDetail): ?>
                                     <a href="<?php echo e(route('production.show', hashid_encode($production->id_production, 'production'))); ?>" class="btn btn-icon bg-light-primary rounded-circle" title="View Details">
                                         <i class="ti ti-eye fs-5"></i>
                                     </a>
+                                    <?php endif; ?><?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if ENDBLOCK]><![endif]--><?php endif; ?>
 
                                     <?php
                                     $canDelete = (auth()->user()->level === 1 || auth()->user()->hasPermission('production.delete.all')) 
-                                        || ($production->status == 0 && (auth()->user()->hasPermission('production.delete') || auth()->user()->id_user == $production->id_user));
+                                        || ($production->status == 0 && (auth()->user()->hasPermission('production.delete') && (auth()->user()->id_user == $production->id_user || auth()->user()->id_user == $production->id_requestor)));
                                     ?>
                                     <?php if(\Livewire\Mechanisms\ExtendBlade\ExtendBlade::isRenderingLivewireComponent()): ?><!--[if BLOCK]><![endif]--><?php endif; ?><?php if($canDelete): ?>
                                     <button type="button"

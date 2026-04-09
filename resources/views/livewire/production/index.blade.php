@@ -204,13 +204,18 @@
                             </td>
                             <td class="text-center">
                                 <div class="d-flex justify-content-center gap-2">
+                                    @php
+                                    $canViewDetail = auth()->user()->level === 1 || auth()->user()->hasPermission('production.view.all') || auth()->user()->hasPermission('production.view.detail');
+                                    @endphp
+                                    @if($canViewDetail)
                                     <a href="{{ route('production.show', hashid_encode($production->id_production, 'production')) }}" class="btn btn-icon bg-light-primary rounded-circle" title="View Details">
                                         <i class="ti ti-eye fs-5"></i>
                                     </a>
+                                    @endif
 
                                     @php
                                     $canDelete = (auth()->user()->level === 1 || auth()->user()->hasPermission('production.delete.all')) 
-                                        || ($production->status == 0 && (auth()->user()->hasPermission('production.delete') || auth()->user()->id_user == $production->id_user));
+                                        || ($production->status == 0 && (auth()->user()->hasPermission('production.delete') && (auth()->user()->id_user == $production->id_user || auth()->user()->id_user == $production->id_requestor)));
                                     @endphp
                                     @if($canDelete)
                                     <button type="button"
