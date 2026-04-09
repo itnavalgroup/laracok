@@ -83,6 +83,7 @@ class ProductionAttachmentController extends Controller
             'note'          => $request->note,
             'filename'      => $newName,
             'id_user'       => $user->id_user,
+            'upload_status' => $production->status,
         ]);
 
         return back()->with('success', 'Attachment berhasil ditambahkan.');
@@ -104,8 +105,10 @@ class ProductionAttachmentController extends Controller
             return back()->with('error', 'Anda tidak berhak mengubah attachment ini.');
         }
 
-        if ($production->status != 0) {
-            return back()->with('error', 'Attachment tidak dapat diubah (hanya bisa menambah) jika sudah di-submit.');
+        if ($attachment->upload_status == 0 && $production->status > 0) {
+            return back()->with('error', 'Dokumen yang di-upload pada saat status Draft hanya dapat diubah pada saat Draft.');
+        } elseif ($attachment->upload_status > 0 && $production->status == 0) {
+            return back()->with('error', 'Dokumen ini tidak dapat diubah pada saat status Draft.');
         }
 
         $newName = $attachment->filename;
@@ -179,8 +182,10 @@ class ProductionAttachmentController extends Controller
             return back()->with('error', 'Anda tidak berhak menghapus attachment ini.');
         }
 
-        if ($production->status != 0) {
-            return back()->with('error', 'Attachment tidak dapat dihapus jika sudah di-submit.');
+        if ($attachment->upload_status == 0 && $production->status > 0) {
+            return back()->with('error', 'Dokumen yang di-upload pada saat status Draft hanya dapat dihapus pada saat Draft.');
+        } elseif ($attachment->upload_status > 0 && $production->status == 0) {
+            return back()->with('error', 'Dokumen ini tidak dapat dihapus pada saat status Draft.');
         }
 
         $filePath = public_path('assets/attachmentproduction') . DIRECTORY_SEPARATOR . $attachment->filename;

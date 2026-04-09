@@ -18,6 +18,7 @@ class ProductionAttachment extends Model
         'id_user',
         'note',
         'filename',
+        'upload_status',
     ];
 
     public function production()

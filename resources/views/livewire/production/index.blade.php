@@ -209,15 +209,12 @@
                                     </a>
 
                                     @php
-                                    $canEdit = ($production->status == 0) &&
-                                        (auth()->user()->level === 1 ||
-                                        auth()->user()->hasPermission('production.edit') ||
-                                        auth()->user()->id_user == $production->id_user);
+                                    $canDelete = (auth()->user()->level === 1 || auth()->user()->hasPermission('production.delete.all')) 
+                                        || ($production->status == 0 && (auth()->user()->hasPermission('production.delete') || auth()->user()->id_user == $production->id_user));
                                     @endphp
-                                    @if($canEdit)
-
+                                    @if($canDelete)
                                     <button type="button"
-                                        onclick="showConfirm({ title: 'Hapus Production', message: 'Apakah Anda yakin ingin menghapus Data ini?', type: 'danger', onConfirm: () => @this.delete({{ $production->id_production }}) })"
+                                        onclick="showConfirm({ title: 'Hapus Production', message: 'Apakah Anda yakin ingin menghapus Data ini secara keseluruhan (termasuk membatalkan mutasi stok)?', type: 'danger', onConfirm: () => @this.delete({{ $production->id_production }}) })"
                                         class="btn btn-icon bg-light-danger rounded-circle" title="Delete">
                                         <i class="ti ti-trash fs-5"></i>
                                     </button>

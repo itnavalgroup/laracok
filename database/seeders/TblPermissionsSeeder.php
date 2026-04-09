@@ -266,8 +266,27 @@ INSERT IGNORE INTO `tbl_permissions` (`id_permission`, `permission_name`, `permi
 (256, 'production.view.dept', 'View Department Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
 (257, 'production.view.warehouse', 'View Warehouse Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
 (258, 'production.create', 'Create Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
-(259, 'production.edit', 'Edit Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
-(260, 'production.delete', 'Delete Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00');
+(259, 'production.edit', 'Edit Draft Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(260, 'production.delete', 'Delete Draft Production', 'Production', '2026-04-07 15:32:00', '2026-04-07 15:32:00'),
+(261, 'production.delete.all', 'Delete Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(262, 'production.print', 'Print Production Document', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(263, 'production.download', 'Download Production Document', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(264, 'production.view.attachment', 'View Production Attachments', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(265, 'production.submit', 'Submit Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(266, 'production.cancel_submit', 'Cancel Submit Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(267, 'production.process', 'Process Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(268, 'production.cancel_process', 'Cancel Process', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(269, 'production.verify', 'Verify Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(270, 'production.cancel_verify', 'Cancel Verify Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(271, 'production_material.create', 'Add Material to Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(272, 'production_material.edit', 'Edit Material in Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(273, 'production_material.delete', 'Delete Material from Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(274, 'production_result.create', 'Add Result to Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(275, 'production_result.edit', 'Edit Result in Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(276, 'production_result.delete', 'Delete Result from Production', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(277, 'production_attachment.create', 'Upload Production Attachment', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(278, 'production_attachment.edit', 'Edit Production Attachment', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00'),
+(279, 'production_attachment.delete', 'Delete Production Attachment', 'Production', '2026-04-08 03:12:00', '2026-04-08 03:12:00');
 SQL
         );
         Schema::enableForeignKeyConstraints();

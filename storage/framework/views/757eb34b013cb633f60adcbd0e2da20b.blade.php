@@ -1,0 +1,1 @@
+trx-{{ $trx->id_item_transaction }}

@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Production;
 
+use App\Models\IkbDetail;
 use App\Models\Item;
 use App\Models\ItemTransaction;
 use App\Models\Production;
@@ -104,19 +105,39 @@ class Show extends Component
 
         $item = Item::find($this->mat_id_item);
 
-        $actualStock = ItemTransaction::where('id_item', $this->mat_id_item)
+        // 1. Actual Stock (Income - Outcome)
+        $totalIn = ItemTransaction::where('id_item', $this->mat_id_item)
             ->where('id_warehouse', $production->id_warehouse)
             ->where('id_company', $production->id_company)
-            ->sum('income') - ItemTransaction::where('id_item', $this->mat_id_item)
+            ->sum('income');
+        $totalOut = ItemTransaction::where('id_item', $this->mat_id_item)
             ->where('id_warehouse', $production->id_warehouse)
             ->where('id_company', $production->id_company)
             ->sum('outcome');
+        $actualStock = $totalIn - $totalOut;
 
-        $reservedInThisForm = \App\Models\ProductionMaterial::where('id_production', $this->productionId)
+        // 2. Reserved by active IKBs (status 5-9: Inventory Control Approved)
+        $reservedByIkb = IkbDetail::whereHas('ikb', function ($q) use ($production) {
+            $q->where('status', '>=', 5)
+                ->where('status', '<', 10)
+                ->where('id_warehouse', $production->id_warehouse)
+                ->where('id_company', $production->id_company);
+        })->where('id_item', $this->mat_id_item)->sum('qty');
+
+        // 3. Reserved by other Productions (status 1-2: Submitted/Processed)
+        $reservedByOtherProductions = ProductionMaterial::whereHas('production', function ($q) use ($production) {
+            $q->whereIn('status', [1, 2])
+                ->where('id_warehouse', $production->id_warehouse)
+                ->where('id_company', $production->id_company)
+                ->where('id_production', '!=', $this->productionId);
+        })->where('id_item', $this->mat_id_item)->sum('qty');
+
+        // 4. Already reserved in THIS production (for the same item)
+        $reservedInThisForm = ProductionMaterial::where('id_production', $this->productionId)
             ->where('id_item', $this->mat_id_item)
             ->sum('qty');
 
-        $availableStock = $actualStock - $reservedInThisForm;
+        $availableStock = $actualStock - $reservedByIkb - $reservedByOtherProductions - $reservedInThisForm;
 
         if ($this->mat_qty > $availableStock) {
             $this->addError('mat_qty', "Stok maksimal yang tersedia adalah {$availableStock}");
@@ -179,12 +200,18 @@ class Show extends Component
 
     public function deleteResult($id)
     {
-        $production = Production::findOrFail($this->productionId);
-        if ($production->status > 2) {
-            return;
+        $res = ProductionResult::findOrFail($id);
+        $production = $res->production;
+
+        if ($production->status >= 3) {
+            ItemTransaction::where('transaction_code', $production->production_number . '-PROD')
+                ->where('id_item', $res->id_item)
+                ->where('income', '>', 0)
+                ->delete();
         }
 
-        ProductionResult::find($id)->delete();
+        $res->delete();
+        $this->dispatch('alert', ['type' => 'success', 'message' => 'Result berhasil dihapus.']);
     }
 
     public function submitProduction()
@@ -218,6 +245,45 @@ class Show extends Component
             return;
         }
 
+        // Validate stock for all materials before booking (race condition check at submit time)
+        foreach ($production->materials as $mat) {
+            $totalIn = ItemTransaction::where('id_item', $mat->id_item)
+                ->where('id_warehouse', $production->id_warehouse)
+                ->where('id_company', $production->id_company)
+                ->sum('income');
+            $totalOut = ItemTransaction::where('id_item', $mat->id_item)
+                ->where('id_warehouse', $production->id_warehouse)
+                ->where('id_company', $production->id_company)
+                ->sum('outcome');
+            $actualStock = $totalIn - $totalOut;
+
+            $reservedByIkb = IkbDetail::whereHas('ikb', function ($q) use ($production) {
+                $q->where('status', '>=', 5)
+                    ->where('status', '<', 10)
+                    ->where('id_warehouse', $production->id_warehouse)
+                    ->where('id_company', $production->id_company);
+            })->where('id_item', $mat->id_item)->sum('qty');
+
+            $reservedByOtherProductions = ProductionMaterial::whereHas('production', function ($q) use ($production) {
+                $q->whereIn('status', [1, 2])
+                    ->where('id_warehouse', $production->id_warehouse)
+                    ->where('id_company', $production->id_company)
+                    ->where('id_production', '!=', $this->productionId);
+            })->where('id_item', $mat->id_item)->sum('qty');
+
+            $availableStock = $actualStock - $reservedByIkb - $reservedByOtherProductions;
+
+            if ($mat->qty > $availableStock) {
+                $mat->load('item');
+                $this->dispatch('alert', [
+                    'type' => 'error',
+                    'title' => 'Stok Tidak Cukup',
+                    'message' => "Gagal Submit: Stok {$mat->item->item_name} tidak mencukupi (Tersedia: {$availableStock}, Diminta: {$mat->qty}). Mungkin sudah digunakan oleh Production atau IKB lain.",
+                ]);
+                return;
+            }
+        }
+
         $production->update([
             'status' => 1,
             'cancel_reason' => null,
@@ -244,6 +310,30 @@ class Show extends Component
             'production_date' => $this->process_date,
         ]);
 
+        $docTypeProd = \App\Models\DocType::firstOrCreate(
+            ['doc_type' => 'Production_Transactions'],
+            ['created_at' => now(), 'updated_at' => now()]
+        );
+
+        foreach ($production->materials as $mat) {
+            ItemTransaction::create([
+                'id_item' => $mat->id_item,
+                'id_item_category' => $mat->id_item_category,
+                'id_warehouse' => $production->id_warehouse,
+                'id_company' => $production->id_company,
+                'id_user' => Auth::id(),
+                'id_departement' => $production->id_departement,
+                'id_uom' => $mat->id_uom,
+                'id_packaging' => $mat->id_packaging,
+                'id_doc_type' => $docTypeProd->id_doc_type,
+                'transaction_code' => $production->production_number . '-RAW',
+                'income' => 0,
+                'outcome' => $mat->qty,
+                'transaction_date' => $this->process_date,
+                'description' => 'Usage for Production '.$production->production_number,
+            ]);
+        }
+
         $this->dispatch('alert', ['type' => 'success', 'message' => 'Production has been processed.']);
         $this->dispatch('close-modal-process');
     }
@@ -269,7 +359,27 @@ class Show extends Component
                 'canceled_by' => null,
                 'cancel_reason' => null,
             ]);
+
+            // Delete the material ItemTransactions
+            ItemTransaction::where('transaction_code', $production->production_number . '-RAW')
+                ->where('outcome', '>', 0)
+                ->delete();
+
             $this->dispatch('alert', ['type' => 'success', 'message' => 'Status dikembalikan mundur ke Submitted.']);
+        } elseif ($production->status == 3 && (Auth::user()->hasPermission('production.verify') || Auth::user()->level == 1)) {
+            // Verify Rejecting -> Back to Processed
+            $production->update([
+                'status' => 2,
+                'finished_by' => null,
+                'finished_date' => null,
+            ]);
+
+            // Delete the result ItemTransactions (both old PROD/ numbers and new -PROD suffix)
+            ItemTransaction::whereIn('transaction_code', [$production->production_number . '-PROD', $production->production_number])
+                ->where('income', '>', 0)
+                ->delete();
+
+            $this->dispatch('alert', ['type' => 'success', 'message' => 'Status dikembalikan mundur ke Processed.']);
         }
 
     }
@@ -307,25 +417,6 @@ class Show extends Component
                 ['created_at' => now(), 'updated_at' => now()]
             );
 
-            foreach ($production->materials as $mat) {
-                ItemTransaction::create([
-                    'id_item' => $mat->id_item,
-                    'id_item_category' => $mat->id_item_category,
-                    'id_warehouse' => $production->id_warehouse,
-                    'id_company' => $production->id_company,
-                    'id_user' => Auth::id(),
-                    'id_departement' => $production->id_departement,
-                    'id_uom' => $mat->id_uom,
-                    'id_packaging' => $mat->id_packaging,
-                    'id_doc_type' => $docTypeProd->id_doc_type,
-                    'transaction_code' => $production->production_number,
-                    'income' => 0,
-                    'outcome' => $mat->qty,
-                    'transaction_date' => $production->production_date,
-                    'description' => 'Usage for Production '.$production->production_number,
-                ]);
-            }
-
             foreach ($production->results as $res) {
                 ItemTransaction::create([
                     'id_item' => $res->id_item,
@@ -337,7 +428,7 @@ class Show extends Component
                     'id_uom' => $res->id_uom,
                     'id_packaging' => $res->id_packaging,
                     'id_doc_type' => $docTypeProd->id_doc_type,
-                    'transaction_code' => $production->production_number,
+                    'transaction_code' => $production->production_number . '-PROD',
                     'income' => $res->qty,
                     'outcome' => 0,
                     'transaction_date' => $production->production_date,
@@ -374,9 +465,10 @@ class Show extends Component
     public function render()
     {
         $production = Production::with([
-            'materials.item', 'results.item',
-            'materials.uom', 'results.uom',
-            'user', 'warehouse', 'departement', 'company',
+            'materials.item', 'materials.uom', 'materials.category', 'materials.packaging',
+            'results.item', 'results.uom', 'results.category', 'results.packaging',
+            'attachments.attachment',
+            'user', 'requestor', 'warehouse', 'departement', 'company',
             'processedBy', 'finishedBy', 'canceledBy',
         ])->find($this->productionId);
 
@@ -398,15 +490,40 @@ class Show extends Component
             ->whereNull('deleted_at')
             ->groupBy('id_item');
 
+        // Reserved by active IKBs (status 5-9: Inventory Control Approved)
+        $reservedIkbSub = DB::table('tbl_ikb_details')
+            ->join('tbl_ikb', 'tbl_ikb_details.id_ikb', '=', 'tbl_ikb.id_ikb')
+            ->select('tbl_ikb_details.id_item', DB::raw('SUM(tbl_ikb_details.qty) as total_reserved_ikb'))
+            ->where('tbl_ikb.id_warehouse', $idWarehouse)
+            ->where('tbl_ikb.id_company', $idCompany)
+            ->where('tbl_ikb.status', '>=', 5)
+            ->where('tbl_ikb.status', '<', 10)
+            ->whereNull('tbl_ikb_details.deleted_at')
+            ->groupBy('tbl_ikb_details.id_item');
+
+        // Reserved by other Productions (status 1-2: Submitted/Processed)
+        $reservedProductionSub = DB::table('tbl_production_materials')
+            ->join('tbl_productions', 'tbl_production_materials.id_production', '=', 'tbl_productions.id_production')
+            ->select('tbl_production_materials.id_item', DB::raw('SUM(tbl_production_materials.qty) as total_reserved_prod'))
+            ->where('tbl_productions.id_warehouse', $idWarehouse)
+            ->where('tbl_productions.id_company', $idCompany)
+            ->whereIn('tbl_productions.status', [1, 2])
+            ->where('tbl_productions.id_production', '!=', $this->productionId)
+            ->whereNull('tbl_production_materials.deleted_at')
+            ->whereNull('tbl_productions.deleted_at')
+            ->groupBy('tbl_production_materials.id_item');
+
         $matItems = Item::where('is_active', 1)
             ->leftJoinSub($incomeSub, 'income', 'tbl_items.id_item', '=', 'income.id_item')
             ->leftJoinSub($outcomeSub, 'outcome', 'tbl_items.id_item', '=', 'outcome.id_item')
+            ->leftJoinSub($reservedIkbSub, 'reserved_ikb', 'tbl_items.id_item', '=', 'reserved_ikb.id_item')
+            ->leftJoinSub($reservedProductionSub, 'reserved_prod', 'tbl_items.id_item', '=', 'reserved_prod.id_item')
             ->select(
                 'tbl_items.id_item',
                 'tbl_items.item_code',
                 'tbl_items.item_name',
                 'tbl_items.id_item_category',
-                DB::raw('COALESCE(income.total_income, 0) - COALESCE(outcome.total_outcome, 0) as available_stock')
+                DB::raw('COALESCE(income.total_income, 0) - COALESCE(outcome.total_outcome, 0) - COALESCE(reserved_ikb.total_reserved_ikb, 0) - COALESCE(reserved_prod.total_reserved_prod, 0) as available_stock')
             )
             ->having('available_stock', '>', 0)
             ->get();
@@ -446,11 +563,22 @@ class Show extends Component
             ];
         }
 
+        // Fetch Item Transactions linked to this production via transaction_code
+        $itemTransactions = ItemTransaction::with(['item', 'uom', 'user'])
+            ->whereIn('transaction_code', [
+                $production->production_number, 
+                $production->production_number . '-RAW', 
+                $production->production_number . '-PROD'
+            ])
+            ->orderBy('id_item_transaction', 'desc')
+            ->get();
+
         return view('livewire.production.show', [
             'production' => $production,
             'matItems' => $matItems,
             'resItems' => $resItems,
             'approverSigns' => $approverSigns,
+            'itemTransactions' => $itemTransactions,
             'hash' => hashid_encode($this->productionId, 'production'),
         ])->layout('layouts.app');
     }

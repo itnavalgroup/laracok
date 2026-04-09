@@ -75,9 +75,6 @@
         const data = canvas.toDataURL('image/jpeg', 0.8);
         capturedPhotos[suffix].push(data);
         updateGalleryUI(suffix);
-
-        startBtn.classList.remove('d-none');
-        startBtn.innerHTML = '<i class="ti ti-camera me-1"></i> Add Another Photo';
     }
 
     function updateGalleryUI(suffix) {

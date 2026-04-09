@@ -1,0 +1,1 @@
+ikb-<?php echo e($ikb->id_ikb); ?><?php /**PATH D:\!Kerja\laracok - Copy\storage\framework\views/c510a190e3a5fd210c28404794629766.blade.php ENDPATH**/ ?>

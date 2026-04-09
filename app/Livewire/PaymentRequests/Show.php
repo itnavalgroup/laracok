@@ -654,7 +654,7 @@ class Show extends Component
             return;
         }
 
-        if (!$this->isAdmin() && !$this->isCreator($pr)) {
+        if (!$this->isAdmin() && !$this->isCreator($pr) && !$this->user()->hasPermission('pr.delete')) {
             $this->dispatch('alert', ['type' => 'danger', 'message' => 'Anda tidak memiliki izin menghapus PR ini.']);
             return;
         }
@@ -670,6 +670,13 @@ class Show extends Component
                     if (is_file($f)) unlink($f);
                 }
             }
+
+            \App\Models\PrAttachment::where('id_pr', $pr->id_pr)->delete();
+            \App\Models\PrDetail::where('id_pr', $pr->id_pr)->delete();
+
+            \App\Models\Invoice::where('id_pr', $pr->id_pr)->forceDelete();
+            \App\Models\Payment::where('id_pr', $pr->id_pr)->forceDelete();
+            \App\Models\Sr::where('id_pr', $pr->id_pr)->forceDelete();
 
             $pr->delete();
             DB::commit();

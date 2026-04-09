@@ -101,20 +101,17 @@ class Index extends Component
         $production = Production::findOrFail($id);
         $user = Auth::user();
 
-        abort_if(
-            $user->level !== 1 &&
-                ! ($user->id_user == $production->id_user && $user->hasPermission('production.delete')),
-            403
-        );
+        $canDelete = ($user->level === 1 || $user->hasPermission('production.delete.all')) 
+                    || ($production->status == 0 && ($user->id_user == $production->id_user && $user->hasPermission('production.delete')));
+        
+        abort_if(!$canDelete, 403);
 
         if ($production->status > 0) {
-            $this->dispatch('alert', [
-                'type' => 'danger',
-                'title' => 'Gagal',
-                'message' => 'Production yang sudah diproses tidak dapat dihapus.',
-            ]);
-
-            return;
+            \App\Models\ItemTransaction::whereIn('transaction_code', [
+                $production->production_number,
+                $production->production_number . '-RAW',
+                $production->production_number . '-PROD'
+            ])->delete();
         }
 
         $production->materials()->forceDelete();

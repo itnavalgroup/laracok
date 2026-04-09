@@ -62,6 +62,11 @@ class ItemTransaction extends Model
         return $this->belongsTo(User::class, 'id_user', 'id_user');
     }
 
+    public function docType()
+    {
+        return $this->belongsTo(DocType::class, 'id_doc_type', 'id_doc_type');
+    }
+
     public function company()
     {
         return $this->belongsTo(Company::class, 'id_company', 'id_company');

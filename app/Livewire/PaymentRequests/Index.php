@@ -185,6 +185,9 @@ class Index extends Component
         $pr->attachmentPrs()->delete();
         $pr->signTransactions()->forceDelete();
         $pr->details()->delete();
+        $pr->invoices()->forceDelete();
+        $pr->payments()->forceDelete();
+        $pr->srs()->forceDelete();
         $pr->delete();
 
         $this->dispatch('alert', [

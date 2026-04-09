@@ -110,9 +110,33 @@
                 },
 
                 initForm() {
+                    document.addEventListener('open-production-modal-direct', (e) => {
+                        this.openModal(e.detail || {});
+                    });
+
                     document.addEventListener('livewire:initialized', () => {
-                        Livewire.on('open-production-detail-form-js', (data) => {
-                            this.openModal(data[0] || {});
+                        Livewire.on('open-production-detail-form-js', (passedData) => {
+                            let payload = {};
+                            
+                            let parseArg = (arg) => {
+                                if (!arg) return;
+                                if (Array.isArray(arg)) {
+                                    arg.forEach(a => parseArg(a));
+                                } else if (typeof arg === 'object') {
+                                    if (arg.type) payload.type = arg.type;
+                                    if (arg.detail) payload.detail = arg.detail;
+                                } else if (typeof arg === 'string' && !payload.type) {
+                                    payload.type = arg;
+                                }
+                            };
+                            
+                            if (Array.isArray(passedData)) {
+                                passedData.forEach(p => parseArg(p));
+                            } else {
+                                parseArg(passedData);
+                            }
+                            
+                            this.openModal(payload);
                         });
                     });
 

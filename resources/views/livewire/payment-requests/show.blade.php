@@ -36,7 +36,7 @@
             $status === 1;
 
         $canEdit = ($isAdmin || $isOwner || $user->hasPermission('pr.edit')) && in_array($status, [0, null, 12]);
-        $canDelete = ($isAdmin || $isOwner) && in_array($status, [0, null, 13]);
+        $canDelete = ($isAdmin || $isOwner || $user->hasPermission('pr.delete')) && in_array($status, [0, null, 13]);
 
         $canApprove = $this->canUserApproveCurrentStep();
         $canCancelApprove = $this->canUserCancelApproval();
@@ -188,8 +188,13 @@
                                 </button>
                             @endif
                             @if ($canDelete)
-                                <button class="btn btn-danger btn-sm" wire:click="deletePr"
-                                    onclick="return confirm('Hapus Data?')"
+                                <button type="button" class="btn btn-danger btn-sm"
+                                    onclick="showConfirm({
+                                        title: 'Hapus PR',
+                                        message: 'Apakah Anda yakin ingin menghapus PR ini? Tindakan ini tidak dapat dibatalkan.',
+                                        type: 'danger',
+                                        onConfirm: () => @this.deletePr()
+                                    })"
                                     data-html2canvas-ignore="true">Delete</button>
                             @endif
                         </div>
