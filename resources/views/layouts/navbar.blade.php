@@ -222,6 +222,14 @@
                     </a>
                 </li>
                 @endif
+                @if(auth()->user()->level === 1 || auth()->user()->hasPermission('production.view.all') || auth()->user()->hasPermission('production.view.warehouse') || auth()->user()->hasPermission('production.view.dept') || auth()->user()->hasPermission('production.view.own') || auth()->user()->hasPermission('production.create'))
+                <li class="pc-item">
+                    <a href="{{ route('production.index') }}" class="pc-link">
+                        <span class="pc-micon"><i class="ti ti-tools"></i></span>
+                        <span class="pc-mtext">Production</span>
+                    </a>
+                </li>
+                @endif
                 <li class="pc-item pc-caption">
                     <label>Panduan</label>
                     <i class="ti ti-book"></i>

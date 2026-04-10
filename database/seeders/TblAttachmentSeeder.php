@@ -4,48 +4,298 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblAttachmentSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_attachment` (`id_attachment`, `id_departement`, `id_user`, `attachment`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(38, 0, 1, 'Original Invoice', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(39, 0, 1, 'Faktur Pajak', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(40, 0, 1, 'Kwitansi', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(41, 0, 1, 'Surat Jalan / DO', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(42, 0, 1, 'Purchase Order / SPK', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(43, 0, 1, 'Penerimaan Barang', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(44, 0, 1, 'Contract', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(45, 0, 1, 'Inspection Letter', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(46, 0, 1, 'Supporting Documents', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(47, 0, 1, 'Timbangan', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(48, 0, 1, 'PI', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(49, 0, 1, 'KTP', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(50, 0, 1, 'NPWP', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(51, 0, 1, 'Packing List', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(52, 0, 1, 'GOV.FEE', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(53, 0, 1, 'COO', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(54, 0, 1, 'COA', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(55, 0, 1, 'BL', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(56, 0, 1, 'ASURANSI', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(57, 0, 1, 'SKT', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(58, 0, 1, 'SPPKP', '2025-11-23 02:08:49', '2025-11-29 09:28:02', NULL),
-(59, 0, 1, 'EKP', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(60, 0, 1, 'LOG', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(61, 0, 1, 'SKB', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(62, 0, 1, 'TRUCKING', '2025-11-23 02:08:49', '2025-11-23 02:08:49', NULL),
-(63, 0, 1, 'Nota', '2025-11-23 02:09:42', '2025-11-29 09:27:52', NULL),
-(64, 9, 38, 'Invoice dan Faktur Pajak', '2025-12-16 20:55:38', '2025-12-16 20:55:38', NULL),
-(65, 7, 53, 'MEMO INTERNAL', '2026-01-07 18:44:41', '2026-01-07 18:44:41', NULL),
-(66, 6, 52, 'Perjanjian Kerja Sama', '2026-01-08 02:26:48', '2026-01-08 02:26:48', NULL),
-(67, 7, 53, 'LAPORAN', '2026-01-22 18:40:25', '2026-01-22 18:40:25', NULL),
-(68, 7, 53, 'FORMULIR', '2026-02-02 18:37:29', '2026-02-02 18:37:29', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_attachment')->truncate();
+
+        $data = [
+            [
+                'id_attachment' => 38,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Original Invoice',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 39,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Faktur Pajak',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 40,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Kwitansi',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 41,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Surat Jalan / DO',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 42,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Purchase Order / SPK',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 43,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Penerimaan Barang',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 44,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Contract',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 45,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Inspection Letter',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 46,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Supporting Documents',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 47,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Timbangan',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 48,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'PI',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 49,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'KTP',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 50,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'NPWP',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 51,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Packing List',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 52,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'GOV.FEE',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 53,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'COO',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 54,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'COA',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 55,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'BL',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 56,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'ASURANSI',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 57,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'SKT',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 58,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'SPPKP',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-29 09:28:02',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 59,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'EKP',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 60,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'LOG',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 61,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'SKB',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 62,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'TRUCKING',
+                'created_at' => '2025-11-23 02:08:49',
+                'updated_at' => '2025-11-23 02:08:49',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 63,
+                'id_departement' => 0,
+                'id_user' => 1,
+                'attachment' => 'Nota',
+                'created_at' => '2025-11-23 02:09:42',
+                'updated_at' => '2025-11-29 09:27:52',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 64,
+                'id_departement' => 9,
+                'id_user' => 38,
+                'attachment' => 'Invoice dan Faktur Pajak',
+                'created_at' => '2025-12-16 20:55:38',
+                'updated_at' => '2025-12-16 20:55:38',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 65,
+                'id_departement' => 7,
+                'id_user' => 53,
+                'attachment' => 'MEMO INTERNAL',
+                'created_at' => '2026-01-07 18:44:41',
+                'updated_at' => '2026-01-07 18:44:41',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 66,
+                'id_departement' => 6,
+                'id_user' => 52,
+                'attachment' => 'Perjanjian Kerja Sama',
+                'created_at' => '2026-01-08 02:26:48',
+                'updated_at' => '2026-01-08 02:26:48',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 67,
+                'id_departement' => 7,
+                'id_user' => 53,
+                'attachment' => 'LAPORAN',
+                'created_at' => '2026-01-22 18:40:25',
+                'updated_at' => '2026-01-22 18:40:25',
+                'deleted_at' => null
+            ],
+            [
+                'id_attachment' => 68,
+                'id_departement' => 7,
+                'id_user' => 53,
+                'attachment' => 'FORMULIR',
+                'created_at' => '2026-02-02 18:37:29',
+                'updated_at' => '2026-02-02 18:37:29',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_attachment')->insert($chunk);
+        }
     }
 }

@@ -1,0 +1,1 @@
+currency-{{ $c->id_currency }}

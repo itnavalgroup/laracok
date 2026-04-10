@@ -238,6 +238,36 @@ Route::middleware('auth')->group(function () {
     });
 
     // =========================================================================
+    // PRODUCTION ROUTES
+    // =========================================================================
+    Route::prefix('production')->name('production.')->group(function () {
+        Route::get('/', \App\Livewire\Production\Index::class)->name('index');
+        
+        // DOWNLOAD / PRINT
+        Route::get('/{hash}/download', function ($hash) {
+            $id = hashid_decode($hash, 'production');
+            if (!$id) abort(404);
+            
+            $production = \App\Models\Production::with([
+                'user', 'warehouse', 'departement', 'company',
+                'materials.item.category', 'materials.uom', 
+                'results.item.category', 'results.uom',
+                'processedBy', 'finishedBy', 'canceledBy', 'attachments'
+            ])->findOrFail($id);
+            
+            return view('production.print', compact('production'));
+        })->name('download');
+
+        // SHOW
+        Route::get('/{hash}', \App\Livewire\Production\Show::class)->name('show');
+        
+        // ATTACHMENT
+        Route::post('/{hash}/attachment/store', [\App\Http\Controllers\ProductionAttachmentController::class, 'store'])->name('attachment.store');
+        Route::post('/attachment/{hash}/update', [\App\Http\Controllers\ProductionAttachmentController::class, 'update'])->name('attachment.update');
+        Route::get('/attachment/{hash}/delete', [\App\Http\Controllers\ProductionAttachmentController::class, 'destroy'])->name('attachment.delete');
+    });
+
+    // =========================================================================
     // JSON API routes untuk form dynamic
     // =========================================================================
     Route::get('/api/vendors/{id}/details', function ($id) {

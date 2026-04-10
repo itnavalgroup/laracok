@@ -41,6 +41,11 @@ class Show extends Component
 
     public function render()
     {
-        return view('livewire.item-transactions.show')->layout('layouts.app');
+        $baseTransactionCode = preg_replace('/-(RAW|PROD)$/', '', $this->transaction->transaction_code);
+        $relatedProduction = \App\Models\Production::where('production_number', $baseTransactionCode)->first();
+
+        return view('livewire.item-transactions.show', [
+            'relatedProduction' => $relatedProduction,
+        ])->layout('layouts.app');
     }
 }

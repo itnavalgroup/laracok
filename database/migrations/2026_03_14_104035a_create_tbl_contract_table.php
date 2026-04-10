@@ -17,10 +17,10 @@ return new class extends Migration
             $table->bigInteger('id_user')->unsigned()->index();
             $table->bigInteger('id_company')->unsigned()->index();
             $table->bigInteger('id_departement')->unsigned()->index();
-            $table->bigInteger('id_attachment')->unsigned()->index();
+            $table->bigInteger('id_attachment')->unsigned()->index()->nullable();
             $table->string('contract_number', 100)->unique()->index();
             $table->text('description');
-            $table->string('file_name', 255);
+            $table->string('file_name', 255)->nullable();
             $table->date('start_date');
             $table->date('end_date');
             $table->timestamps();

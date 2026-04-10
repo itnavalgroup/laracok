@@ -1,0 +1,1 @@
+doc-type-{{ $dt->id_doc_type }}

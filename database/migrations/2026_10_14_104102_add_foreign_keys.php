@@ -2318,6 +2318,69 @@ return new class extends Migration
                 $table->foreign('id_user')->references('id_user')->on('tbl_user')->onDelete('restrict');
             }
         });
+
+        Schema::table('tbl_productions', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_productions'));
+            $fks = [
+                ['id_user', 'id_user', 'tbl_user'],
+                ['id_warehouse', 'id_warehouse', 'tbl_warehouse'],
+                ['id_departement', 'id_departement', 'tbl_departement'],
+                ['id_company', 'id_company', 'tbl_company'],
+                ['processed_by', 'id_user', 'tbl_user'],
+                ['finished_by', 'id_user', 'tbl_user'],
+                ['canceled_by', 'id_user', 'tbl_user'],
+            ];
+            foreach ($fks as $fk_data) {
+                $exists = false;
+                foreach ($foreignKeys as $columns) {
+                    if (in_array($fk_data[0], $columns)) { $exists = true; break; }
+                }
+                if (!$exists) {
+                    $table->foreign($fk_data[0])->references($fk_data[1])->on($fk_data[2])->onDelete('restrict');
+                }
+            }
+        });
+
+        $matResFks = [
+            ['id_production', 'id_production', 'tbl_productions'],
+            ['id_item', 'id_item', 'tbl_items'],
+            ['id_item_category', 'id_item_category', 'tbl_item_categories'],
+            ['id_uom', 'id_uom', 'tbl_uoms'],
+            ['id_packaging', 'id_packaging', 'tbl_packagings'],
+        ];
+
+        foreach (['tbl_production_materials', 'tbl_production_results'] as $t) {
+            Schema::table($t, function (Blueprint $table) use ($matResFks, $t) {
+                $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys($t));
+                foreach ($matResFks as $fk_data) {
+                    $exists = false;
+                    foreach ($foreignKeys as $columns) {
+                        if (in_array($fk_data[0], $columns)) { $exists = true; break; }
+                    }
+                    if (!$exists) {
+                        $table->foreign($fk_data[0])->references($fk_data[1])->on($fk_data[2])->onDelete('restrict');
+                    }
+                }
+            });
+        }
+
+        Schema::table('tbl_production_attachments', function (Blueprint $table) {
+            $foreignKeys = array_map(function($fk) { return $fk['columns']; }, Schema::getForeignKeys('tbl_production_attachments'));
+            $fks = [
+                ['id_production', 'id_production', 'tbl_productions'],
+                ['id_attachment', 'id_attachment', 'tbl_attachment'],
+                ['id_user', 'id_user', 'tbl_user'],
+            ];
+            foreach ($fks as $fk_data) {
+                $exists = false;
+                foreach ($foreignKeys as $columns) {
+                    if (in_array($fk_data[0], $columns)) { $exists = true; break; }
+                }
+                if (!$exists) {
+                    $table->foreign($fk_data[0])->references($fk_data[1])->on($fk_data[2])->onDelete('restrict');
+                }
+            }
+        });
     }
 
     public function down(): void
@@ -4386,6 +4449,28 @@ return new class extends Migration
                 $table->dropForeign(['id_user']);
             }
         });
+
+        $tables = [
+            'tbl_productions' => ['id_user', 'id_warehouse', 'id_departement', 'id_company', 'processed_by', 'finished_by', 'canceled_by', 'id_requestor'],
+            'tbl_production_materials' => ['id_production', 'id_item', 'id_item_category', 'id_uom', 'id_packaging'],
+            'tbl_production_results' => ['id_production', 'id_item', 'id_item_category', 'id_uom', 'id_packaging'],
+            'tbl_production_attachments' => ['id_production', 'id_attachment', 'id_user'],
+        ];
+
+        foreach ($tables as $t => $cols) {
+            Schema::table($t, function (Blueprint $table) use ($t, $cols) {
+                $sm = Schema::getConnection()->getDoctrineSchemaManager();
+                $foreignKeys = $sm->listTableForeignKeys($t);
+                foreach ($cols as $c) {
+                    $exists = collect($foreignKeys)->contains(function ($fk) use ($c) {
+                        return in_array($c, $fk->getLocalColumns());
+                    });
+                    if ($exists) {
+                        $table->dropForeign([$c]);
+                    }
+                }
+            });
+        }
     }
 
 };

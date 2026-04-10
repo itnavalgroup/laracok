@@ -21,10 +21,19 @@
                 </div>
                 <div class="card-body p-4 p-md-5">
                     <!-- Transaction Header -->
-                    <div class="user-profile-header mb-5">
-                        <h6 class="text-white-50 mb-1">TRANSACTION CODE</h6>
-                        <h3 class="mb-0 fw-bold">{{ $transaction->transaction_code }}</h3>
-                        <p class="mb-0 mt-1 small opacity-75">Date: {{ \Carbon\Carbon::parse($transaction->transaction_date)->format('d M Y H:i') }} | Created by: {{ $transaction->user->name ?? '-' }}</p>
+                    <div class="user-profile-header mb-5 d-flex justify-content-between align-items-center">
+                        <div>
+                            <h6 class="text-white-50 mb-1">TRANSACTION CODE</h6>
+                            <h3 class="mb-0 fw-bold">{{ $transaction->transaction_code }}</h3>
+                            <p class="mb-0 mt-1 small opacity-75">Date: {{ \Carbon\Carbon::parse($transaction->transaction_date)->format('d M Y H:i') }} | Created by: {{ $transaction->user->name ?? '-' }}</p>
+                        </div>
+                        @if($relatedProduction)
+                        <div>
+                            <a href="{{ route('production.show', hashid_encode($relatedProduction->id_production, 'production')) }}" class="btn btn-primary rounded-pill px-4">
+                                <i class="ti ti-link me-1"></i> View Production
+                            </a>
+                        </div>
+                        @endif
                     </div>
 
                     <!-- Item Information -->
@@ -180,6 +189,28 @@
                             </div>
                             @endif
                         </div>
+                        @elseif(isset($relatedProduction) && $relatedProduction->attachments->count() > 0)
+                            <div class="row g-3 mt-3">
+                                <div class="col-12 mb-1">
+                                    <span class="badge bg-primary-subtle text-primary border border-primary-subtle">Diambil dari Ref. Dokumen Production</span>
+                                </div>
+                                @foreach($relatedProduction->attachments as $file)
+                                    @php
+                                        $filePath = asset('assets/attachmentproduction/' . $file->filename);
+                                    @endphp
+                                    <div class="col-md-3">
+                                        <div class="card border shadow-sm bg-light-subtle rounded-3 p-3 text-center h-100">
+                                            <i class="ti ti-file-text fs-2 text-primary mb-2"></i>
+                                            <h6 class="fw-bold mb-1 small text-truncate" title="{{ $file->filename }}">{{ $file->filename }}</h6>
+                                            <div class="mt-auto pt-2">
+                                                <a href="{{ $filePath }}" target="_blank" class="btn btn-sm btn-primary rounded-pill w-100 btn-hover-effect">
+                                                    <i class="ti ti-external-link me-1"></i> Buka
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
                         @else
                         <div class="text-center py-4 bg-light-subtle rounded-3 mb-3 border border-dashed opacity-75">
                             <i class="ti ti-info-circle fs-3 text-muted mb-2"></i>

@@ -1,0 +1,1 @@
+[{"query":"select * from `tbl_pr` where `tbl_pr`.`id_pr` = ? limit 1","bindings":[1228],"time":10.98},{"query":"delete from `tbl_attachment_pr` where `tbl_attachment_pr`.`id_pr` = ? and `tbl_attachment_pr`.`id_pr` is not null","bindings":[1228],"time":3.26}]

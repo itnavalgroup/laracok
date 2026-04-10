@@ -1,0 +1,1 @@
+position-{{ $p->id_position }}

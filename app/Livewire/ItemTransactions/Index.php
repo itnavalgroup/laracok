@@ -308,7 +308,12 @@ class Index extends Component
     {
         // Strictly block editing/deleting of IKB-generated transactions
         if (str_starts_with($transaction->transaction_code, 'IKB-')) {
-            abort(403, "Transaksi yang dihasilkan dari IKB tidak dapat diubah atau dihapus secara manual.");
+            abort(403, "Transaksi yang dihasilkan dari modul IKB tidak dapat diubah atau dihapus secara manual dari Inventory.");
+        }
+
+        // Strictly block editing/deleting of Production-generated transactions
+        if (str_starts_with($transaction->transaction_code, 'PROD/')) {
+            abort(403, "Transaksi dari modul Production tidak dapat dihapus/diubah secara manual. Silakan proses via Cancel/Edit Production.");
         }
 
         $user = Auth::user();
@@ -822,7 +827,7 @@ class Index extends Component
             }
         }
 
-        $transactions = $query->orderBy('transaction_date', 'desc')->paginate($this->perPage);
+        $transactions = $query->orderBy('transaction_date', 'desc')->orderBy('id_item_transaction', 'desc')->paginate($this->perPage);
 
         // Pre-fetch IKB mapping to avoid N+1 and handle permissions
         $ikbMap = [];
@@ -862,6 +867,32 @@ class Index extends Component
                 $ikbMap[$ikb->ikb_number] = [
                     'hashid' => hashid_encode($ikb->id_ikb, 'ikb'),
                     'can_show' => $hasItDetail && $canViewIkb
+                ];
+            }
+        }
+
+        $prodMap = [];
+        $prodNumbers = [];
+        foreach ($transactions as $trx) {
+            if (str_starts_with($trx->transaction_code, 'PROD/')) {
+                $prodNumber = preg_replace('/-(RAW|PROD)$/', '', $trx->transaction_code);
+                $prodNumbers[] = $prodNumber;
+            }
+        }
+
+        if (!empty($prodNumbers)) {
+            $prods = \App\Models\Production::whereIn('production_number', array_unique($prodNumbers))->get();
+
+            foreach ($prods as $prod) {
+                $canViewProd = $user->level === 1
+                    || $user->id_user == $prod->id_user
+                    || $user->hasPermission('production.view.all')
+                    || ($user->hasPermission('production.view.dept') && $user->id_departement == $prod->id_departement)
+                    || ($user->hasPermission('production.view.warehouse') && $user->id_warehouse == $prod->id_warehouse);
+
+                $prodMap[$prod->production_number] = [
+                    'hashid' => hashid_encode($prod->id_production, 'production'),
+                    'can_show' => $canViewProd
                 ];
             }
         }
@@ -965,6 +996,7 @@ class Index extends Component
         return view('livewire.item-transactions.index', [
             'transactions' => $transactions,
             'ikbMap' => $ikbMap,
+            'prodMap' => $prodMap,
             'categories' => $categories,
             'warehouses' => $warehouses,
             'companies' => $companies,

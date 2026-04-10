@@ -4,21 +4,100 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblPackagingsSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_packagings` (`id_packaging`, `id_user`, `id_departement`, `packaging`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 1, 'Test', '2026-02-25 07:32:01', '2026-02-25 07:32:07', '2026-02-25 00:32:07'),
-(2, 1, 1, 'Karung', '2026-02-25 21:28:46', '2026-02-25 21:28:46', NULL),
-(3, 1, 1, 'IBC', '2026-02-25 21:28:58', '2026-02-25 21:28:58', NULL),
-(4, 1, 1, 'UNKNOWN', '2026-03-25 20:43:19', '2026-03-25 20:43:19', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_packagings')->truncate();
+
+        $data = [
+            [
+                'id_packaging' => 1,
+                'id_user' => 1,
+                'id_departement' => 1,
+                'packaging' => 'Test',
+                'created_at' => '2026-02-25 07:32:01',
+                'updated_at' => '2026-02-25 07:32:07',
+                'deleted_at' => '2026-02-25 00:32:07'
+            ],
+            [
+                'id_packaging' => 2,
+                'id_user' => 1,
+                'id_departement' => 1,
+                'packaging' => 'Karung',
+                'created_at' => '2026-02-25 21:28:46',
+                'updated_at' => '2026-02-25 21:28:46',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 3,
+                'id_user' => 1,
+                'id_departement' => 1,
+                'packaging' => 'IBC',
+                'created_at' => '2026-02-25 21:28:58',
+                'updated_at' => '2026-02-25 21:28:58',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 4,
+                'id_user' => 1,
+                'id_departement' => 1,
+                'packaging' => 'UNKNOWN',
+                'created_at' => '2026-03-25 20:43:19',
+                'updated_at' => '2026-03-25 20:43:19',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 5,
+                'id_user' => 39,
+                'id_departement' => 9,
+                'packaging' => 'DRY CONTAINER',
+                'created_at' => '2026-03-29 21:53:48',
+                'updated_at' => '2026-03-29 21:53:48',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 6,
+                'id_user' => 39,
+                'id_departement' => 9,
+                'packaging' => 'ISOTANK',
+                'created_at' => '2026-03-29 22:05:30',
+                'updated_at' => '2026-03-29 22:05:30',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 7,
+                'id_user' => 40,
+                'id_departement' => 8,
+                'packaging' => 'DRUM',
+                'created_at' => '2026-03-30 02:10:14',
+                'updated_at' => '2026-03-30 02:10:14',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 8,
+                'id_user' => 39,
+                'id_departement' => 9,
+                'packaging' => 'WING BOX',
+                'created_at' => '2026-03-30 20:51:55',
+                'updated_at' => '2026-03-30 20:51:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_packaging' => 9,
+                'id_user' => 1,
+                'id_departement' => 1,
+                'packaging' => 'Bottle',
+                'created_at' => '2026-04-07 21:39:07',
+                'updated_at' => '2026-04-07 21:39:07',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_packagings')->insert($chunk);
+        }
     }
 }

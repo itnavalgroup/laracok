@@ -30,7 +30,7 @@ return new class extends Migration
             $table->integer('number');
             $table->text('subject')->nullable();
             $table->string('no_invoice', '255')->nullable();
-            $table->string('pr_number', '255');
+            $table->string('pr_number', '255')->nullable();
             $table->decimal('additional_discount', 20, 4)->nullable();
             $table->string('nama_bank', '255')->nullable();
             $table->string('nama_penerima', '255')->nullable();
@@ -39,8 +39,8 @@ return new class extends Migration
             $table->integer('status')->nullable();
             $table->integer('payment_type_pr')->nullable();
             $table->string('po_number', '255')->nullable();
-            $table->integer('payment_method');
-            $table->dateTime('payment_due_date');
+            $table->integer('payment_method')->nullable();
+            $table->dateTime('payment_due_date')->nullable();
             $table->dateTime('est_settlement_date')->nullable();
             $table->timestamps();
             $table->softDeletes();

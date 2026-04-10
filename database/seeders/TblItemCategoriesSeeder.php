@@ -4,40 +4,249 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblItemCategoriesSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_item_categories` (`id_item_category`, `id_user`, `item_category_code`, `item_category`, `is_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'ALP.000', 'ALPHAPINENE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(2, 1, 'CIN.000', 'CINEOL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(3, 1, 'CSF.000', 'CAUSTIC SODA FLAKE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(4, 1, 'DNL.000', 'DAUN NILAM', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(5, 1, 'DPT.000', 'DEPENTENE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(6, 1, 'FAC.000', 'FUMARIC ACID TECH GRADE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(7, 1, 'IAS.000', 'PINE OIL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(8, 1, 'ICO.000', 'COPAL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(9, 1, 'IDA.000', 'DAMAR', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(10, 1, 'IDB.000', 'DAMAR BATU', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(11, 1, 'IDE.000', 'TERPENIOL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(12, 1, 'IGE.000', 'OLEO PINE RESIN', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(13, 1, 'IKI.000', 'PARAFIN', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(14, 1, 'ILB.000', 'LIMBAH', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(15, 1, 'IRO.000', 'GUM ROSIN', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(16, 1, 'ITU.000', 'TURPENTINE OIL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(17, 1, 'LHM.000', 'LITHIUM HYDROXIDE MONOHYDRATE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(18, 1, 'MEL.000', 'MELAMINE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(19, 1, 'SAC.000', 'STEARIC ACID', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(20, 1, 'SOL.000', 'SEREH OIL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(21, 1, 'STP.000', 'SODIUM TRIPOLYPHOSPHATE', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(22, 1, 'WOL.000', 'WHITE OIL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL),
-(23, 1, 'IPA.000', 'RAW MATERIAL', 1, '2026-03-25 17:17:01', '2026-03-25 17:17:01', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_item_categories')->truncate();
+
+        $data = [
+            [
+                'id_item_category' => 1,
+                'id_user' => 1,
+                'item_category_code' => 'ALP.000',
+                'item_category' => 'ALPHAPINENE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 2,
+                'id_user' => 1,
+                'item_category_code' => 'CIN.000',
+                'item_category' => 'CINEOL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 3,
+                'id_user' => 1,
+                'item_category_code' => 'CSF.000',
+                'item_category' => 'CAUSTIC SODA FLAKE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 4,
+                'id_user' => 1,
+                'item_category_code' => 'DNL.000',
+                'item_category' => 'DAUN NILAM',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 5,
+                'id_user' => 1,
+                'item_category_code' => 'DPT.000',
+                'item_category' => 'DEPENTENE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 6,
+                'id_user' => 1,
+                'item_category_code' => 'FAC.000',
+                'item_category' => 'FUMARIC ACID TECH GRADE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 7,
+                'id_user' => 1,
+                'item_category_code' => 'IAS.000',
+                'item_category' => 'PINE OIL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 8,
+                'id_user' => 1,
+                'item_category_code' => 'ICO.000',
+                'item_category' => 'COPAL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 9,
+                'id_user' => 1,
+                'item_category_code' => 'IDA.000',
+                'item_category' => 'DAMAR',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 10,
+                'id_user' => 1,
+                'item_category_code' => 'IDB.000',
+                'item_category' => 'DAMAR BATU',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 11,
+                'id_user' => 47,
+                'item_category_code' => 'IDE.000',
+                'item_category' => 'TERPINEOL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-04-02 01:48:33',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 12,
+                'id_user' => 1,
+                'item_category_code' => 'IGE.000',
+                'item_category' => 'OLEO PINE RESIN',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 13,
+                'id_user' => 1,
+                'item_category_code' => 'IKI.000',
+                'item_category' => 'PARAFIN',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 14,
+                'id_user' => 1,
+                'item_category_code' => 'ILB.000',
+                'item_category' => 'LIMBAH',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 15,
+                'id_user' => 1,
+                'item_category_code' => 'IRO.000',
+                'item_category' => 'GUM ROSIN',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 16,
+                'id_user' => 1,
+                'item_category_code' => 'ITU.000',
+                'item_category' => 'TURPENTINE OIL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 17,
+                'id_user' => 1,
+                'item_category_code' => 'LHM.000',
+                'item_category' => 'LITHIUM HYDROXIDE MONOHYDRATE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 18,
+                'id_user' => 1,
+                'item_category_code' => 'MEL.000',
+                'item_category' => 'MELAMINE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 19,
+                'id_user' => 1,
+                'item_category_code' => 'SAC.000',
+                'item_category' => 'STEARIC ACID',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 20,
+                'id_user' => 1,
+                'item_category_code' => 'SOL.000',
+                'item_category' => 'SEREH OIL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 21,
+                'id_user' => 1,
+                'item_category_code' => 'STP.000',
+                'item_category' => 'SODIUM TRIPOLYPHOSPHATE',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 22,
+                'id_user' => 1,
+                'item_category_code' => 'WOL.000',
+                'item_category' => 'WHITE OIL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ],
+            [
+                'id_item_category' => 23,
+                'id_user' => 1,
+                'item_category_code' => 'IPA.000',
+                'item_category' => 'RAW MATERIAL',
+                'is_active' => 1,
+                'created_at' => '2026-03-25 17:17:01',
+                'updated_at' => '2026-03-25 17:17:01',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_item_categories')->insert($chunk);
+        }
     }
 }

@@ -540,7 +540,7 @@
 
                                     // Edit logic
                                     $canEdit = false;
-                                    if (!str_starts_with($trx->transaction_code, 'IKB-')) {
+                                    if (!str_starts_with($trx->transaction_code, 'IKB-') && !str_starts_with($trx->transaction_code, 'PROD/')) {
                                     if ($user->level === 1 || $user->hasPermission('item_transaction.edit.all')) {
                                     $canEdit = true;
                                     } elseif ($user->hasPermission('item_transaction.edit')) {
@@ -552,7 +552,7 @@
 
                                     // Delete logic
                                     $canDelete = false;
-                                    if (!str_starts_with($trx->transaction_code, 'IKB-')) {
+                                    if (!str_starts_with($trx->transaction_code, 'IKB-') && !str_starts_with($trx->transaction_code, 'PROD/')) {
                                     if ($user->level === 1 || $user->hasPermission('item_transaction.delete.all')) {
                                     $canDelete = true;
                                     } elseif ($user->hasPermission('item_transaction.delete')) {
@@ -565,26 +565,39 @@
                                     // View logic
                                     $canView = false;
                                     $ikbHash = null;
+                                    $prodHash = null;
+                                    
                                     if (str_starts_with($trx->transaction_code, 'IKB-')) {
-                                    // Specific logic for IKB: parse number and check permissions via ikbMap
-                                    if (preg_match('/^IKB-(.+)-(\d+)$/', $trx->transaction_code, $matches)) {
-                                    $num = $matches[1];
-                                    if (isset($ikbMap[$num]) && $ikbMap[$num]['can_show']) {
-                                    $canView = true;
-                                    $ikbHash = $ikbMap[$num]['hashid'];
-                                    }
-                                    }
+                                        // Specific logic for IKB: parse number and check permissions via ikbMap
+                                        if (preg_match('/^IKB-(.+)-(\d+)$/', $trx->transaction_code, $matches)) {
+                                            $num = $matches[1];
+                                            if (isset($ikbMap[$num]) && $ikbMap[$num]['can_show']) {
+                                                $canView = true;
+                                                $ikbHash = $ikbMap[$num]['hashid'];
+                                            }
+                                        }
+                                    } elseif (str_starts_with($trx->transaction_code, 'PROD/')) {
+                                        // Specific logic for Production
+                                        $prodNumber = preg_replace('/-(RAW|PROD)$/', '', $trx->transaction_code);
+                                        if (isset($prodMap[$prodNumber]) && $prodMap[$prodNumber]['can_show']) {
+                                            $canView = true;
+                                            $prodHash = $prodMap[$prodNumber]['hashid'];
+                                        }
                                     } else {
-                                    // Standard transaction view permission
-                                    if ($user->level === 1 || $user->hasPermission('item_transaction.detail')) {
-                                    $canView = true;
-                                    }
+                                        // Standard transaction view permission
+                                        if ($user->level === 1 || $user->hasPermission('item_transaction.detail')) {
+                                            $canView = true;
+                                        }
                                     }
                                     @endphp
 
                                     @if($canView)
                                     @if($ikbHash)
                                     <a href="{{ route('ikb.show', $ikbHash) }}" class="btn btn-icon bg-light-info rounded-circle" title="View IKB Detail">
+                                        <i class="ti ti-eye fs-5"></i>
+                                    </a>
+                                    @elseif($prodHash)
+                                    <a href="{{ route('production.show', $prodHash) }}" class="btn btn-icon bg-light-info rounded-circle" title="View Production Detail">
                                         <i class="ti ti-eye fs-5"></i>
                                     </a>
                                     @else

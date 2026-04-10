@@ -4,203 +4,1693 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblCurrencySeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_currency` (`id_currency`, `country`, `code`, `symbol`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 'Afghanistan', 'AFN', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(2, 'Albania', 'ALL', 'L', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(3, 'Algeria', 'DZD', '??', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(4, 'Andorra', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(5, 'Angola', 'AOA', 'Kz', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(6, 'Antigua and Barbuda', 'XCD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(7, 'Argentina', 'ARS', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(8, 'Armenia', 'AMD', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(9, 'Australia', 'AUD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(10, 'Austria', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(11, 'Azerbaijan', 'AZN', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(12, 'Bahamas', 'BSD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(13, 'Bahrain', 'BHD', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(14, 'Bangladesh', 'BDT', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(15, 'Barbados', 'BBD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(16, 'Belarus', 'BYN', 'Br', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(17, 'Belgium', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(18, 'Belize', 'BZD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(19, 'Benin', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(20, 'Bhutan', 'BTN', 'Nu', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(21, 'Bolivia', 'BOB', 'Bs', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(22, 'Bosnia and Herzegovina', 'BAM', 'KM', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(23, 'Botswana', 'BWP', 'P', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(24, 'Brazil', 'BRL', 'R$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(25, 'Brunei', 'BND', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(26, 'Bulgaria', 'BGN', '??', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(27, 'Burkina Faso', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(28, 'Burundi', 'BIF', 'Fr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(29, 'Cambodia', 'KHR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(30, 'Cameroon', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(31, 'Canada', 'CAD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(32, 'Cape Verde', 'CVE', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(33, 'Central African Republic', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(34, 'Chad', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(35, 'Chile', 'CLP', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(36, 'China', 'CNY', '¥', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(37, 'Colombia', 'COP', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(38, 'Comoros', 'KMF', 'Fr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(39, 'Congo', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(40, 'Costa Rica', 'CRC', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(41, 'Croatia', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(42, 'Cuba', 'CUP', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(43, 'Cyprus', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(44, 'Czech Republic', 'CZK', 'K?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(45, 'Denmark', 'DKK', 'kr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(46, 'Djibouti', 'DJF', 'Fr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(47, 'Dominica', 'XCD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(48, 'Dominican Republic', 'DOP', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(49, 'Ecuador', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(50, 'Egypt', 'EGP', '£', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(51, 'El Salvador', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(52, 'Equatorial Guinea', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(53, 'Eritrea', 'ERN', 'Nfk', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(54, 'Estonia', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(55, 'Eswatini', 'SZL', 'L', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(56, 'Ethiopia', 'ETB', 'Br', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(57, 'Fiji', 'FJD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(58, 'Finland', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(59, 'France', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(60, 'Gabon', 'XAF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(61, 'Gambia', 'GMD', 'D', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(62, 'Georgia', 'GEL', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(63, 'Germany', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(64, 'Ghana', 'GHS', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(65, 'Greece', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(66, 'Grenada', 'XCD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(67, 'Guatemala', 'GTQ', 'Q', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(68, 'Guinea', 'GNF', 'Fr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(69, 'Guinea-Bissau', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(70, 'Guyana', 'GYD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(71, 'Haiti', 'HTG', 'G', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(72, 'Honduras', 'HNL', 'L', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(73, 'Hungary', 'HUF', 'Ft', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(74, 'Iceland', 'ISK', 'kr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(75, 'India', 'INR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(76, 'Indonesia', 'IDR', 'Rp', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(77, 'Iran', 'IRR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(78, 'Iraq', 'IQD', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(79, 'Ireland', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(80, 'Israel', 'ILS', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(81, 'Italy', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(82, 'Jamaica', 'JMD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(83, 'Japan', 'JPY', '¥', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(84, 'Jordan', 'JOD', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(85, 'Kazakhstan', 'KZT', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(86, 'Kenya', 'KES', 'Sh', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(87, 'Kiribati', 'AUD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(88, 'Kuwait', 'KWD', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(89, 'Kyrgyzstan', 'KGS', '???', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(90, 'Laos', 'LAK', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(91, 'Latvia', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(92, 'Lebanon', 'LBP', '£', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(93, 'Lesotho', 'LSL', 'L', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(94, 'Liberia', 'LRD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(95, 'Libya', 'LYD', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(96, 'Liechtenstein', 'CHF', 'CHF', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(97, 'Lithuania', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(98, 'Luxembourg', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(99, 'Madagascar', 'MGA', 'Ar', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(100, 'Malawi', 'MWK', 'MK', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(101, 'Malaysia', 'MYR', 'RM', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(102, 'Maldives', 'MVR', 'Rf', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(103, 'Mali', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(104, 'Malta', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(105, 'Marshall Islands', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(106, 'Mauritania', 'MRU', 'UM', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(107, 'Mauritius', 'MUR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(108, 'Mexico', 'MXN', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(109, 'Micronesia', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(110, 'Moldova', 'MDL', 'L', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(111, 'Monaco', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(112, 'Mongolia', 'MNT', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(113, 'Montenegro', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(114, 'Morocco', 'MAD', '?.?.', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(115, 'Mozambique', 'MZN', 'MT', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(116, 'Myanmar', 'MMK', 'K', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(117, 'Namibia', 'NAD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(118, 'Nauru', 'AUD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(119, 'Nepal', 'NPR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(120, 'Netherlands', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(121, 'New Zealand', 'NZD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(122, 'Nicaragua', 'NIO', 'C$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(123, 'Niger', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(124, 'Nigeria', 'NGN', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(125, 'North Macedonia', 'MKD', '???', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(126, 'Norway', 'NOK', 'kr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(127, 'Oman', 'OMR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(128, 'Pakistan', 'PKR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(129, 'Palau', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(130, 'Panama', 'PAB', 'B/.', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(131, 'Papua New Guinea', 'PGK', 'K', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(132, 'Paraguay', 'PYG', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(133, 'Peru', 'PEN', 'S/', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(134, 'Philippines', 'PHP', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(135, 'Poland', 'PLN', 'z?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(136, 'Portugal', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(137, 'Qatar', 'QAR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(138, 'Romania', 'RON', 'lei', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(139, 'Russia', 'RUB', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(140, 'Rwanda', 'RWF', 'Fr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(141, 'Saint Lucia', 'XCD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(142, 'Samoa', 'WST', 'T', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(143, 'San Marino', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(144, 'Saudi Arabia', 'SAR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(145, 'Senegal', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(146, 'Serbia', 'RSD', '???', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(147, 'Seychelles', 'SCR', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(148, 'Sierra Leone', 'SLL', 'Le', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(149, 'Singapore', 'SGD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(150, 'Slovakia', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(151, 'Slovenia', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(152, 'Solomon Islands', 'SBD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(153, 'Somalia', 'SOS', 'Sh', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(154, 'South Africa', 'ZAR', 'R', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(155, 'South Korea', 'KRW', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(156, 'Spain', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(157, 'Sri Lanka', 'LKR', 'Rs', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(158, 'Sudan', 'SDG', '£', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(159, 'Suriname', 'SRD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(160, 'Sweden', 'SEK', 'kr', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(161, 'Switzerland', 'CHF', 'CHF', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(162, 'Syria', 'SYP', '£', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(163, 'Taiwan', 'TWD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(164, 'Tajikistan', 'TJS', 'SM', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(165, 'Tanzania', 'TZS', 'Sh', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(166, 'Thailand', 'THB', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(167, 'Togo', 'XOF', 'CFA', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(168, 'Tonga', 'TOP', 'T$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(169, 'Trinidad and Tobago', 'TTD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(170, 'Tunisia', 'TND', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(171, 'Turkey', 'TRY', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(172, 'Turkmenistan', 'TMT', 'm', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(173, 'Tuvalu', 'AUD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(174, 'Uganda', 'UGX', 'Sh', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(175, 'Ukraine', 'UAH', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(176, 'United Arab Emirates', 'AED', '?.?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(177, 'United Kingdom', 'GBP', '£', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(178, 'United States', 'USD', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(179, 'Uruguay', 'UYU', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(180, 'Uzbekistan', 'UZS', 'so?m', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(181, 'Vanuatu', 'VUV', 'Vt', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(182, 'Vatican City', 'EUR', '€', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(183, 'Venezuela', 'VES', 'Bs', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(184, 'Yemen', 'YER', '?', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(185, 'Zambia', 'ZMW', 'ZK', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL),
-(186, 'Zimbabwe', 'ZWL', '$', '2025-12-18 17:17:55', '2025-12-18 17:17:55', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_currency')->truncate();
+
+        $data = [
+            [
+                'id_currency' => 1,
+                'country' => 'Afghanistan',
+                'code' => 'AFN',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 2,
+                'country' => 'Albania',
+                'code' => 'ALL',
+                'symbol' => 'L',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 3,
+                'country' => 'Algeria',
+                'code' => 'DZD',
+                'symbol' => '??',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 4,
+                'country' => 'Andorra',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 5,
+                'country' => 'Angola',
+                'code' => 'AOA',
+                'symbol' => 'Kz',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 6,
+                'country' => 'Antigua and Barbuda',
+                'code' => 'XCD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 7,
+                'country' => 'Argentina',
+                'code' => 'ARS',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 8,
+                'country' => 'Armenia',
+                'code' => 'AMD',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 9,
+                'country' => 'Australia',
+                'code' => 'AUD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 10,
+                'country' => 'Austria',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 11,
+                'country' => 'Azerbaijan',
+                'code' => 'AZN',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 12,
+                'country' => 'Bahamas',
+                'code' => 'BSD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 13,
+                'country' => 'Bahrain',
+                'code' => 'BHD',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 14,
+                'country' => 'Bangladesh',
+                'code' => 'BDT',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 15,
+                'country' => 'Barbados',
+                'code' => 'BBD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 16,
+                'country' => 'Belarus',
+                'code' => 'BYN',
+                'symbol' => 'Br',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 17,
+                'country' => 'Belgium',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 18,
+                'country' => 'Belize',
+                'code' => 'BZD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 19,
+                'country' => 'Benin',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 20,
+                'country' => 'Bhutan',
+                'code' => 'BTN',
+                'symbol' => 'Nu',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 21,
+                'country' => 'Bolivia',
+                'code' => 'BOB',
+                'symbol' => 'Bs',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 22,
+                'country' => 'Bosnia and Herzegovina',
+                'code' => 'BAM',
+                'symbol' => 'KM',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 23,
+                'country' => 'Botswana',
+                'code' => 'BWP',
+                'symbol' => 'P',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 24,
+                'country' => 'Brazil',
+                'code' => 'BRL',
+                'symbol' => 'R$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 25,
+                'country' => 'Brunei',
+                'code' => 'BND',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 26,
+                'country' => 'Bulgaria',
+                'code' => 'BGN',
+                'symbol' => '??',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 27,
+                'country' => 'Burkina Faso',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 28,
+                'country' => 'Burundi',
+                'code' => 'BIF',
+                'symbol' => 'Fr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 29,
+                'country' => 'Cambodia',
+                'code' => 'KHR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 30,
+                'country' => 'Cameroon',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 31,
+                'country' => 'Canada',
+                'code' => 'CAD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 32,
+                'country' => 'Cape Verde',
+                'code' => 'CVE',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 33,
+                'country' => 'Central African Republic',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 34,
+                'country' => 'Chad',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 35,
+                'country' => 'Chile',
+                'code' => 'CLP',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 36,
+                'country' => 'China',
+                'code' => 'CNY',
+                'symbol' => '¥',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 37,
+                'country' => 'Colombia',
+                'code' => 'COP',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 38,
+                'country' => 'Comoros',
+                'code' => 'KMF',
+                'symbol' => 'Fr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 39,
+                'country' => 'Congo',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 40,
+                'country' => 'Costa Rica',
+                'code' => 'CRC',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 41,
+                'country' => 'Croatia',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 42,
+                'country' => 'Cuba',
+                'code' => 'CUP',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 43,
+                'country' => 'Cyprus',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 44,
+                'country' => 'Czech Republic',
+                'code' => 'CZK',
+                'symbol' => 'K?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 45,
+                'country' => 'Denmark',
+                'code' => 'DKK',
+                'symbol' => 'kr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 46,
+                'country' => 'Djibouti',
+                'code' => 'DJF',
+                'symbol' => 'Fr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 47,
+                'country' => 'Dominica',
+                'code' => 'XCD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 48,
+                'country' => 'Dominican Republic',
+                'code' => 'DOP',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 49,
+                'country' => 'Ecuador',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 50,
+                'country' => 'Egypt',
+                'code' => 'EGP',
+                'symbol' => '£',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 51,
+                'country' => 'El Salvador',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 52,
+                'country' => 'Equatorial Guinea',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 53,
+                'country' => 'Eritrea',
+                'code' => 'ERN',
+                'symbol' => 'Nfk',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 54,
+                'country' => 'Estonia',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 55,
+                'country' => 'Eswatini',
+                'code' => 'SZL',
+                'symbol' => 'L',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 56,
+                'country' => 'Ethiopia',
+                'code' => 'ETB',
+                'symbol' => 'Br',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 57,
+                'country' => 'Fiji',
+                'code' => 'FJD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 58,
+                'country' => 'Finland',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 59,
+                'country' => 'France',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 60,
+                'country' => 'Gabon',
+                'code' => 'XAF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 61,
+                'country' => 'Gambia',
+                'code' => 'GMD',
+                'symbol' => 'D',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 62,
+                'country' => 'Georgia',
+                'code' => 'GEL',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 63,
+                'country' => 'Germany',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 64,
+                'country' => 'Ghana',
+                'code' => 'GHS',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 65,
+                'country' => 'Greece',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 66,
+                'country' => 'Grenada',
+                'code' => 'XCD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 67,
+                'country' => 'Guatemala',
+                'code' => 'GTQ',
+                'symbol' => 'Q',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 68,
+                'country' => 'Guinea',
+                'code' => 'GNF',
+                'symbol' => 'Fr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 69,
+                'country' => 'Guinea-Bissau',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 70,
+                'country' => 'Guyana',
+                'code' => 'GYD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 71,
+                'country' => 'Haiti',
+                'code' => 'HTG',
+                'symbol' => 'G',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 72,
+                'country' => 'Honduras',
+                'code' => 'HNL',
+                'symbol' => 'L',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 73,
+                'country' => 'Hungary',
+                'code' => 'HUF',
+                'symbol' => 'Ft',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 74,
+                'country' => 'Iceland',
+                'code' => 'ISK',
+                'symbol' => 'kr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 75,
+                'country' => 'India',
+                'code' => 'INR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 76,
+                'country' => 'Indonesia',
+                'code' => 'IDR',
+                'symbol' => 'Rp',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 77,
+                'country' => 'Iran',
+                'code' => 'IRR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 78,
+                'country' => 'Iraq',
+                'code' => 'IQD',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 79,
+                'country' => 'Ireland',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 80,
+                'country' => 'Israel',
+                'code' => 'ILS',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 81,
+                'country' => 'Italy',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 82,
+                'country' => 'Jamaica',
+                'code' => 'JMD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 83,
+                'country' => 'Japan',
+                'code' => 'JPY',
+                'symbol' => '¥',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 84,
+                'country' => 'Jordan',
+                'code' => 'JOD',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 85,
+                'country' => 'Kazakhstan',
+                'code' => 'KZT',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 86,
+                'country' => 'Kenya',
+                'code' => 'KES',
+                'symbol' => 'Sh',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 87,
+                'country' => 'Kiribati',
+                'code' => 'AUD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 88,
+                'country' => 'Kuwait',
+                'code' => 'KWD',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 89,
+                'country' => 'Kyrgyzstan',
+                'code' => 'KGS',
+                'symbol' => '???',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 90,
+                'country' => 'Laos',
+                'code' => 'LAK',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 91,
+                'country' => 'Latvia',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 92,
+                'country' => 'Lebanon',
+                'code' => 'LBP',
+                'symbol' => '£',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 93,
+                'country' => 'Lesotho',
+                'code' => 'LSL',
+                'symbol' => 'L',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 94,
+                'country' => 'Liberia',
+                'code' => 'LRD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 95,
+                'country' => 'Libya',
+                'code' => 'LYD',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 96,
+                'country' => 'Liechtenstein',
+                'code' => 'CHF',
+                'symbol' => 'CHF',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 97,
+                'country' => 'Lithuania',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 98,
+                'country' => 'Luxembourg',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 99,
+                'country' => 'Madagascar',
+                'code' => 'MGA',
+                'symbol' => 'Ar',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 100,
+                'country' => 'Malawi',
+                'code' => 'MWK',
+                'symbol' => 'MK',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 101,
+                'country' => 'Malaysia',
+                'code' => 'MYR',
+                'symbol' => 'RM',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 102,
+                'country' => 'Maldives',
+                'code' => 'MVR',
+                'symbol' => 'Rf',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 103,
+                'country' => 'Mali',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 104,
+                'country' => 'Malta',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 105,
+                'country' => 'Marshall Islands',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 106,
+                'country' => 'Mauritania',
+                'code' => 'MRU',
+                'symbol' => 'UM',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 107,
+                'country' => 'Mauritius',
+                'code' => 'MUR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 108,
+                'country' => 'Mexico',
+                'code' => 'MXN',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 109,
+                'country' => 'Micronesia',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 110,
+                'country' => 'Moldova',
+                'code' => 'MDL',
+                'symbol' => 'L',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 111,
+                'country' => 'Monaco',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 112,
+                'country' => 'Mongolia',
+                'code' => 'MNT',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 113,
+                'country' => 'Montenegro',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 114,
+                'country' => 'Morocco',
+                'code' => 'MAD',
+                'symbol' => '?.?.',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 115,
+                'country' => 'Mozambique',
+                'code' => 'MZN',
+                'symbol' => 'MT',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 116,
+                'country' => 'Myanmar',
+                'code' => 'MMK',
+                'symbol' => 'K',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 117,
+                'country' => 'Namibia',
+                'code' => 'NAD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 118,
+                'country' => 'Nauru',
+                'code' => 'AUD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 119,
+                'country' => 'Nepal',
+                'code' => 'NPR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 120,
+                'country' => 'Netherlands',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 121,
+                'country' => 'New Zealand',
+                'code' => 'NZD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 122,
+                'country' => 'Nicaragua',
+                'code' => 'NIO',
+                'symbol' => 'C$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 123,
+                'country' => 'Niger',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 124,
+                'country' => 'Nigeria',
+                'code' => 'NGN',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 125,
+                'country' => 'North Macedonia',
+                'code' => 'MKD',
+                'symbol' => '???',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 126,
+                'country' => 'Norway',
+                'code' => 'NOK',
+                'symbol' => 'kr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 127,
+                'country' => 'Oman',
+                'code' => 'OMR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 128,
+                'country' => 'Pakistan',
+                'code' => 'PKR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 129,
+                'country' => 'Palau',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 130,
+                'country' => 'Panama',
+                'code' => 'PAB',
+                'symbol' => 'B/.',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 131,
+                'country' => 'Papua New Guinea',
+                'code' => 'PGK',
+                'symbol' => 'K',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 132,
+                'country' => 'Paraguay',
+                'code' => 'PYG',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 133,
+                'country' => 'Peru',
+                'code' => 'PEN',
+                'symbol' => 'S/',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 134,
+                'country' => 'Philippines',
+                'code' => 'PHP',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 135,
+                'country' => 'Poland',
+                'code' => 'PLN',
+                'symbol' => 'z?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 136,
+                'country' => 'Portugal',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 137,
+                'country' => 'Qatar',
+                'code' => 'QAR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 138,
+                'country' => 'Romania',
+                'code' => 'RON',
+                'symbol' => 'lei',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 139,
+                'country' => 'Russia',
+                'code' => 'RUB',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 140,
+                'country' => 'Rwanda',
+                'code' => 'RWF',
+                'symbol' => 'Fr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 141,
+                'country' => 'Saint Lucia',
+                'code' => 'XCD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 142,
+                'country' => 'Samoa',
+                'code' => 'WST',
+                'symbol' => 'T',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 143,
+                'country' => 'San Marino',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 144,
+                'country' => 'Saudi Arabia',
+                'code' => 'SAR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 145,
+                'country' => 'Senegal',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 146,
+                'country' => 'Serbia',
+                'code' => 'RSD',
+                'symbol' => '???',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 147,
+                'country' => 'Seychelles',
+                'code' => 'SCR',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 148,
+                'country' => 'Sierra Leone',
+                'code' => 'SLL',
+                'symbol' => 'Le',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 149,
+                'country' => 'Singapore',
+                'code' => 'SGD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 150,
+                'country' => 'Slovakia',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 151,
+                'country' => 'Slovenia',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 152,
+                'country' => 'Solomon Islands',
+                'code' => 'SBD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 153,
+                'country' => 'Somalia',
+                'code' => 'SOS',
+                'symbol' => 'Sh',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 154,
+                'country' => 'South Africa',
+                'code' => 'ZAR',
+                'symbol' => 'R',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 155,
+                'country' => 'South Korea',
+                'code' => 'KRW',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 156,
+                'country' => 'Spain',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 157,
+                'country' => 'Sri Lanka',
+                'code' => 'LKR',
+                'symbol' => 'Rs',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 158,
+                'country' => 'Sudan',
+                'code' => 'SDG',
+                'symbol' => '£',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 159,
+                'country' => 'Suriname',
+                'code' => 'SRD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 160,
+                'country' => 'Sweden',
+                'code' => 'SEK',
+                'symbol' => 'kr',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 161,
+                'country' => 'Switzerland',
+                'code' => 'CHF',
+                'symbol' => 'CHF',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 162,
+                'country' => 'Syria',
+                'code' => 'SYP',
+                'symbol' => '£',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 163,
+                'country' => 'Taiwan',
+                'code' => 'TWD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 164,
+                'country' => 'Tajikistan',
+                'code' => 'TJS',
+                'symbol' => 'SM',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 165,
+                'country' => 'Tanzania',
+                'code' => 'TZS',
+                'symbol' => 'Sh',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 166,
+                'country' => 'Thailand',
+                'code' => 'THB',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 167,
+                'country' => 'Togo',
+                'code' => 'XOF',
+                'symbol' => 'CFA',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 168,
+                'country' => 'Tonga',
+                'code' => 'TOP',
+                'symbol' => 'T$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 169,
+                'country' => 'Trinidad and Tobago',
+                'code' => 'TTD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 170,
+                'country' => 'Tunisia',
+                'code' => 'TND',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 171,
+                'country' => 'Turkey',
+                'code' => 'TRY',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 172,
+                'country' => 'Turkmenistan',
+                'code' => 'TMT',
+                'symbol' => 'm',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 173,
+                'country' => 'Tuvalu',
+                'code' => 'AUD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 174,
+                'country' => 'Uganda',
+                'code' => 'UGX',
+                'symbol' => 'Sh',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 175,
+                'country' => 'Ukraine',
+                'code' => 'UAH',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 176,
+                'country' => 'United Arab Emirates',
+                'code' => 'AED',
+                'symbol' => '?.?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 177,
+                'country' => 'United Kingdom',
+                'code' => 'GBP',
+                'symbol' => '£',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 178,
+                'country' => 'United States',
+                'code' => 'USD',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 179,
+                'country' => 'Uruguay',
+                'code' => 'UYU',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 180,
+                'country' => 'Uzbekistan',
+                'code' => 'UZS',
+                'symbol' => 'so?m',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 181,
+                'country' => 'Vanuatu',
+                'code' => 'VUV',
+                'symbol' => 'Vt',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 182,
+                'country' => 'Vatican City',
+                'code' => 'EUR',
+                'symbol' => '€',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 183,
+                'country' => 'Venezuela',
+                'code' => 'VES',
+                'symbol' => 'Bs',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 184,
+                'country' => 'Yemen',
+                'code' => 'YER',
+                'symbol' => '?',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 185,
+                'country' => 'Zambia',
+                'code' => 'ZMW',
+                'symbol' => 'ZK',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ],
+            [
+                'id_currency' => 186,
+                'country' => 'Zimbabwe',
+                'code' => 'ZWL',
+                'symbol' => '$',
+                'created_at' => '2025-12-18 17:17:55',
+                'updated_at' => '2025-12-18 17:17:55',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_currency')->insert($chunk);
+        }
     }
 }

@@ -105,7 +105,7 @@ class FormDetailModal extends Component
         $actualStock = $totalIn - $totalOut;
 
         // 2. Calculate Reserved Stock from other IKBs (status 5-9: Step 4 / Inventory Control Approved)
-        $reservedQty = \App\Models\IkbDetail::whereHas('ikb', function ($q) use ($ikb) {
+        $reservedQty = IkbDetail::whereHas('ikb', function ($q) use ($ikb) {
             $q->where('status', '>=', 5)
                 ->where('status', '<', 10)
                 ->where('id_warehouse', '=', $ikb->id_warehouse)

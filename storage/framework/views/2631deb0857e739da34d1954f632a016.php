@@ -1,0 +1,1 @@
+doc-type-<?php echo e($dt->id_doc_type); ?><?php /**PATH D:\!Kerja\laracok - Copy\storage\framework\views/ab1c74a9146dd6a37e533afbc64f8318.blade.php ENDPATH**/ ?>

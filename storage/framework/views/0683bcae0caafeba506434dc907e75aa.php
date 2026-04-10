@@ -1,0 +1,1 @@
+warehouse-<?php echo e($w->id_warehouse); ?><?php /**PATH D:\!Kerja\laracok - Copy\storage\framework\views/3ac3e94167fa4b9efd8d8da894516ed1.blade.php ENDPATH**/ ?>

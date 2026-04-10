@@ -4,50 +4,359 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 
 class TblWarehouseSeeder extends Seeder
 {
     public function run(): void
     {
-        Schema::disableForeignKeyConstraints();
-        DB::unprepared(<<<'SQL'
-INSERT IGNORE INTO `tbl_warehouse` (`id_warehouse`, `id_user`, `warehouse_name`, `address`, `is_active`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'GUDANG - BAD STOCK ACEH', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(2, 1, 'GUDANG - BAD STOCK BATANG', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(3, 1, 'GUDANG - BAD STOCK MEDAN KIM', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(4, 1, 'GUDANG - BAD STOCK PABRIK GLOBAL MEDAN', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(5, 1, 'GUDANG - BATANG', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(6, 1, 'GUDANG - CUSTOMER', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(7, 1, 'GUDANG - CV ALFAIRUS', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(8, 1, 'GUDANG - CV MB JAYA', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(9, 1, 'GUDANG - CV.LAVAZA', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(10, 1, 'GUDANG - HUSNI MEDAN KIM', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(11, 1, 'GUDANG - INHUTANI JATIM - TRENGGALEK', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(12, 1, 'GUDANG - INHUTANI MEDAN', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(13, 1, 'GUDANG - INHUTANI TRENGGALEK - JATIM', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(14, 1, 'GUDANG - INHUTANI V', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(15, 1, 'GUDANG - INHUTANI MEDAN', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(16, 1, 'GUDANG - MEDAN KIM', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(17, 1, 'GUDANG - MOH.KURNIADI', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(18, 1, 'GUDANG - PABRIK GLOBAL MEDAN', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(20, 1, 'GUDANG - PERHUTANI JABAR', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(21, 1, 'GUDANG - PERHUTANI JATENG', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(22, 1, 'GUDANG - PERHUTANI JATIM', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(23, 1, 'GUDANG - PERHUTANI SULAWESI', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(24, 1, 'GUDANG - PINJAM KSA', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(25, 1, 'GUDANG - PINJAM SBB', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(26, 1, 'GUDANG - PT EMB MERKUSI CHEMICAL', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(27, 1, 'GUDANG - PT. PMI ACEH', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(28, 1, 'GUDANG - PT.KEFFI WANGI', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(29, 1, 'GUDANG - SUPPLIER', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(30, 1, 'GUDANG - UTAMA', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(31, 1, 'GUDANG TANGKI GTO - ACEH', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(32, 1, 'GUDANG-Jaya Media Nusantara Aceh Tengah', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(33, 1, 'Transit (AOL System)', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL),
-(34, 1, 'PT. RESINA CONIFERA INDONESIA', NULL, 1, '2026-03-24 18:26:53', '2026-03-24 18:26:53', NULL);
-SQL
-        );
-        Schema::enableForeignKeyConstraints();
+        DB::table('tbl_warehouse')->truncate();
+
+        $data = [
+            [
+                'id_warehouse' => 1,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - BAD STOCK ACEH',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 2,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - BAD STOCK BATANG',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 3,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - BAD STOCK MEDAN KIM',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 4,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - BAD STOCK PABRIK GLOBAL MEDAN',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 5,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - BATANG',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 6,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - CUSTOMER',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 7,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - CV ALFAIRUS',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 8,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - CV MB JAYA',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 9,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - CV.LAVAZA',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 10,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - HUSNI MEDAN KIM',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 11,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - INHUTANI JATIM - TRENGGALEK',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 12,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - INHUTANI MEDAN',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 13,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - INHUTANI TRENGGALEK - JATIM',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 14,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - INHUTANI V',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 15,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - INHUTANI MEDAN',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 16,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - MEDAN KIM',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 17,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - MOH.KURNIADI',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 18,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PABRIK GLOBAL MEDAN',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 20,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PERHUTANI JABAR',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 21,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PERHUTANI JATENG',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 22,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PERHUTANI JATIM',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 23,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PERHUTANI SULAWESI',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 24,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PINJAM KSA',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 25,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PINJAM SBB',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 26,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PT EMB MERKUSI CHEMICAL',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 27,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PT. PMI ACEH',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 28,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PT.KEFFI WANGI',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 29,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - SUPPLIER',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 30,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - UTAMA',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 31,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG TANGKI GTO - ACEH',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 32,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG-Jaya Media Nusantara Aceh Tengah',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 33,
+                'id_user' => 1,
+                'warehouse_name' => 'Transit (AOL System)',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-03-24 18:26:53',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 34,
+                'id_user' => 47,
+                'warehouse_name' => 'GUDANG - RCI (PT. RESINA CONIFERA INDONESIA)',
+                'address' => null,
+                'is_active' => 1,
+                'created_at' => '2026-03-24 18:26:53',
+                'updated_at' => '2026-04-05 18:59:42',
+                'deleted_at' => null
+            ],
+            [
+                'id_warehouse' => 35,
+                'id_user' => 1,
+                'warehouse_name' => 'GUDANG - PALU',
+                'address' => '',
+                'is_active' => 1,
+                'created_at' => '2026-04-05 18:54:01',
+                'updated_at' => '2026-04-05 18:59:04',
+                'deleted_at' => null
+            ]
+        ];
+
+        // Insert in chunks to avoid packet-size limits
+        foreach (array_chunk($data, 500) as $chunk) {
+            DB::table('tbl_warehouse')->insert($chunk);
+        }
     }
 }
