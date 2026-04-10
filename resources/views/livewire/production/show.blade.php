@@ -59,9 +59,11 @@
         $canEditMaterial = $status == 0 && ($isAdmin || $user->hasPermission('production_material.edit'));
         $canDeleteMaterial = $status == 0 && ($isAdmin || $user->hasPermission('production_material.delete'));
 
-        $canAddResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.create'));
-        $canEditResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.edit'));
-        $canDeleteResult = $status == 2 && ($isAdmin || $user->hasPermission('production_result.delete'));
+        $canAddResult =
+            ($status == 1 || $status == 2) && ($isAdmin || $user->hasPermission('production_result.create'));
+        $canEditResult = ($status == 1 || $status == 2) && ($isAdmin || $user->hasPermission('production_result.edit'));
+        $canDeleteResult =
+            ($status == 1 || $status == 2) && ($isAdmin || $user->hasPermission('production_result.delete'));
 
         $canManageAtt =
             $status != 3 && $status != 9 && ($isAdmin || $user->hasPermission('production_attachment.create'));
