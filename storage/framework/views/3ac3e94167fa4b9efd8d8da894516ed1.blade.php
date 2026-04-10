@@ -1,0 +1,1 @@
+warehouse-{{ $w->id_warehouse }}

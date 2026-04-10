@@ -1,0 +1,1 @@
+vendor-<?php echo e($v->id_vendor); ?><?php /**PATH D:\!Kerja\laracok - Copy\storage\framework\views/58343ddbd151db81e526df4224df023f.blade.php ENDPATH**/ ?>

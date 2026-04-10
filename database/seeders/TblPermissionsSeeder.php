@@ -18,7 +18,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Company List',
                 'module' => 'Company',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 2,
@@ -26,7 +26,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Company',
                 'module' => 'Company',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 3,
@@ -34,7 +34,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Company',
                 'module' => 'Company',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 4,
@@ -42,7 +42,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Company',
                 'module' => 'Company',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 5,
@@ -50,7 +50,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Branch List',
                 'module' => 'Branch',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 6,
@@ -58,7 +58,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Branch',
                 'module' => 'Branch',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 7,
@@ -66,7 +66,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Branch',
                 'module' => 'Branch',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 8,
@@ -74,7 +74,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Branch',
                 'module' => 'Branch',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 9,
@@ -82,7 +82,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Department List',
                 'module' => 'Department',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 10,
@@ -90,7 +90,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Department',
                 'module' => 'Department',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 11,
@@ -98,7 +98,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Department',
                 'module' => 'Department',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 12,
@@ -106,7 +106,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Department',
                 'module' => 'Department',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 13,
@@ -114,7 +114,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Vendor List',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 14,
@@ -122,7 +122,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 15,
@@ -130,7 +130,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 16,
@@ -138,7 +138,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 17,
@@ -146,7 +146,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Upload Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 18,
@@ -154,7 +154,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 19,
@@ -162,7 +162,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View UOM List',
                 'module' => 'UOM',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 20,
@@ -170,7 +170,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create UOM',
                 'module' => 'UOM',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 21,
@@ -178,7 +178,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit UOM',
                 'module' => 'UOM',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 22,
@@ -186,7 +186,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete UOM',
                 'module' => 'UOM',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 23,
@@ -194,7 +194,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Package List',
                 'module' => 'Package',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 24,
@@ -202,7 +202,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Package',
                 'module' => 'Package',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 25,
@@ -210,7 +210,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Package',
                 'module' => 'Package',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 26,
@@ -218,7 +218,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Package',
                 'module' => 'Package',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 27,
@@ -226,7 +226,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Cost Type List',
                 'module' => 'Cost Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 28,
@@ -234,7 +234,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Cost Type',
                 'module' => 'Cost Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 29,
@@ -242,7 +242,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Cost Type',
                 'module' => 'Cost Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 30,
@@ -250,7 +250,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Cost Type',
                 'module' => 'Cost Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 31,
@@ -258,7 +258,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Cost List',
                 'module' => 'Cost',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 32,
@@ -266,7 +266,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Cost',
                 'module' => 'Cost',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 33,
@@ -274,7 +274,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Cost',
                 'module' => 'Cost',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 34,
@@ -282,7 +282,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Cost',
                 'module' => 'Cost',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 35,
@@ -290,7 +290,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Currency List',
                 'module' => 'Currency',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 36,
@@ -298,7 +298,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Currency',
                 'module' => 'Currency',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 37,
@@ -306,7 +306,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Currency',
                 'module' => 'Currency',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 38,
@@ -314,7 +314,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Currency',
                 'module' => 'Currency',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 39,
@@ -322,7 +322,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Attachment List',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 40,
@@ -330,7 +330,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Attachment',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 41,
@@ -338,7 +338,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Attachment',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 42,
@@ -346,7 +346,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Attachment',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 43,
@@ -354,7 +354,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Loan List',
                 'module' => 'Loan',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 44,
@@ -362,7 +362,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Loan',
                 'module' => 'Loan',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 45,
@@ -370,7 +370,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Loan',
                 'module' => 'Loan',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 46,
@@ -378,7 +378,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Loan',
                 'module' => 'Loan',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 47,
@@ -386,7 +386,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Tax Type List',
                 'module' => 'Tax Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 48,
@@ -394,7 +394,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Tax Type',
                 'module' => 'Tax Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 49,
@@ -402,7 +402,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Tax Type',
                 'module' => 'Tax Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 50,
@@ -410,7 +410,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Tax Type',
                 'module' => 'Tax Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 51,
@@ -418,7 +418,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Tax List',
                 'module' => 'Tax',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 52,
@@ -426,7 +426,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Tax',
                 'module' => 'Tax',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 53,
@@ -434,7 +434,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Tax',
                 'module' => 'Tax',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 54,
@@ -442,7 +442,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Tax',
                 'module' => 'Tax',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 55,
@@ -450,7 +450,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Position List',
                 'module' => 'Position',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 56,
@@ -458,7 +458,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Position',
                 'module' => 'Position',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 57,
@@ -466,7 +466,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Position',
                 'module' => 'Position',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 58,
@@ -474,7 +474,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Position',
                 'module' => 'Position',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 59,
@@ -482,7 +482,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Item Category List',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 60,
@@ -490,7 +490,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Item Category',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 61,
@@ -498,7 +498,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Item Category',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 62,
@@ -506,7 +506,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Item Category',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 63,
@@ -514,7 +514,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Item List',
                 'module' => 'Item',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-24 22:53:59'
+                'updated_at' => '2026-02-24 22:53:59',
             ],
             [
                 'id_permission' => 66,
@@ -522,7 +522,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Item',
                 'module' => 'Item',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 67,
@@ -530,7 +530,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Item',
                 'module' => 'Item',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 68,
@@ -538,7 +538,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Item',
                 'module' => 'Item',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 69,
@@ -546,7 +546,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Document Type List',
                 'module' => 'Document Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 70,
@@ -554,7 +554,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Document Type',
                 'module' => 'Document Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 71,
@@ -562,7 +562,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Document Type',
                 'module' => 'Document Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 72,
@@ -570,7 +570,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Document Type',
                 'module' => 'Document Type',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 73,
@@ -578,7 +578,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Dashboard',
                 'module' => 'Dashboard',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 74,
@@ -586,7 +586,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Dept Dashboard',
                 'module' => 'Dashboard',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 75,
@@ -594,7 +594,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View User Dashboard',
                 'module' => 'Dashboard',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 76,
@@ -602,7 +602,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 77,
@@ -610,7 +610,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Dept List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 78,
@@ -618,7 +618,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Subordinate List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 79,
@@ -626,7 +626,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 80,
@@ -634,7 +634,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 81,
@@ -642,7 +642,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 82,
@@ -650,7 +650,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 83,
@@ -658,7 +658,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Detail List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 84,
@@ -666,7 +666,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New PR Detail',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 85,
@@ -674,7 +674,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft PR Detail',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 86,
@@ -682,7 +682,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft PR Detail',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 87,
@@ -690,7 +690,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print PR Detail',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 88,
@@ -698,7 +698,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download PR Detail',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 89,
@@ -706,7 +706,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Attachment List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 90,
@@ -714,7 +714,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New PR Attachment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 91,
@@ -722,7 +722,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft PR Attachment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 92,
@@ -730,7 +730,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft PR Attachment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 93,
@@ -738,7 +738,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download PR Attachment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 94,
@@ -746,7 +746,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Payment List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 95,
@@ -754,7 +754,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 96,
@@ -762,7 +762,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 97,
@@ -770,7 +770,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 98,
@@ -778,7 +778,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 99,
@@ -786,7 +786,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 100,
@@ -794,7 +794,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Payment (SPV/Manager)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 101,
@@ -802,7 +802,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Payment (SPV/Manager)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 102,
@@ -810,7 +810,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Payment (Director)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 103,
@@ -818,7 +818,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Payment (Director)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 104,
@@ -826,7 +826,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Revision PR Payment',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 105,
@@ -834,7 +834,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View PR Invoice List',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 106,
@@ -842,7 +842,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New PR Invoice',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 107,
@@ -850,7 +850,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft PR Invoice',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 108,
@@ -858,7 +858,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft PR Invoice',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 109,
@@ -866,7 +866,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print PR Invoice',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 110,
@@ -874,7 +874,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download PR Invoice',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 111,
@@ -882,7 +882,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Submit PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 112,
@@ -890,7 +890,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Submit PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 113,
@@ -898,7 +898,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 1 (SPV/Manager)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 114,
@@ -906,7 +906,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 1 (SPV/Manager)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 115,
@@ -914,7 +914,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 2 (Director)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 116,
@@ -922,7 +922,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 2 (Director)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 117,
@@ -930,7 +930,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 3 (Accounting)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 118,
@@ -938,7 +938,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 3 (Accounting)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 119,
@@ -946,7 +946,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 4 (Finance Staff)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 120,
@@ -954,7 +954,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 4 (Finance Staff)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 121,
@@ -962,7 +962,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 5 (Finance SPV)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 122,
@@ -970,7 +970,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 5 (Finance SPV)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 123,
@@ -978,7 +978,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve PR Step 6 (CFO)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 124,
@@ -986,7 +986,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve PR Step 6 (CFO)',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 125,
@@ -994,7 +994,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Reject PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 126,
@@ -1002,7 +1002,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Revision PR',
                 'module' => 'PR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 127,
@@ -1010,7 +1010,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 128,
@@ -1018,7 +1018,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR Dept List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 129,
@@ -1026,7 +1026,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR Subordinate List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 130,
@@ -1034,7 +1034,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 131,
@@ -1042,7 +1042,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 132,
@@ -1050,7 +1050,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 133,
@@ -1058,7 +1058,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 134,
@@ -1066,7 +1066,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 135,
@@ -1074,7 +1074,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR Detail List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 136,
@@ -1082,7 +1082,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New SR Detail',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 137,
@@ -1090,7 +1090,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft SR Detail',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 138,
@@ -1098,7 +1098,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft SR Detail',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 139,
@@ -1106,7 +1106,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print SR Detail',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 140,
@@ -1114,7 +1114,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download SR Detail',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 141,
@@ -1122,7 +1122,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR Attachment List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 142,
@@ -1130,7 +1130,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New SR Attachment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 143,
@@ -1138,7 +1138,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft SR Attachment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 144,
@@ -1146,7 +1146,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft SR Attachment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 145,
@@ -1154,7 +1154,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download SR Attachment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 146,
@@ -1162,7 +1162,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View SR Payment List',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 147,
@@ -1170,7 +1170,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 148,
@@ -1178,7 +1178,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 149,
@@ -1186,7 +1186,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 150,
@@ -1194,7 +1194,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 151,
@@ -1202,7 +1202,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 152,
@@ -1210,7 +1210,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Payment (SPV/Manager)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 153,
@@ -1218,7 +1218,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Payment (SPV/Manager)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 154,
@@ -1226,7 +1226,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Payment (Director)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 155,
@@ -1234,7 +1234,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Payment (Director)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 156,
@@ -1242,7 +1242,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Revision SR Payment',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 157,
@@ -1250,7 +1250,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Submit SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 158,
@@ -1258,7 +1258,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Submit SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 159,
@@ -1266,7 +1266,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 1 (SPV/Manager)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 160,
@@ -1274,7 +1274,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 1 (SPV/Manager)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 161,
@@ -1282,7 +1282,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 2 (Director)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 162,
@@ -1290,7 +1290,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 2 (Director)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 163,
@@ -1298,7 +1298,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 3 (Accounting)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 164,
@@ -1306,7 +1306,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 3 (Accounting)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 165,
@@ -1314,7 +1314,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 4 (Finance Staff)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 166,
@@ -1322,7 +1322,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 4 (Finance Staff)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 167,
@@ -1330,7 +1330,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 5 (Finance SPV)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 168,
@@ -1338,7 +1338,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 5 (Finance SPV)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 169,
@@ -1346,7 +1346,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve SR Step 6 (CFO)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 170,
@@ -1354,7 +1354,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve SR Step 6 (CFO)',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 171,
@@ -1362,7 +1362,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Reject SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 172,
@@ -1370,7 +1370,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Revision SR',
                 'module' => 'SR',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 173,
@@ -1378,7 +1378,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Item Transaction All List',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 174,
@@ -1386,7 +1386,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Item Transaction Warehouse List',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 177,
@@ -1394,7 +1394,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New Item Transaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 178,
@@ -1402,7 +1402,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft Item Transaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 179,
@@ -1410,7 +1410,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft Item Transaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 180,
@@ -1418,7 +1418,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Warehouse List',
                 'module' => 'Warehouse',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 181,
@@ -1426,7 +1426,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Warehouse',
                 'module' => 'Warehouse',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 182,
@@ -1434,7 +1434,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Warehouse',
                 'module' => 'Warehouse',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 183,
@@ -1442,7 +1442,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Warehouse',
                 'module' => 'Warehouse',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 184,
@@ -1450,7 +1450,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View IKB List',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 185,
@@ -1458,7 +1458,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View IKB Dept List',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 186,
@@ -1466,7 +1466,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View IKB Warehouse List',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 187,
@@ -1474,7 +1474,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View IKB Subordinate List',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 188,
@@ -1482,7 +1482,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 189,
@@ -1490,7 +1490,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 190,
@@ -1498,7 +1498,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 191,
@@ -1506,7 +1506,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 192,
@@ -1514,7 +1514,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 193,
@@ -1522,7 +1522,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View IKB Detail List',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 194,
@@ -1530,7 +1530,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create New IKB Detail',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 195,
@@ -1538,7 +1538,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Draft IKB Detail',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 196,
@@ -1546,7 +1546,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Draft IKB Detail',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 197,
@@ -1554,7 +1554,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print IKB Detail',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 198,
@@ -1562,7 +1562,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download IKB Detail',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 199,
@@ -1570,7 +1570,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Submit IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 200,
@@ -1578,7 +1578,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Submit IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 201,
@@ -1586,7 +1586,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 1 (SPV/Manager)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 202,
@@ -1594,7 +1594,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 1',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:49'
+                'updated_at' => '2026-03-11 02:52:49',
             ],
             [
                 'id_permission' => 203,
@@ -1602,7 +1602,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 2 (Director Log)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 204,
@@ -1610,7 +1610,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 2',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 205,
@@ -1618,7 +1618,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 3 (PPIC)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 206,
@@ -1626,7 +1626,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 3',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 207,
@@ -1634,7 +1634,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 4 (Inventory Control)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 208,
@@ -1642,7 +1642,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 4',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 209,
@@ -1650,7 +1650,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 5 (Logistic Coord)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 210,
@@ -1658,7 +1658,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 5',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 211,
@@ -1666,7 +1666,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 6 (Warehouse Staff)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 212,
@@ -1674,7 +1674,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 6',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 213,
@@ -1682,7 +1682,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 7 (Warehouse SPV)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 214,
@@ -1690,7 +1690,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 7',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 215,
@@ -1698,7 +1698,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 8 (Security Officer)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 216,
@@ -1706,7 +1706,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 8',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 217,
@@ -1714,7 +1714,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Approve IKB Step 9 (Logistic Coord Final)',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 218,
@@ -1722,7 +1722,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Approve IKB Step 9',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-03-11 02:52:50'
+                'updated_at' => '2026-03-11 02:52:50',
             ],
             [
                 'id_permission' => 219,
@@ -1730,7 +1730,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Reject IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 220,
@@ -1738,7 +1738,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Revision IKB',
                 'module' => 'IKB',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 221,
@@ -1746,7 +1746,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View User List',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 222,
@@ -1754,7 +1754,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View User Dept List',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 223,
@@ -1762,7 +1762,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View User Subordinate List',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 224,
@@ -1770,7 +1770,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create User',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 225,
@@ -1778,7 +1778,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit User',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 226,
@@ -1786,7 +1786,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete User',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 227,
@@ -1794,7 +1794,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Reset Password User',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 228,
@@ -1802,7 +1802,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Change Password User',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 229,
@@ -1810,7 +1810,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Manage User Permissions',
                 'module' => 'User',
                 'created_at' => '2026-02-22 09:56:55',
-                'updated_at' => '2026-02-22 09:56:55'
+                'updated_at' => '2026-02-22 09:56:55',
             ],
             [
                 'id_permission' => 230,
@@ -1818,7 +1818,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Aktivasi Vendor',
                 'module' => 'Vendor',
                 'created_at' => '2026-02-24 20:32:45',
-                'updated_at' => '2026-02-24 20:32:45'
+                'updated_at' => '2026-02-24 20:32:45',
             ],
             [
                 'id_permission' => 231,
@@ -1826,7 +1826,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download List Attachment',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-24 22:08:16',
-                'updated_at' => '2026-02-24 22:08:16'
+                'updated_at' => '2026-02-24 22:08:16',
             ],
             [
                 'id_permission' => 232,
@@ -1834,7 +1834,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Import List Attachment',
                 'module' => 'Attachment',
                 'created_at' => '2026-02-24 22:09:01',
-                'updated_at' => '2026-02-24 22:09:01'
+                'updated_at' => '2026-02-24 22:09:01',
             ],
             [
                 'id_permission' => 233,
@@ -1842,7 +1842,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download Category Item',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-24 22:50:08',
-                'updated_at' => '2026-02-24 22:50:08'
+                'updated_at' => '2026-02-24 22:50:08',
             ],
             [
                 'id_permission' => 234,
@@ -1850,7 +1850,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Import List Item Category',
                 'module' => 'Item Category',
                 'created_at' => '2026-02-24 22:50:44',
-                'updated_at' => '2026-02-24 22:50:44'
+                'updated_at' => '2026-02-24 22:50:44',
             ],
             [
                 'id_permission' => 235,
@@ -1858,7 +1858,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download List Item',
                 'module' => 'Item',
                 'created_at' => '2026-02-24 22:54:24',
-                'updated_at' => '2026-02-24 22:54:24'
+                'updated_at' => '2026-02-24 22:54:24',
             ],
             [
                 'id_permission' => 236,
@@ -1866,7 +1866,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Import List Item',
                 'module' => 'Item',
                 'created_at' => '2026-02-24 22:54:47',
-                'updated_at' => '2026-02-24 22:54:47'
+                'updated_at' => '2026-02-24 22:54:47',
             ],
             [
                 'id_permission' => 237,
@@ -1874,7 +1874,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Bypass Edit',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 06:59:04',
-                'updated_at' => '2026-02-25 06:59:04'
+                'updated_at' => '2026-02-25 06:59:04',
             ],
             [
                 'id_permission' => 239,
@@ -1882,7 +1882,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Bypass Delete',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 07:37:01',
-                'updated_at' => '2026-02-25 07:37:01'
+                'updated_at' => '2026-02-25 07:37:01',
             ],
             [
                 'id_permission' => 240,
@@ -1890,7 +1890,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Eksport Transaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 07:37:44',
-                'updated_at' => '2026-02-25 07:37:44'
+                'updated_at' => '2026-02-25 07:37:44',
             ],
             [
                 'id_permission' => 241,
@@ -1898,7 +1898,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Import Transaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 07:38:19',
-                'updated_at' => '2026-02-25 07:38:19'
+                'updated_at' => '2026-02-25 07:38:19',
             ],
             [
                 'id_permission' => 242,
@@ -1906,7 +1906,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Bypass Outcome',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 08:00:59',
-                'updated_at' => '2026-02-25 08:00:59'
+                'updated_at' => '2026-02-25 08:00:59',
             ],
             [
                 'id_permission' => 243,
@@ -1914,7 +1914,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Report Data',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-02-25 10:50:08',
-                'updated_at' => '2026-02-25 10:50:08'
+                'updated_at' => '2026-02-25 10:50:08',
             ],
             [
                 'id_permission' => 244,
@@ -1922,7 +1922,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Detail Item Trasaction',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-03-12 03:15:27',
-                'updated_at' => '2026-03-12 04:42:25'
+                'updated_at' => '2026-03-12 04:42:25',
             ],
             [
                 'id_permission' => 245,
@@ -1930,7 +1930,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Item Transaction Subordinate List',
                 'module' => 'Item Transaction',
                 'created_at' => '2026-03-12 04:46:19',
-                'updated_at' => '2026-03-12 04:47:00'
+                'updated_at' => '2026-03-12 04:47:00',
             ],
             [
                 'id_permission' => 246,
@@ -1938,7 +1938,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Attachment',
                 'module' => 'IKB',
                 'created_at' => '2026-03-12 08:42:12',
-                'updated_at' => '2026-03-12 08:42:12'
+                'updated_at' => '2026-03-12 08:42:12',
             ],
             [
                 'id_permission' => 247,
@@ -1946,7 +1946,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View All Contract',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:19:07',
-                'updated_at' => '2026-03-17 11:19:07'
+                'updated_at' => '2026-03-17 11:19:07',
             ],
             [
                 'id_permission' => 248,
@@ -1954,7 +1954,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Contract Departement',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:19:50',
-                'updated_at' => '2026-03-17 11:19:50'
+                'updated_at' => '2026-03-17 11:19:50',
             ],
             [
                 'id_permission' => 249,
@@ -1962,7 +1962,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Contract User',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:21:33',
-                'updated_at' => '2026-03-17 11:21:33'
+                'updated_at' => '2026-03-17 11:21:33',
             ],
             [
                 'id_permission' => 250,
@@ -1970,7 +1970,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Contract',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:22:10',
-                'updated_at' => '2026-03-17 11:22:10'
+                'updated_at' => '2026-03-17 11:22:10',
             ],
             [
                 'id_permission' => 251,
@@ -1978,7 +1978,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Contract',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:22:39',
-                'updated_at' => '2026-03-17 11:22:39'
+                'updated_at' => '2026-03-17 11:22:39',
             ],
             [
                 'id_permission' => 252,
@@ -1986,7 +1986,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Contract',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:23:13',
-                'updated_at' => '2026-03-17 11:23:13'
+                'updated_at' => '2026-03-17 11:23:13',
             ],
             [
                 'id_permission' => 253,
@@ -1994,7 +1994,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Upload Contract Document',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:24:04',
-                'updated_at' => '2026-03-17 11:24:04'
+                'updated_at' => '2026-03-17 11:24:04',
             ],
             [
                 'id_permission' => 254,
@@ -2002,8 +2002,10 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download Contract',
                 'module' => 'Contract',
                 'created_at' => '2026-03-17 11:26:12',
-                'updated_at' => '2026-03-17 11:26:12'
+                'updated_at' => '2026-03-17 11:26:12',
             ],
+
+            // Production Permission
             // ── Production ────────────────────────────────────────────────
             [
                 'id_permission' => 255,
@@ -2011,7 +2013,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Own Production',
                 'module' => 'Production',
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id_permission' => 256,
@@ -2019,7 +2021,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View All Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 257,
@@ -2027,7 +2029,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Department Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 258,
@@ -2035,7 +2037,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Warehouse Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 259,
@@ -2043,7 +2045,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Production Detail',
                 'module' => 'Production',
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id_permission' => 260,
@@ -2051,7 +2053,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Create Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 261,
@@ -2059,7 +2061,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Own Draft Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 262,
@@ -2067,7 +2069,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit All Production Drafts',
                 'module' => 'Production',
                 'created_at' => date('Y-m-d H:i:s'),
-                'updated_at' => date('Y-m-d H:i:s')
+                'updated_at' => date('Y-m-d H:i:s'),
             ],
             [
                 'id_permission' => 263,
@@ -2075,7 +2077,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Own Draft Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-07 15:32:00',
-                'updated_at' => '2026-04-07 15:32:00'
+                'updated_at' => '2026-04-07 15:32:00',
             ],
             [
                 'id_permission' => 264,
@@ -2083,7 +2085,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete All Production Drafts',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 265,
@@ -2091,7 +2093,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Submit Production (Draft to Submit)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 266,
@@ -2099,7 +2101,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Submit (Back to Draft)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 267,
@@ -2107,7 +2109,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Process Production (Approve Step 2)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 268,
@@ -2115,7 +2117,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Process (Back to Submit)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 269,
@@ -2123,7 +2125,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Verify Production (Approve Step 3)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 270,
@@ -2131,7 +2133,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Cancel Verify (Back to Process)',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 271,
@@ -2139,7 +2141,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Add Material to Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 272,
@@ -2147,7 +2149,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Material in Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 273,
@@ -2155,7 +2157,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Material from Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 274,
@@ -2163,7 +2165,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Add Result to Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 275,
@@ -2171,7 +2173,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Result in Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 276,
@@ -2179,7 +2181,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Result from Production',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 277,
@@ -2187,7 +2189,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'View Production Attachments',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 278,
@@ -2195,7 +2197,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Upload Production Attachment',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 279,
@@ -2203,7 +2205,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Edit Production Attachment',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 280,
@@ -2211,7 +2213,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Delete Production Attachment',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 281,
@@ -2219,7 +2221,7 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Print Production Document',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
+                'updated_at' => '2026-04-08 03:12:00',
             ],
             [
                 'id_permission' => 282,
@@ -2227,8 +2229,8 @@ class TblPermissionsSeeder extends Seeder
                 'permission_description' => 'Download Production Document',
                 'module' => 'Production',
                 'created_at' => '2026-04-08 03:12:00',
-                'updated_at' => '2026-04-08 03:12:00'
-            ]
+                'updated_at' => '2026-04-08 03:12:00',
+            ],
         ];
 
         // Insert in chunks to avoid packet-size limits

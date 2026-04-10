@@ -1,0 +1,1 @@
+dept-{{ $d->id_departement }}
