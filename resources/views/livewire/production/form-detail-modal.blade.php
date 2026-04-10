@@ -48,7 +48,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="fw-bold small text-uppercase">UOM</label>
+                        <label class="fw-bold small text-uppercase">UOM <span class="text-danger">*</span></label>
                         <div wire:ignore>
                             <select x-model="form.id_uom" class="form-select select2-prod-detail" id="prod_detail_uom">
                                 <option value="">-- Pilih UOM --</option>
@@ -61,7 +61,7 @@
                     </div>
 
                     <div class="col-md-4">
-                        <label class="fw-bold small text-uppercase">Packaging</label>
+                        <label class="fw-bold small text-uppercase">Packaging <span class="text-danger">*</span></label>
                         <div wire:ignore>
                             <select x-model="form.id_packaging" class="form-select select2-prod-detail" id="prod_detail_packaging">
                                 <option value="">-- Pilih Packaging --</option>

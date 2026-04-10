@@ -11,9 +11,9 @@ use App\Models\Production;
 use App\Models\ProductionMaterial;
 use App\Models\ProductionResult;
 use App\Models\Uom;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -69,8 +69,8 @@ class FormDetailModal extends Component
             'id_item_category' => 'required',
             'id_item' => 'required',
             'qty' => 'required|numeric|min:0.01',
-            'id_uom' => 'nullable',
-            'id_packaging' => 'nullable',
+            'id_uom' => 'required',
+            'id_packaging' => 'required',
         ];
 
         $validator = Validator::make($formData, $rules);
@@ -160,10 +160,10 @@ class FormDetailModal extends Component
                     $resultRow->update($data);
 
                     if ($production->status >= 3) {
-                        $trx = ItemTransaction::where('transaction_code', $production->production_number . '-PROD')
-                              ->where('id_item', $oldItem)
-                              ->where('income', '>', 0)
-                              ->first();
+                        $trx = ItemTransaction::where('transaction_code', $production->production_number.'-PROD')
+                            ->where('id_item', $oldItem)
+                            ->where('income', '>', 0)
+                            ->first();
                         if ($trx) {
                             $trx->update([
                                 'id_item' => $formData['id_item'],
@@ -192,7 +192,7 @@ class FormDetailModal extends Component
                             'id_uom' => $formData['id_uom'] ?: null,
                             'id_packaging' => $formData['id_packaging'] ?: null,
                             'id_doc_type' => $docTypeProd->id_doc_type,
-                            'transaction_code' => $production->production_number . '-PROD',
+                            'transaction_code' => $production->production_number.'-PROD',
                             'income' => $formData['qty'],
                             'outcome' => 0,
                             'transaction_date' => $production->production_date ?? now(),

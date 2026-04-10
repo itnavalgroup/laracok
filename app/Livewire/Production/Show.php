@@ -28,13 +28,17 @@ class Show extends Component
     public $mat_qty;
 
     // form for result
-    public $res_id_item;    public $res_qty;
+    public $res_id_item;
+
+    public $res_qty;
 
     // approval dates
     public $process_date;
+
     public $process_note;
 
     public $finish_date;
+
     public $verify_note;
 
     public function mount($hash)
@@ -60,7 +64,7 @@ class Show extends Component
             || ($user->hasPermission('production.view.warehouse') && $user->id_warehouse == $production->id_warehouse)
             || ($user->id_user == $production->id_user || $user->id_user == $production->id_requestor);
 
-        abort_if(!($hasMasterDetailAccess && $isInScope), 403);
+        abort_if(! ($hasMasterDetailAccess && $isInScope), 403);
     }
 
     public function getQr($text)
@@ -207,7 +211,7 @@ class Show extends Component
         $production = $res->production;
 
         if ($production->status >= 3) {
-            ItemTransaction::where('transaction_code', $production->production_number . '-PROD')
+            ItemTransaction::where('transaction_code', $production->production_number.'-PROD')
                 ->where('id_item', $res->id_item)
                 ->where('income', '>', 0)
                 ->delete();
@@ -233,16 +237,6 @@ class Show extends Component
                 'type' => 'error',
                 'title' => 'Gagal',
                 'message' => 'Material tidak boleh kosong!',
-            ]);
-
-            return;
-        }
-
-        if ($production->attachments->isEmpty()) {
-            $this->dispatch('alert', [
-                'type' => 'error',
-                'title' => 'Gagal',
-                'message' => 'Dokumen Pendukung tidak boleh kosong!',
             ]);
 
             return;
@@ -283,6 +277,7 @@ class Show extends Component
                     'title' => 'Stok Tidak Cukup',
                     'message' => "Gagal Submit: Stok {$mat->item->item_name} tidak mencukupi (Tersedia: {$availableStock}, Diminta: {$mat->qty}). Mungkin sudah digunakan oleh Production atau IKB lain.",
                 ]);
+
                 return;
             }
         }
@@ -329,7 +324,7 @@ class Show extends Component
                 'id_uom' => $mat->id_uom,
                 'id_packaging' => $mat->id_packaging,
                 'id_doc_type' => $docTypeProd->id_doc_type,
-                'transaction_code' => $production->production_number . '-RAW',
+                'transaction_code' => $production->production_number.'-RAW',
                 'income' => 0,
                 'outcome' => $mat->qty,
                 'transaction_date' => $this->process_date,
@@ -373,7 +368,7 @@ class Show extends Component
             ]);
 
             // Delete the material ItemTransactions
-            ItemTransaction::where('transaction_code', $production->production_number . '-RAW')
+            ItemTransaction::where('transaction_code', $production->production_number.'-RAW')
                 ->where('outcome', '>', 0)
                 ->delete();
 
@@ -387,7 +382,7 @@ class Show extends Component
             ]);
 
             // Delete the result ItemTransactions (both old PROD/ numbers and new -PROD suffix)
-            ItemTransaction::whereIn('transaction_code', [$production->production_number . '-PROD', $production->production_number])
+            ItemTransaction::whereIn('transaction_code', [$production->production_number.'-PROD', $production->production_number])
                 ->where('income', '>', 0)
                 ->delete();
 
@@ -418,6 +413,7 @@ class Show extends Component
                 'message' => 'Result (Output) belum ditambahkan. Silakan tambahkan hasil produksi terlebih dahulu!',
             ]);
             $this->dispatch('close-modal-verify');
+
             return;
         }
 
@@ -440,7 +436,7 @@ class Show extends Component
                     'id_uom' => $res->id_uom,
                     'id_packaging' => $res->id_packaging,
                     'id_doc_type' => $docTypeProd->id_doc_type,
-                    'transaction_code' => $production->production_number . '-PROD',
+                    'transaction_code' => $production->production_number.'-PROD',
                     'income' => $res->qty,
                     'outcome' => 0,
                     'transaction_date' => $production->production_date,
@@ -594,9 +590,9 @@ class Show extends Component
         // Fetch Item Transactions linked to this production via transaction_code
         $itemTransactions = ItemTransaction::with(['item', 'uom', 'user'])
             ->whereIn('transaction_code', [
-                $production->production_number, 
-                $production->production_number . '-RAW', 
-                $production->production_number . '-PROD'
+                $production->production_number,
+                $production->production_number.'-RAW',
+                $production->production_number.'-PROD',
             ])
             ->orderBy('id_item_transaction', 'desc')
             ->get();
